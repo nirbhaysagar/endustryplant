@@ -43,10 +43,15 @@ export default function ContactPage() {
     const reference = `EP-2026-${rand}`;
     setRefNo(reference);
 
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    let supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
     const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
     if (supabaseUrl && supabaseKey) {
+      // Normalize URL (strip trailing slashes, remove duplicate rest/v1 suffixes)
+      supabaseUrl = supabaseUrl.replace(/\/$/, '');
+      if (supabaseUrl.endsWith('/rest/v1')) {
+        supabaseUrl = supabaseUrl.slice(0, -8);
+      }
       try {
         const response = await fetch(`${supabaseUrl}/rest/v1/inquiries`, {
           method: 'POST',
