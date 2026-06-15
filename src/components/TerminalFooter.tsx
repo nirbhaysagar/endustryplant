@@ -150,6 +150,11 @@ export default function TerminalFooter() {
                 <Link href="/#library" className="footer-link">Index</Link>
               </div>
               <div className="footer-col">
+                <div className="col-title">Legal</div>
+                <Link href="/terms" className="footer-link">Terms of Service</Link>
+                <Link href="/privacy" className="footer-link">Privacy Policy</Link>
+              </div>
+              <div className="footer-col">
                 <div className="col-title">Socials</div>
                 <a href="#" className="footer-link">Twitter / X</a>
                 <a href="#" className="footer-link">LinkedIn</a>
