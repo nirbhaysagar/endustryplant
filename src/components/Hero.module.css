@@ -105,3 +105,20 @@
   margin-top: 2px;
   margin-bottom: 2px;
 }
+
+@media (max-width: 900px) {
+  .hero {
+    justify-content: flex-end;
+  }
+  .content {
+    margin-top: 0;
+    margin-bottom: 60px;
+    padding: 0 24px;
+  }
+  .headline {
+    margin-bottom: 20px;
+  }
+  .subtext {
+    margin-bottom: 32px;
+  }
+}
