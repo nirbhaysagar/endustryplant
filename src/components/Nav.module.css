@@ -3,150 +3,103 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
-  transition: background 0.4s ease, border-color 0.4s ease;
-  border-bottom: 1px solid transparent;
+  padding: 20px 0;
+  z-index: 100;
+  transition: all 0.4s ease;
+  pointer-events: none;
 }
 
-.nav.scrolled {
-  background: rgba(8, 8, 8, 0.88);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border-bottom: 1px solid var(--white-06);
+.scrolled {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
 .inner {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 clamp(24px, 5vw, 80px);
-  height: 64px;
+  padding: 0 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
+  pointer-events: auto;
 }
 
-/* ── Logo ───────────────────────────────────────────────── */
-.logo {
+.logoGroup {
   display: flex;
   align-items: center;
-  gap: 10px;
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 0;
+  gap: 12px;
 }
 
-.logoMark {
-  width: 26px;
-  height: 26px;
-  background: var(--green);
+.logoBox {
+  width: 24px;
+  height: 24px;
+  background: #000;
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-mono);
-  font-size: 9px;
-  font-weight: 700;
-  color: var(--bg);
-  letter-spacing: 0.05em;
-  flex-shrink: 0;
+  font-size: 10px;
+  font-weight: bold;
 }
 
 .logoText {
   font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.15em;
-  color: #0a0a0a;
-  text-transform: uppercase;
-  transition: color 0.4s ease;
+  font-size: 14px;
+  letter-spacing: -0.02em;
+  color: #000;
+  font-weight: 500;
 }
 
-.scrolled .logoText {
-  color: var(--white);
-}
-
-.logoYear {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  letter-spacing: 0.1em;
-  color: rgba(0,0,0,0.4);
-  text-transform: uppercase;
-  border-left: 1px solid rgba(0,0,0,0.1);
-  padding-left: 10px;
-  margin-left: 4px;
-  transition: color 0.4s ease, border-color 0.4s ease;
-}
-
-.scrolled .logoYear {
-  color: var(--white-40);
-  border-color: var(--white-10);
-}
-
-/* ── Links ──────────────────────────────────────────────── */
-.links {
+.centerLinks {
   display: flex;
-  align-items: center;
   gap: 32px;
+  background: rgba(0, 0, 0, 0.03);
+  padding: 8px 32px;
+  border-radius: 40px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
-.link {
-  font-family: var(--font-body);
+.centerLinks a {
+  font-family: var(--font-mono);
   font-size: 13px;
-  color: rgba(0,0,0,0.6);
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 0;
-  position: relative;
+  color: rgba(0, 0, 0, 0.6);
+  text-decoration: none;
   transition: color 0.2s ease;
 }
 
-.scrolled .link {
-  color: var(--white-60);
+.centerLinks a:hover {
+  color: #000;
 }
 
-.link::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: var(--green);
-  transition: width 0.3s var(--ease-expo);
+.rightGroup {
+  display: flex;
+  align-items: center;
 }
 
-.link:hover { color: #0a0a0a; }
-.scrolled .link:hover { color: var(--white); }
-.link:hover::after { width: 100%; }
-
-/* ── CTA ────────────────────────────────────────────────── */
-.cta {
+.contactBtn {
   font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--green);
-  background: transparent;
-  border: 1px solid var(--green-40);
-  padding: 9px 20px;
-  cursor: pointer;
-  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
-  white-space: nowrap;
+  font-size: 13px;
+  font-weight: 500;
+  color: #fff;
+  background: #000;
+  padding: 10px 24px;
+  border-radius: 40px;
+  text-decoration: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-.cta:hover {
-  background: var(--green);
-  color: var(--bg);
-  border-color: var(--green);
+.contactBtn:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
 }
 
-/* ── Responsive ─────────────────────────────────────────── */
 @media (max-width: 900px) {
-  .links { display: none; }
-  .logoYear { display: none; }
-}
-
-@media (max-width: 600px) {
-  .cta { display: none; }
+  .centerLinks {
+    display: none;
+  }
 }

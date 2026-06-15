@@ -10,50 +10,35 @@ export default function Hero() {
     setMounted(true);
   }, []);
 
-  const scrollToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-  };
+  if (!mounted) return <div className={styles.hero} />;
 
   return (
     <section className={styles.hero} id="hero">
-      <div className={`${styles.heroContent} ${mounted ? styles.visible : ''}`}>
+      
+      {/* Background and center image */}
+      <div className={styles.backgroundLayer}>
+        <img src="/hero_image.png" alt="Cybernetic hands reaching for crystal" className={styles.centerImage} />
+        <div className={styles.vignette}></div>
+      </div>
+
+      <div className={styles.content}>
         
-        {/* Giant Headline */}
         <h1 className={styles.headline}>
-          <span className={styles.headlineRow}>WE</span>
-          <span className={styles.headlineRow}>MANUFACTURE</span>
-          <span className={styles.headlineRow}>DIGITAL</span>
-          <span className={styles.headlineRow}>COMPANIES</span>
+          <span className={styles.headlineSpan}>When intelligence reaches out</span><br/>
+          <span className={styles.headlineSpan}>to instinct, the future takes shape</span>
         </h1>
 
-        {/* Polaroid 1 */}
-        <div className={`${styles.polaroid} ${styles.polaroid1}`}>
-          <img src="https://picsum.photos/seed/agency1/400/400?grayscale" alt="Agency team" />
-        </div>
+        <p className={styles.subtext}>
+          <span className={styles.subtextSpan}>an unlikely alliance - where human intuition</span><br/>
+          <span className={styles.subtextSpan}>and algorithmic precision move as one</span>
+        </p>
 
-        {/* Polaroid 2 */}
-        <div className={`${styles.polaroid} ${styles.polaroid2}`}>
-          <img src="https://picsum.photos/seed/agency2/400/400?grayscale" alt="Agency work" />
-        </div>
-
-        {/* Side Text Block */}
-        <div className={styles.sideBlock}>
-          <p className={styles.sideText}>
-            In a world overloaded with noise, agencies don&apos;t win by chasing attention—they earn it by building compounding infrastructure.
-          </p>
-          <a
-            href="#capabilities"
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection('capabilities');
-            }}
-            className={styles.sideLink}
-          >
-            WHAT WE DO
-          </a>
-        </div>
+        <a href="#showcase" className={styles.ctaButton}>
+          See it in action <span className={styles.arrow}>→</span>
+        </a>
 
       </div>
+      
     </section>
   );
 }

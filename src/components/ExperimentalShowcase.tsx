@@ -99,11 +99,18 @@ export default function ExperimentalShowcase() {
           font-size: clamp(50px, 8vw, 120px);
           font-weight: 800;
           color: #0a0a0a;
-          line-height: 0.9;
+          line-height: 1;
           letter-spacing: -0.04em;
           text-align: center;
           margin-bottom: 80px;
           text-transform: uppercase;
+        }
+
+        .showcase-title span {
+          background-color: #bbfac2;
+          padding: 0 20px;
+          display: inline-block;
+          margin-bottom: -10px;
         }
 
         .showcase-grid {
@@ -206,7 +213,10 @@ export default function ExperimentalShowcase() {
         onMouseLeave={handleMouseLeave}
       >
         <div className="showcase-label">LABORATORY</div>
-        <h2 className="showcase-title">Experimental Showcase</h2>
+        <h2 className="showcase-title">
+          <span>Experimental</span><br />
+          <span>Showcase</span>
+        </h2>
 
         <div className="showcase-grid">
           {PROJECTS.map((proj, i) => (
