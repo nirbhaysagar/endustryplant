@@ -142,10 +142,10 @@ export default function TerminalFooter() {
             <div className="footer-links">
               <div className="footer-col">
                 <div className="col-title">Navigation</div>
-                <a href="#hero" className="footer-link">Home</a>
-                <a href="#process" className="footer-link">Process</a>
-                <a href="#capabilities" className="footer-link">Services</a>
-                <a href="#library" className="footer-link">Index</a>
+                <a href="/#hero" className="footer-link">Home</a>
+                <a href="/#process" className="footer-link">Process</a>
+                <a href="/#capabilities" className="footer-link">Services</a>
+                <a href="/#library" className="footer-link">Index</a>
               </div>
               <div className="footer-col">
                 <div className="col-title">Socials</div>

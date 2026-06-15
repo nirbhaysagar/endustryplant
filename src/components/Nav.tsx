@@ -28,14 +28,14 @@ export default function Nav() {
         </div>
 
         <div className={styles.centerLinks}>
-          <a href="#capabilities">Services</a>
-          <a href="#process">Process</a>
-          <a href="#showcase">Lab</a>
-          <a href="#library">Index</a>
+          <a href="/#capabilities">Services</a>
+          <a href="/#process">Process</a>
+          <a href="/#showcase">Lab</a>
+          <a href="/#library">Index</a>
         </div>
 
         <div className={styles.rightGroup}>
-          <a href="#contact" className={styles.contactBtn}>Start a Project</a>
+          <a href="/contact" className={styles.contactBtn}>Start a Project</a>
         </div>
 
       </div>
