@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import styles from './Hero.module.css';
 
 export default function Hero() {
@@ -33,9 +34,9 @@ export default function Hero() {
           <span className={styles.subtextSpan}>and algorithmic precision move as one</span>
         </p>
 
-        <a href="#showcase" className={styles.ctaButton}>
+        <Link href="/#showcase" className={styles.ctaButton}>
           See it in action <span className={styles.arrow}>→</span>
-        </a>
+        </Link>
 
       </div>
       

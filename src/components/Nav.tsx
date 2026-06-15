@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import styles from './Nav.module.css';
 
 export default function Nav() {
@@ -22,20 +23,20 @@ export default function Nav() {
     <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}>
       <div className={styles.inner}>
         
-        <div className={styles.logoGroup}>
+        <Link href="/" className={styles.logoGroup}>
           <div className={styles.logoBox}>EP</div>
           <span className={styles.logoText}>ENDUSTRY PLANT</span>
-        </div>
+        </Link>
 
         <div className={styles.centerLinks}>
-          <a href="/#capabilities">Services</a>
-          <a href="/#process">Process</a>
-          <a href="/#showcase">Lab</a>
-          <a href="/#library">Index</a>
+          <Link href="/#capabilities">Services</Link>
+          <Link href="/#process">Process</Link>
+          <Link href="/#showcase">Lab</Link>
+          <Link href="/#library">Index</Link>
         </div>
 
         <div className={styles.rightGroup}>
-          <a href="/contact" className={styles.contactBtn}>Start a Project</a>
+          <Link href="/contact" className={styles.contactBtn}>Start a Project</Link>
         </div>
 
       </div>

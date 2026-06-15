@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 export default function TerminalFooter() {
   const handleScrollTop = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -142,10 +144,10 @@ export default function TerminalFooter() {
             <div className="footer-links">
               <div className="footer-col">
                 <div className="col-title">Navigation</div>
-                <a href="/#hero" className="footer-link">Home</a>
-                <a href="/#process" className="footer-link">Process</a>
-                <a href="/#capabilities" className="footer-link">Services</a>
-                <a href="/#library" className="footer-link">Index</a>
+                <Link href="/#hero" className="footer-link">Home</Link>
+                <Link href="/#process" className="footer-link">Process</Link>
+                <Link href="/#capabilities" className="footer-link">Services</Link>
+                <Link href="/#library" className="footer-link">Index</Link>
               </div>
               <div className="footer-col">
                 <div className="col-title">Socials</div>
