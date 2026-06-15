@@ -134,7 +134,7 @@ export default function TerminalFooter() {
         <div className="footer-inner">
           
           <div className="footer-top">
-            <a href="mailto:hello@endustryplant.com" className="footer-cta">
+            <a href="mailto:endustryplant.com@gmail.com" className="footer-cta">
               <span>Let's</span>
               <span>Build</span>
             </a>

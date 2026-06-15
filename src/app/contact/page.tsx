@@ -5,12 +5,7 @@ import GrainOverlay from '@/components/GrainOverlay';
 import Nav from '@/components/Nav';
 import TerminalFooter from '@/components/TerminalFooter';
 
-const BUDGET_OPTIONS = [
-  { label: 'Under $10k', value: '<10k' },
-  { label: '$10k - $30k', value: '10k-30k' },
-  { label: '$30k - $100k', value: '30k-100k' },
-  { label: '$100k+', value: '100k+' }
-];
+
 
 const SERVICE_OPTIONS = [
   { label: 'Website Building', value: 'website' },
@@ -25,7 +20,6 @@ export default function ContactPage() {
   const [email, setEmail] = useState('');
   const [company, setCompany] = useState('');
   const [details, setDetails] = useState('');
-  const [budget, setBudget] = useState('');
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const [submitted, setSubmitted] = useState(false);
   const [refNo, setRefNo] = useState('');
@@ -287,15 +281,18 @@ export default function ContactPage() {
             <div className="info-details">
               <div className="info-item">
                 <div className="info-label">E-Mail</div>
-                <div className="info-val">hello@endustryplant.com</div>
+                <div className="info-val" style={{ textTransform: 'none' }}>endustryplant.com@gmail.com</div>
               </div>
               <div className="info-item">
                 <div className="info-label">Base Location</div>
                 <div className="info-val">New Delhi, India (Global)</div>
               </div>
               <div className="info-item">
-                <div className="info-label">Office Hours</div>
-                <div className="info-val">10:00 - 19:00 IST</div>
+                <div className="info-label">Contact Numbers</div>
+                <div className="info-val" style={{ fontSize: '15px', textTransform: 'none', lineHeight: '1.5' }}>
+                  +91 73021 64841 (Nirbhay Sagar)<br />
+                  +91 95486 91732 (Aditya Kumar)
+                </div>
               </div>
             </div>
           </div>
@@ -362,22 +359,6 @@ export default function ContactPage() {
                         key={opt.value}
                         onClick={() => handleServiceToggle(opt.value)}
                         className={`btn-select ${selectedServices.includes(opt.value) ? 'active' : ''}`}
-                      >
-                        {opt.label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="field-group">
-                  <div className="field-label">Budget range</div>
-                  <div className="selector-grid">
-                    {BUDGET_OPTIONS.map(opt => (
-                      <button
-                        type="button"
-                        key={opt.value}
-                        onClick={() => setBudget(opt.value)}
-                        className={`btn-select ${budget === opt.value ? 'active' : ''}`}
                       >
                         {opt.label}
                       </button>
