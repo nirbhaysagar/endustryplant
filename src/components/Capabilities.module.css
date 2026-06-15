@@ -62,7 +62,7 @@
 /* Grid */
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 10px;
 }
 
@@ -77,6 +77,22 @@
   height: 460px;
   perspective: 1500px;
   cursor: pointer;
+  grid-column: span 2;
+}
+
+@media (min-width: 901px) {
+  .card:nth-child(4) {
+    grid-column: 2 / span 2;
+  }
+  .card:nth-child(5) {
+    grid-column: 4 / span 2;
+  }
+}
+
+@media (max-width: 900px) {
+  .card {
+    grid-column: auto;
+  }
 }
 
 .cardInner {
@@ -134,7 +150,7 @@
   position: absolute;
   bottom: 30px;
   left: 30px;
-  font-family: var(--font-body);
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: clamp(20px, 2vw, 24px);
   font-weight: 500;
   color: #111;

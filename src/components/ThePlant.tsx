@@ -96,7 +96,13 @@ export default function ThePlant() {
 
               <div className={styles.scribbleText} style={{ bottom: '-15%', left: '10%' }}>
                 LOCATION:<br/>
-                <span style={{textDecoration: 'line-through'}}>UNITED KINGDOM</span>, GLOBAL
+                <span style={{textDecoration: 'line-through'}}>UNITED KINGDOM</span>, DELHI, INDIA (GLOBAL)
+              </div>
+
+              <div className={styles.scribbleText} style={{ top: '25%', right: '-30%', width: '240px', transform: 'rotate(5deg)', fontSize: '18px', lineHeight: '1.2' }}>
+                FULL-SERVICE AGENCY.<br/>
+                NOT A COLLECTIVE.<br/>
+                NOT A SOFTWARE HOUSE.
               </div>
 
               {/* Cherries Doodle */}

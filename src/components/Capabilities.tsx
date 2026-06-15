@@ -5,34 +5,42 @@ import styles from './Capabilities.module.css';
 const SERVICES = [
   {
     num: '1',
-    category: 'AI AGENTS',
-    title: 'Autonomous System Development',
-    desc: 'Building autonomous systems that perform complex work — customer acquisition, research synthesis, content pipelines, and operational tasks — without human intervention.',
-    img: 'https://picsum.photos/seed/agents/600/400?grayscale',
+    category: 'WEBSITES',
+    title: 'Website Building',
+    desc: 'Custom, built-for-purpose websites designed to capture leverage and convert traffic. No generic templates. Real, bespoke code engineered for your business.',
+    img: '/service_websites.png',
     status: '( ACTIVE - )'
   },
   {
     num: '2',
-    category: 'MVP DEV',
-    title: 'Rapid Prototype Engineering',
-    desc: 'Idea → Product → Market. We compress months of development into weeks by building only what validates the riskiest assumptions first.',
-    img: 'https://picsum.photos/seed/mvp/600/400?grayscale',
+    category: 'ECOMMERCE',
+    title: 'eCommerce Store Building',
+    desc: 'High-performance stores built on Shopify and custom headless stacks. Complete end-to-end design, custom integration, launch, and speed optimization.',
+    img: '/service_ecommerce.png',
     status: '( ACTIVE - )'
   },
   {
     num: '3',
     category: 'AUTOMATION',
-    title: 'Workflow Orchestration',
-    desc: 'Remove repetitive operations from your stack entirely. Every manual step becomes a trigger. Every trigger becomes a compounding workflow.',
-    img: 'https://picsum.photos/seed/auto/600/400?grayscale',
-    status: '( ONGOING - )'
+    title: 'AI Automation',
+    desc: 'Automating business operations using AI. Deep integration of custom workflows, processing pipelines, and tools that eliminate repetitive manual work.',
+    img: '/service_automation.png',
+    status: '( ACTIVE - )'
   },
   {
     num: '4',
-    category: 'GROWTH',
-    title: 'Systematic Growth Engines',
-    desc: 'Acquire customers automatically. Growth infrastructure that compounds — SEO engines, AI content systems, distribution networks.',
-    img: 'https://picsum.photos/seed/growth/600/400?grayscale',
+    category: 'WEB APPS',
+    title: 'End-to-End Web Apps',
+    desc: 'Full-stack applications engineered from scratch. Something you need built securely, scaled rapidly, and handed over running in perfect operational condition.',
+    img: '/service_web_apps.png',
+    status: '( ACTIVE - )'
+  },
+  {
+    num: '5',
+    category: 'MOBILE APPS',
+    title: 'Mobile Apps',
+    desc: 'Product-level native and cross-platform mobile development for iOS and Android. High-performance, App Store-ready products built for scale.',
+    img: '/service_mobile_apps.png',
     status: '( ACTIVE - )'
   },
 ];

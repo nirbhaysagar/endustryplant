@@ -84,9 +84,9 @@ export default function Manifesto() {
         <div className="manifesto-inner">
           
           <h2 className="manifesto-text">
-            <span>The era of manual labor in digital spaces is over.</span>
-            <span className="highlight">We do not rent hours.</span>
-            <span>We build infrastructure that runs while you sleep.</span>
+            <span>We are a full-service digital agency.</span>
+            <span className="highlight">From Delhi to the world.</span>
+            <span>Building a billion-dollar brand.</span>
           </h2>
 
           <div className="manifesto-footer">

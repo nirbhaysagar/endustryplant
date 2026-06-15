@@ -79,13 +79,13 @@ export default function ProblemSolution() {
         <div className={styles.solutionBlock}>
           <p className={styles.solutionIntro}>THE ENDUSTRY PLANT APPROACH</p>
           <p className={styles.solutionLine}>
-            Instead of Code <span>→</span> <strong>We Build Infrastructure.</strong>
+            Instead of freelancer collectives <span>→</span> <strong>We are a Full-Service Studio.</strong>
           </p>
           <p className={styles.solutionLine}>
-            Instead of Hours <span>→</span> <strong>We Build Systems.</strong>
+            Instead of generic templates <span>→</span> <strong>We Build Custom, Built-For-Purpose Sites.</strong>
           </p>
           <p className={styles.solutionLine}>
-            Instead of Manual Work <span>→</span> <strong>We Build Autonomous Agents.</strong>
+            Instead of manual operations <span>→</span> <strong>We Automate with AI.</strong>
           </p>
         </div>
 

@@ -36,6 +36,13 @@ const STEPS: Step[] = [
   },
 ];
 
+const PROCESS_IMAGES = [
+  '/anime_workspace.jpg',
+  '/anime_hands.jpg',
+  '/anime_workspace.jpg',
+  '/anime_hands.jpg',
+];
+
 export default function ManufacturingProcess() {
   const [activeStep, setActiveStep] = useState(0);
 
@@ -209,13 +216,13 @@ export default function ManufacturingProcess() {
               ))}
             </div>
 
-            <div className="process-image-pane">
-              <img 
-                src={`https://picsum.photos/seed/process${activeStep}/800/1000?grayscale`} 
-                alt="Process visualization" 
-                key={activeStep} 
-              />
-            </div>
+             <div className="process-image-pane">
+               <img 
+                 src={PROCESS_IMAGES[activeStep]} 
+                 alt="Process visualization" 
+                 key={activeStep} 
+               />
+             </div>
           </div>
         </div>
       </section>
