@@ -23,6 +23,8 @@ export default function ContactPage() {
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const [submitted, setSubmitted] = useState(false);
   const [refNo, setRefNo] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
 
   const handleServiceToggle = (val: string) => {
     setSelectedServices(prev =>
@@ -30,14 +32,58 @@ export default function ContactPage() {
     );
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name || !email) return;
+    setLoading(true);
+    setErrorMsg('');
     
     // Generate an on-brand random reference code
     const rand = Math.floor(1000 + Math.random() * 9000);
-    setRefNo(`EP-2026-${rand}`);
-    setSubmitted(true);
+    const reference = `EP-2026-${rand}`;
+    setRefNo(reference);
+
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+    if (supabaseUrl && supabaseKey) {
+      try {
+        const response = await fetch(`${supabaseUrl}/rest/v1/inquiries`, {
+          method: 'POST',
+          headers: {
+            'apikey': supabaseKey,
+            'Authorization': `Bearer ${supabaseKey}`,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify({
+            ref_no: reference,
+            name,
+            email,
+            company: company || null,
+            services: selectedServices,
+            details: details || null
+          })
+        });
+
+        if (!response.ok) {
+          const errText = await response.text();
+          throw new Error(`Database submission failed: ${errText}`);
+        }
+        setSubmitted(true);
+      } catch (err: any) {
+        console.error(err);
+        setErrorMsg(err.message || 'Submission failed. Please try again.');
+      } finally {
+        setLoading(false);
+      }
+    } else {
+      console.warn('[SUPABASE] Offline mode: Env variables missing. Simulating database insertion.');
+      setTimeout(() => {
+        setSubmitted(true);
+        setLoading(false);
+      }, 600);
+    }
   };
 
   return (
@@ -378,8 +424,14 @@ export default function ContactPage() {
                   />
                 </div>
 
-                <button type="submit" className="submit-btn">
-                  Submit Brief →
+                {errorMsg && (
+                  <div style={{ color: '#E63946', fontFamily: 'var(--font-mono)', fontSize: '12px', marginBottom: '20px' }}>
+                    [ ERROR: {errorMsg.toUpperCase()} ]
+                  </div>
+                )}
+
+                <button type="submit" className="submit-btn" disabled={loading}>
+                  {loading ? 'Transmitting...' : 'Submit Brief →'}
                 </button>
               </form>
             )}
