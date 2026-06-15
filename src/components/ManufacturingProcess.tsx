@@ -231,9 +231,14 @@ export default function ManufacturingProcess() {
         @media (max-width: 900px) {
           .process-grid {
             grid-template-columns: 1fr;
+            gap: 40px;
           }
           .process-image-pane {
-            display: none;
+            display: block;
+            width: 100%;
+            max-width: 450px;
+            margin: 0 auto;
+            aspect-ratio: 4/5;
           }
           .process-header {
             flex-direction: column;
