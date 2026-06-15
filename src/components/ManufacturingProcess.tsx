@@ -73,8 +73,8 @@ function AutomationSvg() {
 
       <g transform="translate(50, 400)">
         <circle r="25" fill="#f4f4f0" stroke="#0a0a0a" strokeWidth="2" />
-        <text y="5" fontFamily="var(--font-mono)" fontSize="9" fontWeight="bold" text-anchor="middle" stroke="none" fill="#0a0a0a">OUT</text>
-        <text y="45" fontFamily="var(--font-mono)" fontSize="10" text-anchor="middle" stroke="none" fill="#666">SYSTEM</text>
+        <text y="5" fontFamily="var(--font-mono)" fontSize="9" fontWeight="bold" textAnchor="middle" stroke="none" fill="#0a0a0a">OUT</text>
+        <text y="45" fontFamily="var(--font-mono)" fontSize="10" textAnchor="middle" stroke="none" fill="#666">SYSTEM</text>
       </g>
 
       {/* Interlocking Gears in Center */}
