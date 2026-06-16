@@ -107,12 +107,7 @@
 }
 
 @media (max-width: 900px) {
-  .hero {
-    justify-content: flex-end;
-  }
   .content {
-    margin-top: 0;
-    margin-bottom: 60px;
     padding: 0 24px;
   }
   .headline {
