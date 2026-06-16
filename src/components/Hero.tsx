@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import HeroHeadline from './HeroHeadline';
 import styles from './Hero.module.css';
 
 export default function Hero() {
@@ -24,10 +25,7 @@ export default function Hero() {
 
       <div className={styles.content}>
         
-        <h1 className={styles.headline}>
-          <span className={styles.headlineSpan}>When intelligence reaches out</span><br/>
-          <span className={styles.headlineSpan}>to instinct, the future takes shape</span>
-        </h1>
+        <HeroHeadline />
 
         <p className={styles.subtext}>
           <span className={styles.subtextSpan}>an unlikely alliance - where human intuition</span><br/>
