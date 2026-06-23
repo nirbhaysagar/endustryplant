@@ -5,8 +5,8 @@ import styles from './Hero.module.css';
 export default function HeroHeadline() {
   return (
     <h1 className={styles.headline}>
-      <span className={styles.headlineSpan}>When intelligence reaches out</span><br />
-      <span className={styles.headlineSpan}>to instinct, the future takes shape</span>
+      We build <span className={styles.headlineEm}>high-performance websites</span>,<br />
+      <span className={styles.headlineEm}>applications</span>, and <span className={styles.headlineEm}>AI automations</span>
     </h1>
   );
 }

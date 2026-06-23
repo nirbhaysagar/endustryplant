@@ -8,7 +8,7 @@ import ThePlant from '@/components/ThePlant';
 import Capabilities from '@/components/Capabilities';
 
 // Dynamically import heavy / client-only components
-const ExperimentalShowcase = dynamic(() => import('@/components/ExperimentalShowcase'), { ssr: false });
+// const ExperimentalShowcase = dynamic(() => import('@/components/ExperimentalShowcase'), { ssr: false });
 const ManufacturingProcess = dynamic(() => import('@/components/ManufacturingProcess'), { ssr: false });
 const ProblemSolution = dynamic(() => import('@/components/ProblemSolution'), { ssr: false });
 const Library = dynamic(() => import('@/components/Library'), { ssr: false });
@@ -25,7 +25,7 @@ export default function Home() {
         <ThePlant />
         <ProblemSolution />
         <Capabilities />
-        <ExperimentalShowcase />
+        {/* <ExperimentalShowcase /> */}
         <ManufacturingProcess />
         <Library />
         <Manifesto />
