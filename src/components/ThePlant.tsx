@@ -28,7 +28,7 @@ const STUDIO_CARDS = [
 
 const METRICS = [
   {
-    num: '14+',
+    num: '13+',
     title: 'Live Products',
     desc: 'Shipped websites, mobile apps, and eCommerce stores for Indian & global brands.',
   },

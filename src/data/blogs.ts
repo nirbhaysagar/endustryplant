@@ -184,7 +184,7 @@ export async function getProduct(handle: string) {
     faqs: [
       {
         q: 'Can the WhatsApp agent understand Hinglish and mixed-language queries?',
-        a: 'Yes. By leveraging OpenAI GPT-4o with semantic pre-processing, our pipeline seamlessly interprets conversational Hinglish (e.g., "bhai budget 1.5 cr tak hai 3bhk Gurgaon me available hai kya?").',
+        a: 'Yes. By combining OpenAI GPT-4o with semantic pre-processing, our pipeline parses conversational Hinglish directly into structured CRM lead attributes (e.g., "bhai budget 1.5 cr tak hai 3bhk Gurgaon me available hai kya?").',
       },
       {
         q: 'What is the risk of the AI hallucinating false pricing or promises?',

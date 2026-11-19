@@ -53,7 +53,7 @@ export default function TerminalFooter() {
             <div className={styles.footerCol}>
               <div className={styles.footerColTitle}>Company</div>
               <Link href="/#why-us" className={styles.footerLink}>About Us</Link>
-              <Link href="/#work" className={styles.footerLink}>Portfolio (14)</Link>
+              <Link href="/#work" className={styles.footerLink}>Portfolio (13)</Link>
               <Link href="/#process" className={styles.footerLink}>Process</Link>
               <Link href="/blog" className={styles.footerLink}>Engineering Journal</Link>
               <Link href="/#faq" className={styles.footerLink}>Pricing &amp; FAQ</Link>

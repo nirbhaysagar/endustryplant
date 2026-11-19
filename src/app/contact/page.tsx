@@ -107,13 +107,49 @@ function ContactContent() {
     <>
       <style>{`
         .contact-layout {
-          background: #FFFFFF;
+          background: var(--bg);
           min-height: 100vh;
           padding: 80px 24px 100px;
           display: flex;
           justify-content: center;
           align-items: flex-start;
-          color: #0F172A;
+          color: var(--text-primary);
+        }
+
+        :global([data-theme='dark']) .contact-title,
+        :global([data-theme='dark']) .form-title,
+        :global([data-theme='dark']) .direct-val {
+          color: #FFFFFF !important;
+        }
+
+        :global([data-theme='dark']) .contact-subtext,
+        :global([data-theme='dark']) .form-subtitle,
+        :global([data-theme='dark']) .field-label {
+          color: #94A3B8 !important;
+        }
+
+        :global([data-theme='dark']) .direct-card,
+        :global([data-theme='dark']) .form-card {
+          background: #11131C !important;
+          border-color: #1E2230 !important;
+        }
+
+        :global([data-theme='dark']) .text-input,
+        :global([data-theme='dark']) .btn-select {
+          background: #161925 !important;
+          border-color: #262C3E !important;
+          color: #FFFFFF !important;
+        }
+
+        :global([data-theme='dark']) .btn-select.active {
+          background: #FFFFFF !important;
+          color: #0A0A0A !important;
+          border-color: #FFFFFF !important;
+        }
+
+        :global([data-theme='dark']) .direct-icon {
+          background: #161925 !important;
+          border-color: #262C3E !important;
         }
 
         .contact-inner {
@@ -562,6 +598,37 @@ function ContactContent() {
                 <button type="submit" className="submit-btn" disabled={loading}>
                   {loading ? 'Submitting...' : 'Send Project Brief →'}
                 </button>
+
+                {/* DIRECT WHATSAPP FAST-TRACK */}
+                <div style={{ marginTop: '24px', paddingTop: '20px', borderTop: '1px solid var(--border)', textAlign: 'center' }}>
+                  <p style={{ fontSize: '13px', color: 'var(--text-secondary)', marginBottom: '10px' }}>
+                    Prefer an immediate answer? Skip the brief:
+                  </p>
+                  <a
+                    href={`https://wa.me/917302164841?text=${encodeURIComponent(
+                      `Hi Nirbhay, I'd like to discuss a project with Endustry Plant.\nSelected Service: ${selectedServices.join(', ')}\nBudget: ${budget}`
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '8px',
+                      background: '#25D366',
+                      color: '#062E12',
+                      padding: '12px 24px',
+                      borderRadius: '9999px',
+                      fontSize: '13.5px',
+                      fontWeight: 700,
+                      textDecoration: 'none',
+                      width: '100%',
+                      transition: 'all 0.2s ease',
+                    }}
+                  >
+                    <span>💬 Message Nirbhay Directly on WhatsApp (+91 73021 64841) ↗</span>
+                  </a>
+                </div>
               </form>
             )}
           </div>

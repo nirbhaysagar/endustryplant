@@ -73,7 +73,7 @@ export default function Nav() {
           <Link href="/#services" className={styles.navLink}>Services</Link>
           <Link href="/#process" className={styles.navLink}>Process</Link>
           <Link href="/#work" className={styles.navLink}>
-            Work <span className={styles.badgeWork}>14</span>
+            Work <span className={styles.badgeWork}>13</span>
           </Link>
           <Link href="/#why-us" className={styles.navLink}>Why Us</Link>
           <Link href="/#faq" className={styles.navLink}>FAQ</Link>
@@ -152,7 +152,7 @@ export default function Nav() {
             <span>Process</span> <span>→</span>
           </Link>
           <Link href="/#work" className={styles.mobileNavLink} onClick={() => setMobileOpen(false)}>
-            <span>Work (14 Projects)</span> <span className={styles.badgeWork}>14</span>
+            <span>Work (13 Projects)</span> <span className={styles.badgeWork}>13</span>
           </Link>
           <Link href="/#why-us" className={styles.mobileNavLink} onClick={() => setMobileOpen(false)}>
             <span>Why Us</span> <span>→</span>

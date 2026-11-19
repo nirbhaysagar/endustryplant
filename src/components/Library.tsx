@@ -6,10 +6,10 @@ import { PORTFOLIO_PROJECTS } from '@/data/portfolio';
 import styles from './Library.module.css';
 
 const FILTERS = [
-  { key: 'all', label: 'All Work', count: 14 },
+  { key: 'all', label: 'All Work', count: 13 },
   { key: 'ecommerce', label: 'eCommerce & D2C', count: 5 },
-  { key: 'saas', label: 'SaaS & AI Platforms', count: 3 },
-  { key: 'website', label: 'Websites & Portals', count: 6 },
+  { key: 'saas', label: 'SaaS & Platforms', count: 3 },
+  { key: 'website', label: 'Websites & Portals', count: 5 },
 ] as const;
 
 export default function Library() {
@@ -31,11 +31,11 @@ export default function Library() {
         {/* HEADER ROW */}
         <div className={styles.workHeaderRow}>
           <h2 className={styles.workHeadline}>
-            Work that had to do something.{' '}
-            <span className={styles.headlineMuted}>Bespoke code, verified commercial ROI.</span>
+            Work that had to perform.{' '}
+            <span className={styles.headlineMuted}>Custom engineering, verified commercial ROI.</span>
           </h2>
           <p className={styles.workSubtext}>
-            Real production products engineered for category leaders across India and global markets.
+            Production products engineered for category leaders across India and global markets.
           </p>
         </div>
 

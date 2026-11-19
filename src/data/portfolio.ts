@@ -23,12 +23,12 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
   {
     id: 'orbit',
     title: 'Orbit',
-    desc: 'A modern SaaS dashboard experience with vibrant glowing colors and clear performance overview.',
+    desc: 'Real-time telemetry and developer analytics dashboard engineered for sub-50ms query latency.',
     image: '/portfolio/orbit.png',
     link: 'https://orbit.forion.dev/',
     categoryKey: 'saas',
     categoryLabel: 'SaaS · Growth',
-    metaTags: ['SaaS Dashboard', 'LinkedIn Sponsored', 'X Motion Ads', 'Self-Serve Funnel', 'Docs SEO'],
+    metaTags: ['SaaS Dashboard', 'Telemetry Engine', 'Self-Serve Funnel', 'Developer Analytics', 'Docs SEO'],
     bottleneck: 'High bounce rate from broad developer traffic; low conversion from homepage to active workspace setup.',
     strategicMove: 'Dark-mode motion screencasts on X/LinkedIn showing 10-second latency-tracing setup + self-serve onboarding.',
     primaryMetric: {
@@ -45,7 +45,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
   {
     id: 'islandrangoli',
     title: 'Island Rangoli',
-    desc: 'A culture-led ecommerce experience for rangoli, wall decor and heritage-inspired products.',
+    desc: 'Culture-led D2C home decor storefront with structured collection silos and sub-second load times.',
     image: '/portfolio/islandrangoli.png',
     link: 'https://islandrangoli.com/',
     categoryKey: 'ecommerce',
@@ -67,7 +67,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
   {
     id: 'crunchyfashion',
     title: 'Crunchy Fashion',
-    desc: 'Product-first fashion storefront designed around discovery, visual appeal and an easy path to purchase.',
+    desc: 'High-speed D2C jewelry storefront with faceted collection search and automated WhatsApp cart recovery.',
     image: '/portfolio/crunchyfashion.png',
     link: 'https://www.crunchyfashion.com/',
     categoryKey: 'ecommerce',
@@ -89,7 +89,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
   {
     id: 'forion',
     title: 'Forion',
-    desc: 'A futuristic, sleek AI landing page built to empower enterprise automation and scale.',
+    desc: 'Enterprise developer portal and interactive sandbox engineered in Next.js 16 with sub-second page loads.',
     image: '/portfolio/forion.png',
     link: 'https://forion.ai/',
     categoryKey: 'saas',
@@ -111,7 +111,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
   {
     id: 'chockriti',
     title: 'Chockriti',
-    desc: 'A boutique luxury chocolate experience balancing rich storytelling with ecommerce functionality.',
+    desc: 'Artisanal luxury chocolate store with corporate gifting landing pages and temperature-controlled shipping info.',
     image: '/portfolio/chockriti.png',
     link: 'https://www.chockriti.com/',
     categoryKey: 'ecommerce',
@@ -133,9 +133,9 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
   {
     id: 'allindiantensile',
     title: 'All Indian Tensile',
-    desc: 'An industrial digital presence being repositioned through rebranding, clearer service architecture and ongoing SEO work.',
+    desc: 'Industrial tensile structure portal with automated B2B RFQ quotation funnel and technical specs catalog.',
     image: '/portfolio/allindiantensile.png',
-    link: 'https://allindiantensile.in/',
+    link: 'https://allindiantensile.com/',
     categoryKey: 'website',
     categoryLabel: 'Industrial · B2B',
     metaTags: ['Google Search Exact', 'Negative Keyword Pruning', 'Technical RFQ Funnel', 'Tensile Schema'],
@@ -155,7 +155,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
   {
     id: 'triptrekholiday',
     title: 'Trip Trek Holiday',
-    desc: 'A travel website structured to present destinations, packages and planning information with clarity.',
+    desc: 'Custom travel booking platform with day-by-day itineraries and direct WhatsApp trip reservations.',
     image: '/portfolio/triptrekholiday.png',
     link: 'https://triptrekholiday.com/',
     categoryKey: 'website',
@@ -177,7 +177,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
   {
     id: 'luxurydelhispa',
     title: 'Luxury Delhi Spa',
-    desc: 'A premium service website focused on brand atmosphere, treatment discovery and conversion-oriented enquiries.',
+    desc: 'High-ticket wellness booking portal with instant VIP concierge slot confirmation on WhatsApp.',
     image: '/portfolio/luxurydelhispa.png',
     link: 'https://luxurydelhispa.in/',
     categoryKey: 'website',
@@ -199,7 +199,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
   {
     id: 'memorymiles',
     title: 'Memory Miles',
-    desc: 'A travel and visa-processing presence designed to communicate services and guide enquiries with confidence.',
+    desc: 'Immigration & visa eligibility portal with an automated 2-step pre-screening questionnaire.',
     image: '/portfolio/memorymiles.png',
     link: 'https://www.memorymiles.net/',
     categoryKey: 'website',
@@ -221,7 +221,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
   {
     id: 'santaindia',
     title: 'Santa India',
-    desc: 'A brand-led digital experience built to carry personality, culture and product/service discovery.',
+    desc: 'High-authority digital brand hub engineered in Next.js with perfect 100 Google Lighthouse performance.',
     image: '/portfolio/santaindia.png',
     link: 'https://santaindia.com/',
     categoryKey: 'website',
@@ -242,7 +242,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
   {
     id: 'agnettrace',
     title: 'AgentTrace',
-    desc: 'A clean, data-visualized interface for AI tracing and system overview, prioritizing metrics.',
+    desc: 'Real-time WebSocket telemetry dashboard for monitoring LLM token costs and execution latency.',
     image: '/portfolio/agnettrace.png',
     link: 'https://agnettrace.vercel.app',
     categoryKey: 'saas',
@@ -263,7 +263,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
   {
     id: 'luxova',
     title: 'Luxova',
-    desc: 'A premium ecommerce project for elevated product presentation and a polished purchase journey.',
+    desc: 'Curated luxury lifestyle store with limited-edition drop landing pages and 1-click UPI checkout.',
     image: '/portfolio/luxova.png',
     link: 'https://luxova.in/',
     categoryKey: 'ecommerce',
@@ -282,30 +282,9 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     ],
   },
   {
-    id: 'shecanfoundation',
-    title: 'She Can Foundation',
-    desc: 'A purpose-led website for an organisation focused on empowering women through opportunity, learning and leadership.',
-    image: '/portfolio/shecanfoundation.png',
-    link: 'https://she-foundation-ngo.vercel.app/',
-    categoryKey: 'website',
-    categoryLabel: 'NGO & Community',
-    metaTags: ['Mission Storytelling', 'Impact Transparency', 'Volunteer Onboarding', 'Fast Next.js Web'],
-    bottleneck: 'Donors and volunteers lacked clarity on ongoing on-ground initiatives and verifiable impact metrics.',
-    strategicMove: 'Transparent impact dashboard showcasing beneficiary stories, live initiative trackers, and 1-click UPI donations.',
-    primaryMetric: {
-      val: '10,000+',
-      lbl: 'Women Empowered',
-      ctx: 'Through leadership & skill training',
-    },
-    metrics: [
-      { val: '10,000+', lbl: 'Women Empowered', ctx: 'Through leadership & skill training' },
-      { val: '+220%', lbl: 'Volunteer Inquiries', ctx: 'Via streamlined recruitment flow' },
-    ],
-  },
-  {
     id: 'yonkx',
     title: 'Yonkx',
-    desc: 'A previous ecommerce engagement delivering high-converting storefront architecture and product exploration.',
+    desc: 'Custom headless storefront architecture with sub-second mobile page loads and streamlined checkout.',
     image: '/portfolio/yonkx.png',
     link: 'https://yonkx.com/',
     categoryKey: 'ecommerce',

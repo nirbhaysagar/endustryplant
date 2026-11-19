@@ -138,9 +138,9 @@ export default function Hero() {
             </div>
 
             <h1 className={styles.headline}>
-              Next-Gen<br />
-              Design Agency for<br />
-              Growing Brands.
+              Engineering Studio<br />
+              for India’s High-Growth<br />
+              Digital Brands.
             </h1>
           </div>
 
@@ -162,7 +162,7 @@ export default function Hero() {
 
               <div className={styles.btnGroup}>
                 <Link href="/#work" className={styles.coralBtn}>
-                  View Work (14) ↗
+                  View Work (13) ↗
                 </Link>
                 <Link href="/contact" className={styles.whiteBtn}>
                   Book A Call ↗
