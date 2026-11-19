@@ -20,9 +20,9 @@ export default function Home() {
       <main>
         <Hero />
         <ThePlant />
-        <ProblemSolution />
         <Capabilities />
         <ManufacturingProcess />
+        <ProblemSolution />
         <Library />
         <Manifesto />
       </main>

@@ -1,47 +1,55 @@
 .section {
-  padding: 100px 0;
-  background: #FFFFFF;
+  padding: 100px 0 120px;
+  background: #F8F9FA;
   border-bottom: 1px solid var(--border);
 }
 
 .inner {
-  max-width: 1220px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 24px;
 }
 
-.header {
-  text-align: center;
-  max-width: 650px;
-  margin: 0 auto 50px;
-}
-
 .label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-family: var(--font-mono);
   font-size: 11px;
-  font-weight: 600;
-  color: #4F46E5;
+  font-weight: 700;
+  color: #0A0A0A;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 12px;
+  letter-spacing: 0.08em;
+  margin-bottom: 20px;
+}
+
+.coralSquare {
+  width: 7px;
+  height: 7px;
+  background: #FF4B3E;
+  display: inline-block;
+  border-radius: 1px;
+}
+
+.headerRow {
+  margin-bottom: 50px;
 }
 
 .heading {
-  font-size: clamp(30px, 3.5vw, 44px);
+  font-size: clamp(32px, 4vw, 48px);
   font-weight: 800;
   letter-spacing: -0.03em;
-  color: #0F172A;
-  line-height: 1.2;
+  color: #0A0A0A;
+  line-height: 1.15;
+  max-width: 800px;
 }
 
-.subtext {
-  font-size: 16px;
-  color: #475569;
-  margin-top: 14px;
-  line-height: 1.7;
+.headingMuted {
+  color: #94A3B8;
+  font-weight: 700;
 }
 
-/* ─── 3-COL COMPARISON MATRIX ───────────────────────────────── */
+/* ─── 3-COL COMPARISON ──────────────────────────────────────── */
 .compGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -49,33 +57,33 @@
   align-items: stretch;
 }
 
-.compCardBad {
-  background: #F8FAFC;
+.compCard {
+  background: #FFFFFF;
   border: 1px solid var(--border);
   border-radius: 20px;
   padding: 32px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
 }
 
 .compCardHero {
-  background: #FFFFFF;
-  border: 2px solid #0F172A;
+  background: #0A0A0E;
+  color: #FFFFFF;
   border-radius: 20px;
-  padding: 32px;
+  padding: 36px 32px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.08);
+  gap: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
   position: relative;
 }
 
-.heroTag {
+.heroPill {
   position: absolute;
   top: -12px;
   left: 32px;
-  background: #0F172A;
+  background: #FF4B3E;
   color: #FFFFFF;
   font-family: var(--font-mono);
   font-size: 10px;
@@ -85,29 +93,54 @@
   letter-spacing: 0.05em;
 }
 
-.cardHeader {
+.cardTop {
   display: flex;
-  flex-direction: column;
-  gap: 6px;
+  justify-content: space-between;
+  align-items: center;
   padding-bottom: 16px;
   border-bottom: 1px solid var(--border);
+}
+
+.compCardHero .cardTop {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .cardType {
   font-size: 18px;
   font-weight: 800;
-  color: #0F172A;
+  color: #0A0A0A;
 }
 
-.cardSubtitle {
-  font-size: 13px;
-  color: #64748B;
+.cardTypeHero {
+  font-size: 20px;
+  font-weight: 800;
+  color: #FFFFFF;
+}
+
+.badgeRisk {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  color: #DC2626;
+  background: #FEF2F2;
+  padding: 3px 8px;
+  border-radius: 9999px;
+}
+
+.badgeHero {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  color: #34D399;
+  background: rgba(16, 185, 129, 0.15);
+  padding: 3px 8px;
+  border-radius: 9999px;
 }
 
 .pointsList {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
 }
 
 .pointRow {
@@ -115,11 +148,16 @@
   align-items: flex-start;
   gap: 10px;
   font-size: 14px;
-  line-height: 1.6;
+  line-height: 1.5;
+  color: #475569;
+}
+
+.compCardHero .pointRow {
+  color: #CBD5E1;
 }
 
 .pointCross {
-  color: #EF4444;
+  color: #DC2626;
   font-weight: bold;
 }
 

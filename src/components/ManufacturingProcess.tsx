@@ -1,301 +1,310 @@
 'use client';
 
-import { useState } from 'react';
+import Link from 'next/link';
 
-interface ProcessStep {
-  id: string;
-  index: string;
-  title: string;
+interface Step {
+  num: string;
   duration: string;
-  desc: string;
-  image: string;
-  deliverables: string[];
+  title: string;
+  summary: string;
+  tags: string[];
 }
 
-const STEPS: ProcessStep[] = [
+const STEPS: Step[] = [
   {
-    id: 's1',
-    index: '01',
-    title: 'Discovery & Technical Blueprint',
-    duration: 'Days 1 – 5',
-    desc: 'We unpack your business goals, target audience, and system requirements. We deliver a detailed wireframe map and fixed-price sprint contract before a single line of code is written.',
-    image: '/process_discovery.png',
-    deliverables: [
-      'Comprehensive product scope & feature roadmap',
-      'Information architecture & wireframe flows',
-      'Milestone payment agreement & fixed delivery date',
-    ],
+    num: '01',
+    duration: 'DAYS 1 – 5',
+    title: 'Discovery & Scope',
+    summary: 'System architecture, wireframe user flows, and a fixed milestone contract before a single line of code is written.',
+    tags: ['Architecture Map', 'Fixed Budget'],
   },
   {
-    id: 's2',
-    index: '02',
-    title: 'UI/UX Design & Clickable Prototype',
-    duration: 'Days 6 – 14',
-    desc: 'We design pixel-perfect, high-converting interfaces in Figma. You receive a clickable, interactive prototype to experience the full customer journey before development begins.',
-    image: '/process_prototyping.png',
-    deliverables: [
-      'Complete desktop & mobile design system in Figma',
-      'Clickable interactive user experience prototype',
-      'Copywriting & conversion funnel optimization',
-    ],
+    num: '02',
+    duration: 'DAYS 6 – 14',
+    title: 'UI/UX Prototype',
+    summary: 'Clickable high-fidelity Figma prototype to click through and validate the complete customer journey before development.',
+    tags: ['Figma System', 'Clickable Flow'],
   },
   {
-    id: 's3',
-    index: '03',
-    title: 'Full-Stack Engineering & Sprints',
-    duration: 'Days 15 – 28',
-    desc: 'Our senior developers write clean, modular Next.js / React Native code. You receive private access to a live staging link with weekly video demos to track progress in real time.',
-    image: '/process_automation.png',
-    deliverables: [
-      'Production-grade codebase with zero template bloat',
-      'Razorpay, WhatsApp, & database API integrations',
-      'Weekly staging review link & async Slack/WhatsApp updates',
-    ],
+    num: '03',
+    duration: 'DAYS 15 – 28',
+    title: 'Full-Stack Sprints',
+    summary: 'Senior engineers build your product using Next.js & React Native. Weekly staging previews with continuous GitHub commits.',
+    tags: ['Live Staging URL', 'API Integrations'],
   },
   {
-    id: 's4',
-    index: '04',
-    title: 'Launch, Code Handover & 30-Day Support',
-    duration: 'Day 29+',
-    desc: 'We launch your product to production, connect custom domains, transfer 100% of the Git repository, and provide 30 days of free post-launch bug fixing and performance monitoring.',
-    image: '/process_deploy.png',
-    deliverables: [
-      'Production deployment on Vercel / AWS / Cloudflare',
-      '100% Git repository & environment handover',
-      '30-Day free SLA warranty & post-launch technical support',
-    ],
+    num: '04',
+    duration: 'DAY 29+',
+    title: 'Launch & Warranty',
+    summary: 'Zero-downtime production release, 100% Git repository transfer, and 30 days of free post-launch SLA bug fixing.',
+    tags: ['Production Edge', '100% IP Transfer'],
   },
 ];
 
 export default function ManufacturingProcess() {
-  const [activeIdx, setActiveIdx] = useState(0);
-  const activeStep = STEPS[activeIdx];
-
   return (
     <>
       <style>{`
         .proc-section {
-          padding: 100px 0;
-          background: #F8FAFC;
+          padding: 110px 0 130px;
+          background: #FFFFFF;
           border-bottom: 1px solid var(--border);
         }
 
         .proc-inner {
-          max-width: 1220px;
+          max-width: 1280px;
           margin: 0 auto;
           padding: 0 24px;
         }
 
-        .proc-header {
+        .proc-label {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          font-family: var(--font-mono);
+          font-size: 11px;
+          font-weight: 700;
+          color: #0A0A0A;
+          text-transform: uppercase;
+          letter-spacing: 0.08em;
+          margin-bottom: 20px;
+        }
+
+        .coralSquare {
+          width: 7px;
+          height: 7px;
+          background: #FF4B3E;
+          display: inline-block;
+          border-radius: 1px;
+        }
+
+        .proc-headerRow {
           display: flex;
           justify-content: space-between;
           align-items: flex-end;
-          gap: 32px;
-          margin-bottom: 50px;
+          gap: 40px;
+          margin-bottom: 56px;
           flex-wrap: wrap;
         }
 
-        .proc-label {
-          font-family: var(--font-mono);
-          font-size: 11px;
-          font-weight: 600;
-          color: #4F46E5;
-          text-transform: uppercase;
-          letter-spacing: 0.1em;
-          margin-bottom: 12px;
-        }
-
-        .proc-title {
-          font-size: clamp(30px, 3.5vw, 44px);
+        .proc-headline {
+          font-size: clamp(34px, 4.4vw, 54px);
           font-weight: 800;
-          letter-spacing: -0.03em;
-          color: #0F172A;
           line-height: 1.15;
+          letter-spacing: -0.03em;
+          color: #0A0A0A;
+          max-width: 800px;
         }
 
-        .proc-subtext {
-          font-size: 16px;
-          color: #475569;
-          max-width: 500px;
-          line-height: 1.7;
+        .headlineMuted {
+          color: #94A3B8;
+          font-weight: 700;
         }
 
-        /* ─── 2-COL PROCESS LAYOUT ──────────────────────────── */
-        .proc-grid {
+        /* ─── 4-COLUMN CARD GRID ────────────────────────────── */
+        .stepsGrid {
           display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 40px;
-          align-items: center;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 20px;
+          margin-bottom: 48px;
         }
 
-        .proc-steps-list {
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
-        }
-
-        .step-item {
-          background: #FFFFFF;
+        .stepCard {
+          background: #F8F9FA;
           border: 1px solid var(--border);
-          border-radius: 16px;
-          padding: 24px;
-          cursor: pointer;
-          transition: all 0.2s ease;
+          border-radius: 20px;
+          padding: 32px 24px;
           display: flex;
           flex-direction: column;
-          gap: 10px;
+          gap: 16px;
+          transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+          position: relative;
         }
 
-        .step-item:hover {
-          border-color: #CBD5E1;
-        }
-
-        .step-item.active {
-          border-color: #4F46E5;
-          box-shadow: 0 8px 24px rgba(79, 70, 229, 0.08);
+        .stepCard:hover {
           background: #FFFFFF;
+          border-color: #0A0A0A;
+          box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+          transform: translateY(-4px);
         }
 
-        .step-top {
+        .cardTop {
           display: flex;
           justify-content: space-between;
           align-items: center;
         }
 
-        .step-index {
+        .stepNum {
           font-family: var(--font-mono);
-          font-size: 14px;
+          font-size: 20px;
+          font-weight: 800;
+          color: #FF4B3E;
+          letter-spacing: -0.02em;
+        }
+
+        .stepDuration {
+          font-family: var(--font-mono);
+          font-size: 10px;
           font-weight: 700;
           color: #64748B;
-        }
-
-        .step-item.active .step-index {
-          color: #4F46E5;
-        }
-
-        .step-duration {
-          font-family: var(--font-mono);
-          font-size: 11px;
-          color: #15803D;
-          background: rgba(34, 197, 94, 0.12);
-          padding: 3px 8px;
-          border-radius: 4px;
-          font-weight: 600;
-        }
-
-        .step-name {
-          font-size: 18px;
-          font-weight: 800;
-          color: #0F172A;
-          letter-spacing: -0.01em;
-        }
-
-        .step-desc {
-          font-size: 14px;
-          color: #64748B;
-          line-height: 1.6;
-        }
-
-        /* ─── VISUAL PANE ───────────────────────────────────── */
-        .proc-visual-pane {
           background: #FFFFFF;
           border: 1px solid var(--border);
-          border-radius: 20px;
-          padding: 24px;
-          box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+          padding: 3px 8px;
+          border-radius: 9999px;
+          letter-spacing: 0.05em;
+        }
+
+        .stepTitle {
+          font-size: 20px;
+          font-weight: 800;
+          letter-spacing: -0.02em;
+          color: #0A0A0A;
+          line-height: 1.25;
+        }
+
+        .stepSummary {
+          font-size: 13.5px;
+          line-height: 1.65;
+          color: #475569;
+          flex-grow: 1;
+        }
+
+        .tagsRow {
           display: flex;
-          flex-direction: column;
-          gap: 20px;
-        }
-
-        .proc-image-box {
-          width: 100%;
-          aspect-ratio: 16/11;
-          border-radius: 14px;
-          overflow: hidden;
-          background: #0F172A;
-        }
-
-        .proc-image-box img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-
-        .del-list {
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
-          border-top: 1px solid var(--border-subtle);
+          flex-wrap: wrap;
+          gap: 6px;
+          margin-top: auto;
           padding-top: 16px;
+          border-top: 1px solid #E2E8F0;
         }
 
-        .del-row {
+        .stepTag {
+          font-family: var(--font-mono);
+          font-size: 10px;
+          font-weight: 600;
+          color: #334155;
+          background: #FFFFFF;
+          border: 1px solid var(--border);
+          padding: 3px 8px;
+          border-radius: 6px;
+        }
+
+        /* ─── BOTTOM GUARANTEE BANNER ───────────────────────── */
+        .procBanner {
+          background: #0A0A0E;
+          color: #FFFFFF;
+          border-radius: 20px;
+          padding: 28px 36px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 24px;
+          flex-wrap: wrap;
+        }
+
+        .bannerLeft {
           display: flex;
           align-items: center;
-          gap: 8px;
-          font-size: 13px;
-          color: #334155;
-          font-weight: 500;
+          gap: 16px;
+          max-width: 780px;
         }
 
-        @media (max-width: 900px) {
-          .proc-grid {
+        .bannerStar {
+          font-size: 22px;
+          color: #FF4B3E;
+          line-height: 1;
+        }
+
+        .bannerText {
+          font-size: 14px;
+          color: #E2E8F0;
+          line-height: 1.5;
+        }
+
+        .bannerBtn {
+          background: #FF4B3E;
+          color: #FFFFFF;
+          padding: 10px 22px;
+          border-radius: 9999px;
+          font-size: 13px;
+          font-weight: 700;
+          text-decoration: none;
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          transition: all 0.2s ease;
+          white-space: nowrap;
+        }
+
+        .bannerBtn:hover {
+          background: #E03E32;
+          transform: translateY(-1px);
+        }
+
+        @media (max-width: 1024px) {
+          .stepsGrid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        @media (max-width: 640px) {
+          .stepsGrid {
             grid-template-columns: 1fr;
+          }
+          .procBanner {
+            padding: 24px 20px;
           }
         }
       `}</style>
 
       <section className="proc-section" id="process">
         <div className="proc-inner">
-          <div className="proc-header">
-            <div>
-              <div className="proc-label">HOW WE WORK</div>
-              <h2 className="proc-title">Our Transparent 4-Step Process</h2>
-            </div>
-            <p className="proc-subtext">
-              Predictable, transparent sprints. You always know what is being built,
-              who is building it, and exactly when it will be delivered.
-            </p>
+          <div className="proc-label">
+            <span className="coralSquare" />
+            <span>The Process</span>
           </div>
 
-          <div className="proc-grid">
-            <div className="proc-steps-list">
-              {STEPS.map((step, idx) => (
-                <div
-                  key={step.id}
-                  className={`step-item ${activeIdx === idx ? 'active' : ''}`}
-                  onClick={() => setActiveIdx(idx)}
-                >
-                  <div className="step-top">
-                    <span className="step-index">PHASE {step.index}</span>
-                    <span className="step-duration">{step.duration}</span>
-                  </div>
-                  <h3 className="step-name">{step.title}</h3>
-                  <p className="step-desc">{step.desc}</p>
-                </div>
-              ))}
-            </div>
+          <div className="proc-headerRow">
+            <h2 className="proc-headline">
+              Predictable 4-step delivery pipeline.{' '}
+              <span className="headlineMuted">From blueprint to production launch.</span>
+            </h2>
+          </div>
 
-            <div className="proc-visual-pane">
-              <div className="proc-image-box">
-                <img src={activeStep.image} alt={activeStep.title} />
-              </div>
-
-              <div>
-                <div style={{ fontSize: '11px', fontFamily: 'var(--font-mono)', color: '#64748B', fontWeight: '600', marginBottom: '8px' }}>
-                  PHASE {activeStep.index} DELIVERABLES INCLUDED
+          <div className="stepsGrid">
+            {STEPS.map((s) => (
+              <div key={s.num} className="stepCard">
+                <div className="cardTop">
+                  <span className="stepNum">{s.num}</span>
+                  <span className="stepDuration">{s.duration}</span>
                 </div>
-                <div className="del-list">
-                  {activeStep.deliverables.map((item, i) => (
-                    <div key={i} className="del-row">
-                      <span style={{ color: '#10B981', fontWeight: 'bold' }}>✓</span>
-                      <span>{item}</span>
-                    </div>
+
+                <h3 className="stepTitle">{s.title}</h3>
+                <p className="stepSummary">{s.summary}</p>
+
+                <div className="tagsRow">
+                  {s.tags.map((t, idx) => (
+                    <span key={idx} className="stepTag">
+                      ✓ {t}
+                    </span>
                   ))}
                 </div>
               </div>
+            ))}
+          </div>
+
+          {/* BOTTOM GUARANTEE BANNER */}
+          <div className="procBanner">
+            <div className="bannerLeft">
+              <span className="bannerStar">✱</span>
+              <p className="bannerText">
+                <strong>Guaranteed Milestone Delivery:</strong> Weekly live staging demos, direct WhatsApp communication with lead founders Nirbhay &amp; Aditya, and zero hidden scope surprises.
+              </p>
             </div>
+
+            <Link href="/contact" className="bannerBtn">
+              Book a Sprint ↗
+            </Link>
           </div>
         </div>
       </section>
