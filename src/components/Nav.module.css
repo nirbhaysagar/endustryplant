@@ -5,21 +5,43 @@
   right: 0;
   z-index: 50;
   padding: 24px 36px;
+  transition: all 0.25s ease;
 }
 
+/* Fixed Scrolled or Non-Home Pages Nav */
 .scrolledNav {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 100;
-  background: rgba(10, 10, 14, 0.92);
+  background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 14px 36px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 12px 36px;
   animation: slideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+:global([data-theme='dark']) .scrolledNav {
+  background: rgba(7, 7, 10, 0.88);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* When Nav is on non-home pages at the top */
+.pageNav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 36px;
+  transition: background-color 0.25s ease, border-color 0.25s ease;
 }
 
 @keyframes slideDown {
@@ -33,7 +55,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
+  gap: 20px;
 }
 
 .logoLink {
@@ -41,48 +63,72 @@
   align-items: center;
   gap: 8px;
   text-decoration: none;
-  color: #FFFFFF;
+  color: var(--text-primary);
+  transition: opacity 0.2s ease;
+}
+
+.logoLink:hover {
+  opacity: 0.85;
 }
 
 .logoIcon {
   font-size: 20px;
-  color: #FF4B3E;
+  color: var(--coral);
   display: flex;
   align-items: center;
 }
 
 .logoTitle {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 800;
   letter-spacing: -0.02em;
-  color: #FFFFFF;
+  color: inherit;
 }
 
 .logoSup {
   font-size: 11px;
   font-weight: 500;
-  color: #94A3B8;
+  color: var(--text-muted);
   vertical-align: super;
+}
+
+/* Home hero transparent override */
+.heroNav .logoLink,
+.heroNav .logoTitle {
+  color: #FFFFFF;
+}
+
+.heroNav .logoSup {
+  color: #94A3B8;
 }
 
 .centerLinks {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 24px;
 }
 
 .navLink {
-  font-size: 14px;
-  font-weight: 500;
-  color: #D1D5DB;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-secondary);
   text-decoration: none;
   transition: color 0.2s ease;
   display: flex;
   align-items: center;
   gap: 4px;
+  white-space: nowrap;
 }
 
 .navLink:hover {
+  color: var(--text-primary);
+}
+
+.heroNav .navLink {
+  color: #CBD5E1;
+}
+
+.heroNav .navLink:hover {
   color: #FFFFFF;
 }
 
@@ -90,22 +136,59 @@
   font-family: var(--font-mono);
   font-size: 10px;
   color: #FFFFFF;
-  background: #FF4B3E;
-  padding: 2px 6px;
+  background: var(--coral);
+  padding: 1px 6px;
   border-radius: 9999px;
   font-weight: 700;
+  line-height: 1.4;
 }
 
 .rightActions {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
 }
 
+/* THEME TOGGLE BUTTON IN HEADER */
+.themeBtn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.themeBtn:hover {
+  border-color: var(--coral);
+  color: var(--coral);
+  transform: translateY(-1px);
+}
+
+.heroNav .themeBtn {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+  box-shadow: none;
+}
+
+.heroNav .themeBtn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #FFFFFF;
+  color: #FFFFFF;
+}
+
+/* BOOK A CALL BUTTON */
 .bookBtn {
-  background: #FFFFFF;
-  color: #0A0A0E;
-  padding: 7px 18px 7px 8px;
+  background: var(--brand-black);
+  color: var(--bg);
+  padding: 6px 16px 6px 6px;
   border-radius: 9999px;
   font-size: 13px;
   font-weight: 700;
@@ -115,66 +198,106 @@
   align-items: center;
   gap: 8px;
   transition: all 0.2s ease;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  white-space: nowrap;
 }
 
 .bookBtn:hover {
-  background: #F1F5F9;
+  background: var(--coral);
+  color: #FFFFFF;
   transform: translateY(-1px);
 }
 
+.heroNav .bookBtn {
+  background: #FFFFFF;
+  color: #0A0A0E;
+}
+
+.heroNav .bookBtn:hover {
+  background: #F1F5F9;
+  color: #0A0A0E;
+}
+
 .avatarCircle {
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
-  background: #FF4B3E;
+  background: var(--coral);
   color: #FFFFFF;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 800;
   font-family: var(--font-mono);
 }
 
 .hamburger {
   display: none;
-  color: #FFFFFF;
+  color: var(--text-primary);
   background: none;
   border: none;
   cursor: pointer;
   padding: 6px;
 }
 
+.heroNav .hamburger {
+  color: #FFFFFF;
+}
+
+/* MOBILE MENU DRAWER */
 .mobileMenu {
   position: absolute;
   top: 100%;
   left: 0;
   right: 0;
-  background: #0A0A0E;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
   padding: 24px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+:global([data-theme='dark']) .mobileMenu {
+  background: #0A0A0E;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
 }
 
 .mobileNavLink {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
-  color: #E2E8F0;
-  padding: 8px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--text-primary);
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mobileActionsRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+}
+
+@media (max-width: 1060px) {
+  .centerLinks {
+    gap: 16px;
+  }
+  .navLink {
+    font-size: 12.5px;
+  }
 }
 
 @media (max-width: 900px) {
-  .navContainer {
-    padding: 16px 20px;
-  }
-  .scrolledNav {
-    padding: 12px 20px;
+  .navContainer,
+  .scrolledNav,
+  .pageNav {
+    padding: 14px 20px;
   }
   .centerLinks {
     display: none;

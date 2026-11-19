@@ -1,0 +1,118 @@
+.floatingActionBar {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* SCROLL TO TOP */
+.scrollTopBtn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+}
+
+.scrollTopBtn.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.scrollTopBtn:hover {
+  background: var(--brand-black);
+  color: var(--bg);
+  border-color: var(--brand-black);
+  transform: translateY(-2px);
+}
+
+/* THEME TOGGLE */
+.themeToggleBtn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.themeToggleBtn:hover {
+  border-color: var(--coral);
+  color: var(--coral);
+  transform: translateY(-2px);
+}
+
+/* WHATSAPP FLOAT */
+.waFloatBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border-radius: 9999px;
+  background: #25D366;
+  color: #062E12;
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  font-weight: 700;
+  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.35);
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.waFloatBtn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(37, 211, 102, 0.55);
+  background: #20BA5A;
+}
+
+.waLiveDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #062E12;
+  animation: waPulse 1.8s infinite;
+}
+
+@keyframes waPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.3); }
+}
+
+@media (max-width: 640px) {
+  .floatingActionBar {
+    bottom: 16px;
+    right: 16px;
+    gap: 8px;
+  }
+  .waFloatText {
+    display: none;
+  }
+  .waFloatBtn {
+    padding: 12px;
+  }
+  .scrollTopBtn,
+  .themeToggleBtn {
+    width: 40px;
+    height: 40px;
+  }
+}
