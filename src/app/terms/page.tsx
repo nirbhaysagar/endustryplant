@@ -1,25 +1,24 @@
 'use client';
 
-import GrainOverlay from '@/components/GrainOverlay';
 import Nav from '@/components/Nav';
 import TerminalFooter from '@/components/TerminalFooter';
+import FloatingActions from '@/components/FloatingActions';
 
 export default function TermsPage() {
   return (
     <>
-      <GrainOverlay />
       <Nav />
       
       <style>{`
         .legal-layout {
-          background: #080808;
-          color: #f2f2ee;
+          background: var(--bg);
+          color: var(--text-primary);
           min-height: 100vh;
-          padding: 160px 40px 100px;
+          padding: 140px 24px 100px;
           display: flex;
           justify-content: center;
           align-items: flex-start;
-          border-bottom: 1px solid rgba(57,255,133,0.1);
+          border-bottom: 1px solid var(--border);
         }
 
         .legal-inner {
@@ -27,15 +26,15 @@ export default function TermsPage() {
           max-width: 1200px;
           display: grid;
           grid-template-columns: 280px 1fr;
-          gap: 80px;
+          gap: 60px;
         }
 
         .sidebar-col {
           position: sticky;
-          top: 120px;
+          top: 100px;
           display: flex;
           flex-direction: column;
-          gap: 40px;
+          gap: 32px;
         }
 
         .legal-header {
@@ -47,149 +46,108 @@ export default function TermsPage() {
         .legal-label {
           font-family: var(--font-mono);
           font-size: 11px;
-          color: #39FF85;
-          text-transform: uppercase;
-          letter-spacing: 0.15em;
+          color: var(--coral);
+          letter-spacing: 0.1em;
+          font-weight: 700;
         }
 
-        .legal-title {
-          font-family: 'Poppins', sans-serif;
+        .main-heading {
           font-size: 32px;
           font-weight: 800;
+          letter-spacing: -0.03em;
+          color: var(--text-primary);
           line-height: 1.1;
-          letter-spacing: -0.02em;
-          text-transform: uppercase;
-          color: #ffffff;
-          margin: 0;
         }
 
-        .toc-list {
+        .meta-details {
           display: flex;
           flex-direction: column;
-          gap: 16px;
-        }
-
-        .toc-link {
+          gap: 6px;
           font-family: var(--font-mono);
-          font-size: 12px;
-          color: rgba(242,242,238,0.4);
-          text-transform: uppercase;
-          transition: color 0.2s ease;
-          display: block;
+          font-size: 11px;
+          color: var(--text-muted);
         }
 
-        .toc-link:hover {
-          color: #39FF85;
+        .nav-links {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          border-left: 1px solid var(--border);
+          padding-left: 16px;
+        }
+
+        .nav-link {
+          font-family: var(--font-mono);
+          font-size: 11px;
+          color: var(--text-muted);
+          transition: color 0.15s ease;
+        }
+
+        .nav-link:hover {
+          color: var(--coral);
         }
 
         .content-col {
           display: flex;
           flex-direction: column;
-          gap: 60px;
+          gap: 56px;
           max-width: 800px;
-        }
-
-        .meta-box {
-          border: 1px solid rgba(57,255,133,0.15);
-          background: rgba(57,255,133,0.02);
-          padding: 24px;
-          font-family: var(--font-mono);
-          font-size: 12px;
-          line-height: 1.6;
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
-        }
-
-        .meta-row {
-          display: flex;
-          justify-content: space-between;
-        }
-
-        .meta-label {
-          color: rgba(242,242,238,0.5);
-        }
-
-        .meta-value {
-          color: #39FF85;
         }
 
         .doc-section {
           display: flex;
           flex-direction: column;
-          gap: 20px;
-          scroll-margin-top: 120px;
+          gap: 16px;
+          scroll-margin-top: 100px;
         }
 
         .section-num {
           font-family: var(--font-mono);
           font-size: 11px;
-          color: #39FF85;
-          letter-spacing: 0.1em;
+          color: var(--coral);
+          letter-spacing: 0.08em;
+          font-weight: 700;
         }
 
         .section-title {
-          font-family: 'Poppins', sans-serif;
           font-size: 20px;
-          font-weight: 700;
-          color: #ffffff;
-          text-transform: uppercase;
-          letter-spacing: -0.01em;
-          margin: 0 0 10px 0;
-          border-bottom: 1px solid rgba(255,255,255,0.08);
-          padding-bottom: 8px;
+          font-weight: 800;
+          color: var(--text-primary);
+          letter-spacing: -0.02em;
         }
 
         .doc-text {
-          font-family: var(--font-mono);
-          font-size: 14px;
-          line-height: 1.7;
-          color: rgba(242,242,238,0.7);
-          text-align: justify;
-        }
-
-        .doc-text p {
-          margin-bottom: 16px;
-        }
-
-        .doc-text ul {
-          list-style: square;
-          padding-left: 20px;
-          margin-bottom: 16px;
           display: flex;
           flex-direction: column;
-          gap: 8px;
+          gap: 16px;
+          font-size: 15px;
+          line-height: 1.75;
+          color: var(--text-secondary);
         }
 
-        .doc-text li {
-          color: rgba(242,242,238,0.7);
+        .doc-text strong {
+          color: var(--text-primary);
         }
 
         .emphasis-box {
-          border-left: 2px solid #39FF85;
-          background: rgba(57,255,133,0.03);
-          padding: 16px 20px;
-          font-family: var(--font-mono);
-          font-size: 13px;
-          color: rgba(242,242,238,0.9);
-          margin: 20px 0;
+          background: var(--bg-card);
+          border: 1px solid var(--border);
+          border-left: 3px solid var(--coral);
+          border-radius: 8px;
+          padding: 16px;
+          font-size: 13.5px;
+          line-height: 1.6;
+          color: var(--text-secondary);
         }
 
         @media (max-width: 900px) {
           .legal-inner {
             grid-template-columns: 1fr;
-            gap: 60px;
+            gap: 40px;
           }
           .sidebar-col {
             position: relative;
             top: 0;
-            gap: 20px;
-          }
-          .toc-list {
-            display: none; /* Hide TOC on mobile for layout breathing space */
-          }
-          .legal-layout {
-            padding: 120px 20px 60px;
           }
         }
       `}</style>
@@ -392,6 +350,7 @@ export default function TermsPage() {
       </main>
 
       <TerminalFooter />
+      <FloatingActions />
     </>
   );
 }

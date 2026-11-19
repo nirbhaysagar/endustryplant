@@ -5,7 +5,7 @@ import Nav from '@/components/Nav';
 import Hero from '@/components/Hero';
 import ThePlant from '@/components/ThePlant';
 import Capabilities from '@/components/Capabilities';
-import FloatingWhatsApp from '@/components/FloatingWhatsApp';
+import FloatingActions from '@/components/FloatingActions';
 
 const ManufacturingProcess = dynamic(() => import('@/components/ManufacturingProcess'), { ssr: false });
 const ProblemSolution = dynamic(() => import('@/components/ProblemSolution'), { ssr: false });
@@ -27,7 +27,7 @@ export default function Home() {
         <Manifesto />
       </main>
       <TerminalFooter />
-      <FloatingWhatsApp />
+      <FloatingActions />
     </>
   );
 }

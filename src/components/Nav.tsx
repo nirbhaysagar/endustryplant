@@ -33,6 +33,7 @@ export default function Nav() {
           </Link>
           <Link href="/#services" className={styles.navLink}>Services</Link>
           <Link href="/#process" className={styles.navLink}>Process</Link>
+          <Link href="/blog" className={styles.navLink}>Journal</Link>
           <Link href="/contact" className={styles.navLink}>Contact</Link>
         </div>
 
@@ -65,6 +66,7 @@ export default function Nav() {
           <Link href="/#work" className={styles.mobileNavLink} onClick={() => setMobileOpen(false)}>Work</Link>
           <Link href="/#services" className={styles.mobileNavLink} onClick={() => setMobileOpen(false)}>Services</Link>
           <Link href="/#process" className={styles.mobileNavLink} onClick={() => setMobileOpen(false)}>Process</Link>
+          <Link href="/blog" className={styles.mobileNavLink} onClick={() => setMobileOpen(false)}>Journal</Link>
           <Link href="/contact" className={styles.mobileNavLink} onClick={() => setMobileOpen(false)} style={{ color: '#FF4B3E' }}>
             Book A Call ↗
           </Link>

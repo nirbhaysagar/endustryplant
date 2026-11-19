@@ -4,7 +4,7 @@ import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Nav from '@/components/Nav';
 import TerminalFooter from '@/components/TerminalFooter';
-import FloatingWhatsApp from '@/components/FloatingWhatsApp';
+import FloatingActions from '@/components/FloatingActions';
 
 const SERVICE_OPTIONS = [
   { label: 'Website Building', value: 'website' },
@@ -579,7 +579,7 @@ export default function ContactPage() {
         <ContactContent />
       </Suspense>
       <TerminalFooter />
-      <FloatingWhatsApp />
+      <FloatingActions />
     </>
   );
 }

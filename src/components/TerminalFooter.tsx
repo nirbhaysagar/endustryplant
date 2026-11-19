@@ -204,8 +204,9 @@ export default function TerminalFooter() {
                 <Link href="/#why-us" className="footer-link">About Us</Link>
                 <Link href="/#work" className="footer-link">Portfolio</Link>
                 <Link href="/#process" className="footer-link">Process</Link>
+                <Link href="/blog" className="footer-link">Engineering Journal</Link>
                 <Link href="/#faq" className="footer-link">Pricing &amp; FAQ</Link>
-                <Link href="/contact" className="footer-link" style={{ color: '#818CF8' }}>Start a Project</Link>
+                <Link href="/contact" className="footer-link" style={{ color: '#FF4B3E' }}>Start a Project ↗</Link>
               </div>
 
               <div className="footer-col">
