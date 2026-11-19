@@ -1,142 +1,137 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import styles from './Capabilities.module.css';
 
 interface ServiceItem {
   id: string;
-  category: string;
   title: string;
-  desc: string;
+  category: string;
   image: string;
-  deliverables: string[];
+  tech: string;
 }
 
 const SERVICES: ServiceItem[] = [
   {
-    id: 'web',
-    category: 'WEBSITES & LANDING ENGINES',
-    title: 'Website Building',
-    desc: 'Bespoke marketing & product engines engineered to convert. Sub-second load times, SEO architecture, custom design, and zero bloated plugins.',
+    id: 'websites',
+    title: 'Website Building & Landing Pages',
+    category: 'Next.js 16 · Core Web Vitals',
     image: '/service_websites.png',
-    deliverables: [
-      'Sub-second Core Web Vitals (< 0.8s)',
-      'Custom animations & interactive elements',
-      'Integrated WhatsApp & lead capture forms',
-      '100% custom code with Next.js 16',
-    ],
+    tech: 'Bespoke UI · Sub-Second Speed',
   },
   {
     id: 'ecommerce',
-    category: 'ECOMMERCE ARCHITECTURES',
     title: 'eCommerce Store Building',
-    desc: 'High-performance stores built on Shopify Plus and custom headless stacks. Complete end-to-end design, custom integration, launch, and speed optimization.',
+    category: 'Shopify Plus · Headless Stacks',
     image: '/service_ecommerce.png',
-    deliverables: [
-      'Razorpay & Cashfree 1-click UPI checkout',
-      'Automated WhatsApp cart abandonment recovery',
-      'Shiprocket & Delhivery courier sync',
-      'Mobile conversion rate optimization',
-    ],
+    tech: 'Razorpay 1-Click · WhatsApp Recovery',
   },
   {
     id: 'mobile',
-    category: 'MOBILE APPLICATIONS',
-    title: 'Mobile Apps (iOS & Android)',
-    desc: 'Product-level native and cross-platform mobile development using Flutter and React Native. Built for scale, smooth 60fps animations, and rapid app approval.',
+    title: 'Mobile App Development',
+    category: 'iOS & Android Native Performance',
     image: '/service_mobile_apps.png',
-    deliverables: [
-      'Cross-platform iOS & Android releases',
-      'One-click UPI & in-app purchases',
-      'Native push notifications & device APIs',
-      'App Store & Play Store publishing handled',
-    ],
+    tech: 'Flutter / React Native · 60fps',
   },
   {
     id: 'webapp',
-    category: 'FULL-STACK SOFTWARE',
     title: 'End-to-End Web Applications',
-    desc: 'Full-stack applications engineered from scratch. High concurrency, secure database design, role-based access control, and real-time dashboards.',
+    category: 'Full-Stack SaaS & Internal Portals',
     image: '/service_web_apps.png',
-    deliverables: [
-      'Supabase & PostgreSQL database architecture',
-      'Role-based authentication & permissions',
-      'Real-time analytics & reporting dashboards',
-      'Automated GST invoicing & billing flows',
-    ],
+    tech: 'Postgres · Supabase · High Concurrency',
   },
   {
     id: 'automation',
-    category: 'AI AUTOMATION',
     title: 'AI Workflow Automation',
-    desc: 'Eliminate repetitive manual operations. We build custom AI agents and deterministic pipelines that handle lead qualification, customer support, and document extraction.',
+    category: 'Autonomous Agents & LLM Pipelines',
     image: '/service_automation.png',
-    deliverables: [
-      'WhatsApp AI sales & booking agent',
-      'Automated invoice & document data extraction',
-      'CRM integration (HubSpot, Zoho, Sheets)',
-      '24/7 autonomous operations without human delay',
-    ],
+    tech: 'WhatsApp Bot · Document Extraction',
   },
 ];
 
 export default function Capabilities() {
+  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setCursorPos({ x: e.clientX, y: e.clientY });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  const activeService = hoveredIdx !== null ? SERVICES[hoveredIdx] : null;
+
   return (
     <section className={styles.servicesSection} id="services">
       <div className={styles.inner}>
-        {/* SECTION LABEL */}
-        <div className={styles.label}>
-          <span className={styles.coralSquare} />
-          <span>Services</span>
-        </div>
-
-        {/* HEADER ROW */}
-        <div className={styles.headerRow}>
-          <div className={styles.titleRow}>
-            <h2 className={styles.heading}>Our</h2>
-            <div className={styles.sticker}>✦</div>
-            <h2 className={styles.heading}>Services</h2>
+        {/* ─── TOP SUBTITLES ROW (MATCHED TO REFERENCE) ─────── */}
+        <div className={styles.topRow}>
+          <div>
+            <div className={styles.sectionLabel}>
+              <span className={styles.coralSquare} />
+              <span>Capabilities</span>
+            </div>
+            <p className={styles.topLeft}>
+              We help ambitious brands grow through high-speed code, creative
+              direction, and conversion-first digital systems designed for leverage.
+            </p>
           </div>
 
-          <p className={styles.subtext}>
-            We craft high-impact digital experiences through strategic design,
-            seamless coding, and creative engineering.
+          <p className={styles.topRight}>
+            Explore the core services that shape every product we engineer and ship.
           </p>
         </div>
 
-        {/* 5 SERVICE CARDS */}
-        <div className={styles.grid}>
-          {SERVICES.map((srv) => (
-            <div key={srv.id} className={styles.serviceCard}>
-              <div className={styles.imageWrap}>
-                <img src={srv.image} alt={srv.title} />
-              </div>
+        {/* ─── BIG TYPOGRAPHIC STACKED LIST ─────────────────── */}
+        <div className={styles.servicesList}>
+          {SERVICES.map((srv, idx) => {
+            const isHovered = hoveredIdx === idx;
+            return (
+              <Link
+                key={srv.id}
+                href={`/contact?service=${encodeURIComponent(srv.title)}`}
+                className={`${styles.serviceRow} ${isHovered ? styles.serviceRowActive : ''}`}
+                onMouseEnter={() => setHoveredIdx(idx)}
+                onMouseLeave={() => setHoveredIdx(null)}
+              >
+                <div className={styles.serviceRowInner}>
+                  <h3 className={styles.serviceTitle}>{srv.title}</h3>
 
-              <div className={styles.cardBody}>
-                <div className={styles.cardCategory}>{srv.category}</div>
-                <h3 className={styles.cardTitle}>{srv.title}</h3>
-                <p className={styles.cardDesc}>{srv.desc}</p>
-
-                <div className={styles.deliverablesList}>
-                  {srv.deliverables.map((item, idx) => (
-                    <div key={idx} className={styles.deliverableRow}>
-                      <span className={styles.checkMark}>✓</span>
-                      <span>{item}</span>
-                    </div>
-                  ))}
+                  <div className={styles.serviceMeta}>
+                    <span className={styles.serviceTag}>{srv.category}</span>
+                    <span className={styles.serviceArrow}>↗</span>
+                  </div>
                 </div>
+              </Link>
+            );
+          })}
+        </div>
 
-                <Link
-                  href={`/contact?service=${encodeURIComponent(srv.title)}`}
-                  className={styles.cardAction}
-                >
-                  <span>Inquire about this service</span>
-                  <span>↗</span>
-                </Link>
-              </div>
+        {/* ─── FLOATING IMAGE PREVIEW (CURSOR FOLLOWER) ──────── */}
+        {activeService && (
+          <div
+            className={`${styles.floatingImageCard} ${hoveredIdx !== null ? styles.floatingImageVisible : ''}`}
+            style={{
+              left: `${cursorPos.x + 24}px`,
+              top: `${cursorPos.y - 120}px`,
+            }}
+          >
+            <img src={activeService.image} alt={activeService.title} />
+            <div className={styles.floatingImageBadge}>
+              {activeService.tech}
             </div>
-          ))}
+          </div>
+        )}
+
+        {/* ─── BOTTOM CTA ───────────────────────────────────── */}
+        <div className={styles.bottomCtaRow}>
+          <Link href="/contact" className={styles.exploreAllBtn}>
+            Book a Project Sprint ↗
+          </Link>
         </div>
       </div>
     </section>
