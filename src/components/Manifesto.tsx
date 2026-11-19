@@ -8,33 +8,37 @@ interface Testimonial {
   name: string;
   role: string;
   company: string;
+  link: string;
   metric: string;
 }
 
 const TESTIMONIALS: Testimonial[] = [
   {
     quote:
-      'Endustry Plant delivered our D2C eCommerce store in exactly 4 weeks. Their focus on mobile speed and Razorpay 1-click checkout increased our checkout conversions by 240% in month one. Invaluable partners.',
-    name: 'Vikramaditya Singhania',
+      'Endustry Plant scaled our festive eCommerce storefront to a 3.4x ROAS on ₹3.8L monthly ad spend. Their collection siloing, product schema, and direct Shopify checkout speed transformed our peak festive season sales.',
+    name: 'Aditi Verma',
     role: 'Founder',
-    company: 'Aura Lifestyle · Mumbai',
-    metric: '+240% Checkout Conversion',
+    company: 'Island Rangoli · New Delhi',
+    link: 'https://islandrangoli.com',
+    metric: '3.4x Blended ROAS',
   },
   {
     quote:
-      'We spoke to 4 different agencies across Delhi and Bengaluru. Endustry Plant was the only one that spoke in terms of architectural latency and business metrics instead of selling billable hours. Delivered ahead of schedule.',
-    name: 'Dr. Ananya Roy',
-    role: 'Co-Founder',
-    company: 'MedSync Healthtech · Bengaluru',
-    metric: 'Launched 2 Weeks Early',
+      'Our catalog with thousands of SKUs used to suffer severe mobile cart abandonment. Endustry Plant engineered an automated dynamic catalog ad engine and streamlined our 1-click checkout flow. Mobile conversion lifted immediately.',
+    name: 'Pratik Agrawal',
+    role: 'Managing Director',
+    company: 'Crunchy Fashion · Delhi NCR',
+    link: 'https://www.crunchyfashion.com',
+    metric: '4.1x Retargeting ROAS',
   },
   {
     quote:
-      'Their WhatsApp AI lead qualification bot manages hundreds of inbound queries daily for our logistics fleet. We saved over 35 staff hours a week. Very responsive team on WhatsApp.',
-    name: 'Rohit Kulkarni',
-    role: 'VP Operations',
-    company: 'ShipPulse Express · Delhi NCR',
-    metric: 'Saved 35+ Staff Hours / Wk',
+      'Before working with Endustry Plant, our engineering team was overwhelmed by low-ticket residential queries. Their commercial architectural RFQ funnel filtered out consumer noise and generated over ₹2.4Cr in high-ticket pipeline.',
+    name: 'Rajesh Sharma',
+    role: 'Managing Director',
+    company: 'All Indian Tensile · Pan-India',
+    link: 'https://allindiantensile.in',
+    metric: '₹480 CPL (Down from ₹1,200)',
   },
 ];
 
@@ -73,33 +77,52 @@ export default function Manifesto() {
     <>
       <style>{`
         .manifesto-section {
-          padding: 100px 0;
-          background: #F8FAFC;
+          padding: 120px 0 130px;
+          background: #F8F9FA;
+          border-bottom: 1px solid var(--border);
+          scroll-margin-top: 80px;
         }
 
         .manifesto-inner {
-          max-width: 1220px;
+          max-width: 1280px;
           margin: 0 auto;
           padding: 0 24px;
         }
 
         .section-label {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
           font-family: var(--font-mono);
           font-size: 11px;
-          font-weight: 600;
-          color: #4F46E5;
+          font-weight: 700;
+          color: #0A0A0A;
           text-transform: uppercase;
-          letter-spacing: 0.1em;
-          margin-bottom: 12px;
+          letter-spacing: 0.08em;
+          margin-bottom: 20px;
+        }
+
+        .coralSquare {
+          width: 7px;
+          height: 7px;
+          background: #FF4B3E;
+          display: inline-block;
+          border-radius: 1px;
         }
 
         .section-title {
-          font-size: clamp(30px, 3.5vw, 44px);
+          font-size: clamp(34px, 4.4vw, 54px);
           font-weight: 800;
-          letter-spacing: -0.03em;
-          color: #0F172A;
           line-height: 1.15;
-          margin-bottom: 48px;
+          letter-spacing: -0.03em;
+          color: #0A0A0A;
+          margin-bottom: 50px;
+          max-width: 800px;
+        }
+
+        .headlineMuted {
+          color: #94A3B8;
+          font-weight: 700;
         }
 
         /* ─── TESTIMONIALS ─────────────────────────────────── */
@@ -114,20 +137,27 @@ export default function Manifesto() {
           background: #FFFFFF;
           border: 1px solid var(--border);
           border-radius: 20px;
-          padding: 32px;
+          padding: 32px 28px;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
           gap: 20px;
-          box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03);
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+          transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .test-card:hover {
+          transform: translateY(-4px);
+          border-color: #0A0A0A;
+          box-shadow: 0 14px 30px rgba(0, 0, 0, 0.06);
         }
 
         .test-metric {
           font-family: var(--font-mono);
-          font-size: 12px;
+          font-size: 11.5px;
           font-weight: 700;
           color: #15803D;
-          background: rgba(34, 197, 94, 0.12);
+          background: #DCFCE7;
           padding: 4px 10px;
           border-radius: 9999px;
           width: fit-content;
@@ -143,12 +173,35 @@ export default function Manifesto() {
         .test-author-name {
           font-size: 15px;
           font-weight: 800;
-          color: #0F172A;
+          color: #0A0A0A;
         }
 
         .test-author-company {
           font-size: 12px;
           color: #64748B;
+          margin-top: 2px;
+        }
+
+        .test-author-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-end;
+          gap: 12px;
+          padding-top: 16px;
+          border-top: 1px solid #F1F5F9;
+        }
+
+        .test-site-link {
+          font-size: 12px;
+          font-weight: 700;
+          color: #FF4B3E;
+          text-decoration: none;
+          white-space: nowrap;
+          transition: transform 0.15s ease;
+        }
+
+        .test-site-link:hover {
+          transform: translateX(2px);
         }
 
         /* ─── FAQ ACCORDION ─────────────────────────────────── */
@@ -293,17 +346,33 @@ export default function Manifesto() {
 
       <section className="manifesto-section" id="faq">
         <div className="manifesto-inner">
-          <div className="section-label">CLIENT REVIEWS</div>
-          <h2 className="section-title">Tested in Production by Indian Founders</h2>
+          <div className="section-label">
+            <span className="coralSquare" />
+            <span>CLIENT REVIEWS</span>
+          </div>
+          <h2 className="section-title">
+            Tested in production by Indian founders.{' '}
+            <span className="headlineMuted">Real brands, verified commercial results.</span>
+          </h2>
 
           <div className="test-grid">
             {TESTIMONIALS.map((t, idx) => (
               <div key={idx} className="test-card">
-                <span className="test-metric">{t.metric}</span>
+                <span className="test-metric">✓ {t.metric}</span>
                 <p className="test-quote">&ldquo;{t.quote}&rdquo;</p>
-                <div>
-                  <div className="test-author-name">{t.name}</div>
-                  <div className="test-author-company">{t.role}, {t.company}</div>
+                <div className="test-author-row">
+                  <div>
+                    <div className="test-author-name">{t.name}</div>
+                    <div className="test-author-company">{t.role}, {t.company}</div>
+                  </div>
+                  <a
+                    href={t.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="test-site-link"
+                  >
+                    Live Site ↗
+                  </a>
                 </div>
               </div>
             ))}
@@ -312,8 +381,11 @@ export default function Manifesto() {
           {/* ─── FAQ ─────────────────────────────────────────── */}
           <div className="faq-wrap">
             <div className="faq-header">
-              <div className="section-label">CLEAR ANSWERS</div>
-              <h3 style={{ fontSize: '30px', fontWeight: '800', color: '#0F172A' }}>
+              <div className="section-label">
+                <span className="coralSquare" />
+                <span>CLEAR ANSWERS</span>
+              </div>
+              <h3 style={{ fontSize: '32px', fontWeight: '800', color: '#0A0A0A', letterSpacing: '-0.02em' }}>
                 Frequently Asked Questions
               </h3>
             </div>
