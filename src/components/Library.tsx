@@ -64,6 +64,7 @@ export default function Library() {
           padding: 100px 0;
           background: #FFFFFF;
           border-bottom: 1px solid var(--border);
+          scroll-margin-top: 80px;
         }
 
         .work-inner {

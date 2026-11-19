@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 interface Step {
   num: string;
-  duration: string;
+  stage: string;
   title: string;
   summary: string;
   tags: string[];
@@ -13,30 +13,30 @@ interface Step {
 const STEPS: Step[] = [
   {
     num: '01',
-    duration: 'DAYS 1 – 5',
+    stage: 'SCOPE',
     title: 'Discovery & Scope',
-    summary: 'System architecture, wireframe user flows, and a fixed milestone contract before a single line of code is written.',
-    tags: ['Architecture Map', 'Fixed Budget'],
+    summary: 'System architecture blueprint, wireframe user flows, and a fixed milestone contract before a single line of code is written.',
+    tags: ['Architecture Map', 'Fixed Milestone'],
   },
   {
     num: '02',
-    duration: 'DAYS 6 – 14',
+    stage: 'DESIGN',
     title: 'UI/UX Prototype',
-    summary: 'Clickable high-fidelity Figma prototype to click through and validate the complete customer journey before development.',
+    summary: 'Clickable high-fidelity Figma prototype to validate user experience, interactions, and design before development begins.',
     tags: ['Figma System', 'Clickable Flow'],
   },
   {
     num: '03',
-    duration: 'DAYS 15 – 28',
+    stage: 'BUILD',
     title: 'Full-Stack Sprints',
-    summary: 'Senior engineers build your product using Next.js & React Native. Weekly staging previews with continuous GitHub commits.',
+    summary: 'Senior developers build your product in modular Next.js & React Native. Weekly staging previews with direct code visibility.',
     tags: ['Live Staging URL', 'API Integrations'],
   },
   {
     num: '04',
-    duration: 'DAY 29+',
+    stage: 'LAUNCH',
     title: 'Launch & Warranty',
-    summary: 'Zero-downtime production release, 100% Git repository transfer, and 30 days of free post-launch SLA bug fixing.',
+    summary: 'Zero-downtime production release, 100% Git repository transfer, and 30 days of post-launch SLA bug fixing support.',
     tags: ['Production Edge', '100% IP Transfer'],
   },
 ];
@@ -49,6 +49,7 @@ export default function ManufacturingProcess() {
           padding: 110px 0 130px;
           background: #FFFFFF;
           border-bottom: 1px solid var(--border);
+          scroll-margin-top: 80px;
         }
 
         .proc-inner {
@@ -142,7 +143,7 @@ export default function ManufacturingProcess() {
           letter-spacing: -0.02em;
         }
 
-        .stepDuration {
+        .stepBadge {
           font-family: var(--font-mono);
           font-size: 10px;
           font-weight: 700;
@@ -151,7 +152,8 @@ export default function ManufacturingProcess() {
           border: 1px solid var(--border);
           padding: 3px 8px;
           border-radius: 9999px;
-          letter-spacing: 0.05em;
+          letter-spacing: 0.06em;
+          text-transform: uppercase;
         }
 
         .stepTitle {
@@ -276,7 +278,7 @@ export default function ManufacturingProcess() {
               <div key={s.num} className="stepCard">
                 <div className="cardTop">
                   <span className="stepNum">{s.num}</span>
-                  <span className="stepDuration">{s.duration}</span>
+                  <span className="stepBadge">{s.stage}</span>
                 </div>
 
                 <h3 className="stepTitle">{s.title}</h3>
