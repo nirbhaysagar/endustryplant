@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { PORTFOLIO_PROJECTS, PortfolioProject } from '@/data/portfolio';
+import { PORTFOLIO_PROJECTS } from '@/data/portfolio';
 
 const FILTERS = [
   { key: 'all', label: 'All Work', count: 14 },
@@ -13,16 +13,6 @@ const FILTERS = [
 
 export default function Library() {
   const [activeFilter, setActiveFilter] = useState<'all' | 'ecommerce' | 'saas' | 'website'>('all');
-  const [expandedDrawers, setExpandedDrawers] = useState<Record<string, boolean>>({});
-
-  const toggleDrawer = (id: string, e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setExpandedDrawers((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
-  };
 
   const filteredProjects = activeFilter === 'all'
     ? PORTFOLIO_PROJECTS
@@ -32,7 +22,7 @@ export default function Library() {
     <>
       <style>{`
         .work-section {
-          padding: 120px 0 140px;
+          padding: 110px 0 130px;
           background: #FFFFFF;
           border-bottom: 1px solid var(--border);
           scroll-margin-top: 80px;
@@ -100,16 +90,16 @@ export default function Library() {
           display: flex;
           align-items: center;
           gap: 10px;
-          margin-bottom: 44px;
+          margin-bottom: 40px;
           flex-wrap: wrap;
-          padding-bottom: 20px;
+          padding-bottom: 16px;
           border-bottom: 1px solid #F1F5F9;
         }
 
         .filterBtn {
           background: #F8F9FA;
           border: 1px solid var(--border);
-          padding: 9px 18px;
+          padding: 8px 16px;
           border-radius: 9999px;
           font-family: var(--font-body);
           font-size: 13px;
@@ -156,26 +146,25 @@ export default function Library() {
         .work-grid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
-          gap: 32px;
-          margin-bottom: 60px;
+          gap: 28px;
+          margin-bottom: 56px;
         }
 
         .portfolioCard {
           background: #FFFFFF;
           border: 1px solid var(--border);
-          border-radius: 20px;
+          border-radius: 18px;
           overflow: hidden;
           display: flex;
           flex-direction: column;
-          transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-          position: relative;
+          transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
         }
 
         .portfolioCard:hover {
-          transform: translateY(-5px);
+          transform: translateY(-4px);
           border-color: #0A0A0A;
-          box-shadow: 0 16px 40px rgba(0, 0, 0, 0.09);
+          box-shadow: 0 14px 36px rgba(0, 0, 0, 0.08);
         }
 
         /* ─── CARD SCREENSHOT PREVIEW ────────────────────────── */
@@ -187,7 +176,7 @@ export default function Library() {
         }
 
         .browserTopBar {
-          padding: 12px 18px;
+          padding: 11px 16px;
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -199,12 +188,12 @@ export default function Library() {
         .browserDots {
           display: flex;
           align-items: center;
-          gap: 6px;
+          gap: 5px;
         }
 
         .bDot {
-          width: 9px;
-          height: 9px;
+          width: 8px;
+          height: 8px;
           border-radius: 50%;
         }
         .bDotRed { background: #FF5F56; }
@@ -216,7 +205,7 @@ export default function Library() {
           font-size: 11px;
           color: #94A3B8;
           background: #0B0D14;
-          padding: 3px 12px;
+          padding: 3px 10px;
           border-radius: 6px;
           border: 1px solid #232738;
           max-width: 320px;
@@ -239,7 +228,7 @@ export default function Library() {
         .screenshotWrapper {
           position: relative;
           width: 100%;
-          height: 280px;
+          height: 260px;
           background: #0A0A0E;
           overflow: hidden;
           display: flex;
@@ -252,23 +241,23 @@ export default function Library() {
           height: 100%;
           object-fit: cover;
           object-position: top center;
-          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+          transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .portfolioCard:hover .screenshotImg {
-          transform: scale(1.03);
+          transform: scale(1.025);
         }
 
-        /* ─── CARD BODY CONTENT ──────────────────────────────── */
+        /* ─── SIMPLIFIED CARD BODY ───────────────────────────── */
         .cardBody {
-          padding: 28px 28px 24px;
+          padding: 24px 24px 22px;
           display: flex;
           flex-direction: column;
           flex-grow: 1;
-          gap: 16px;
+          gap: 12px;
         }
 
-        .cardHeaderRow {
+        .cardTopRow {
           display: flex;
           justify-content: space-between;
           align-items: center;
@@ -276,218 +265,67 @@ export default function Library() {
           flex-wrap: wrap;
         }
 
-        .cardCatBadge {
+        .cardCategory {
           font-family: var(--font-mono);
           font-size: 11px;
           font-weight: 700;
-          color: #FF4B3E;
+          color: #0A0A0A;
           letter-spacing: 0.06em;
           text-transform: uppercase;
         }
 
-        .cardLiveBadge {
-          display: inline-flex;
-          align-items: center;
-          gap: 6px;
+        .outcomeBadge {
           font-family: var(--font-mono);
-          font-size: 10.5px;
-          font-weight: 600;
+          font-size: 11px;
+          font-weight: 700;
           color: #15803D;
           background: #DCFCE7;
           padding: 3px 9px;
           border-radius: 9999px;
-        }
-
-        .liveDot {
-          width: 6px;
-          height: 6px;
-          border-radius: 50%;
-          background: #16A34A;
+          display: inline-flex;
+          align-items: center;
+          gap: 5px;
         }
 
         .cardTitle {
-          font-size: 24px;
+          font-size: 22px;
           font-weight: 800;
           letter-spacing: -0.025em;
           color: #0A0A0A;
           line-height: 1.25;
         }
 
-        .cardDesc {
-          font-size: 14px;
-          line-height: 1.65;
-          color: #475569;
-        }
-
-        /* ─── PRIMARY METRIC HIGHLIGHT BOX ──────────────────── */
-        .primaryMetricBox {
-          background: #F8F9FA;
-          border: 1px solid var(--border);
-          border-radius: 12px;
-          padding: 14px 18px;
-          display: flex;
-          align-items: baseline;
-          justify-content: space-between;
-          gap: 12px;
-          flex-wrap: wrap;
-        }
-
-        .metricLeft {
-          display: flex;
-          align-items: baseline;
-          gap: 10px;
-        }
-
-        .metricVal {
-          font-family: var(--font-mono);
-          font-size: 26px;
-          font-weight: 800;
-          color: #0A0A0A;
-        }
-
-        .metricLbl {
-          font-size: 13.5px;
-          font-weight: 700;
-          color: #16A34A;
-        }
-
-        .metricCtx {
-          font-size: 12px;
-          color: #64748B;
-          width: 100%;
-          margin-top: -4px;
-        }
-
-        /* ─── EXPANDABLE CASE METRICS DRAWER ─────────────────── */
-        .drawerToggleBtn {
-          background: #F1F5F9;
-          border: 1px solid #E2E8F0;
-          padding: 8px 14px;
-          border-radius: 8px;
-          font-family: var(--font-mono);
-          font-size: 11.5px;
-          font-weight: 700;
-          color: #334155;
-          cursor: pointer;
+        .titleLink {
+          color: inherit;
+          text-decoration: none;
           display: inline-flex;
           align-items: center;
           gap: 6px;
-          transition: all 0.2s ease;
-          width: 100%;
-          justify-content: space-between;
+          transition: color 0.15s ease;
         }
 
-        .drawerToggleBtn:hover {
-          background: #E2E8F0;
-          color: #0A0A0A;
+        .titleLink:hover {
+          color: #FF4B3E;
         }
 
-        .drawerContent {
-          background: #F8FAFC;
-          border: 1px solid #E2E8F0;
-          border-radius: 12px;
-          padding: 18px;
-          display: flex;
-          flex-direction: column;
-          gap: 14px;
-          animation: fadeIn 0.25s ease;
+        .cardDesc {
+          font-size: 14px;
+          line-height: 1.6;
+          color: #475569;
+          flex-grow: 1;
         }
 
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(-4px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-
-        .strategyGrid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 14px;
-        }
-
-        .strategyItem {
-          display: flex;
-          flex-direction: column;
-          gap: 4px;
-        }
-
-        .strategyLbl {
-          font-family: var(--font-mono);
-          font-size: 10px;
-          font-weight: 700;
-          color: #64748B;
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-        }
-
-        .strategyTxt {
-          font-size: 12.5px;
-          line-height: 1.5;
-          color: #1E293B;
-        }
-
-        .metricsSubgrid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 10px;
-          padding-top: 12px;
-          border-top: 1px solid #E2E8F0;
-        }
-
-        .submetricBox {
-          display: flex;
-          flex-direction: column;
-          gap: 2px;
-        }
-
-        .submetricVal {
-          font-family: var(--font-mono);
-          font-size: 18px;
-          font-weight: 800;
-          color: #0A0A0A;
-        }
-
-        .submetricLbl {
-          font-size: 11px;
-          font-weight: 600;
-          color: #64748B;
-        }
-
-        /* ─── TAGS & BOTTOM ACTIONS ─────────────────────────── */
-        .cardBottomRow {
+        .cardFooter {
           display: flex;
           justify-content: space-between;
           align-items: center;
           gap: 16px;
-          padding-top: 16px;
+          padding-top: 14px;
           border-top: 1px solid #F1F5F9;
-          margin-top: auto;
-          flex-wrap: wrap;
+          margin-top: 4px;
         }
 
-        .tagsWrap {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 6px;
-          max-width: 380px;
-        }
-
-        .tagPill {
-          font-family: var(--font-mono);
-          font-size: 10px;
-          font-weight: 600;
-          color: #334155;
-          background: #F1F5F9;
-          padding: 3px 8px;
-          border-radius: 6px;
-        }
-
-        .actionsWrap {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-        }
-
-        .siteLinkBtn {
+        .siteLink {
           font-size: 13px;
           font-weight: 700;
           color: #0A0A0A;
@@ -495,28 +333,24 @@ export default function Library() {
           display: inline-flex;
           align-items: center;
           gap: 4px;
+          transition: all 0.15s ease;
+        }
+
+        .siteLink:hover {
+          color: #FF4B3E;
+          transform: translateX(2px);
+        }
+
+        .bookSprintLink {
+          font-size: 12.5px;
+          font-weight: 700;
+          color: #475569;
+          text-decoration: none;
           transition: color 0.15s ease;
         }
 
-        .siteLinkBtn:hover {
-          color: #FF4B3E;
-        }
-
-        .sprintBtn {
-          background: #0A0A0A;
-          color: #FFFFFF;
-          font-size: 12px;
-          font-weight: 700;
-          padding: 6px 14px;
-          border-radius: 9999px;
-          text-decoration: none;
-          transition: all 0.2s ease;
-          white-space: nowrap;
-        }
-
-        .sprintBtn:hover {
-          background: #FF4B3E;
-          transform: translateY(-1px);
+        .bookSprintLink:hover {
+          color: #0A0A0A;
         }
 
         /* ─── BOTTOM CTA BANNER ──────────────────────────────── */
@@ -524,13 +358,13 @@ export default function Library() {
           background: #0A0A0E;
           color: #FFFFFF;
           border-radius: 20px;
-          padding: 38px 44px;
+          padding: 36px 44px;
           display: flex;
           justify-content: space-between;
           align-items: center;
           gap: 32px;
           flex-wrap: wrap;
-          margin-top: 24px;
+          margin-top: 20px;
         }
 
         .ctaLeft {
@@ -583,13 +417,10 @@ export default function Library() {
             padding: 28px 24px;
           }
           .cardBody {
-            padding: 20px;
+            padding: 18px;
           }
-          .strategyGrid {
-            grid-template-columns: 1fr;
-          }
-          .metricsSubgrid {
-            grid-template-columns: 1fr;
+          .screenshotWrapper {
+            height: 210px;
           }
         }
       `}</style>
@@ -599,7 +430,7 @@ export default function Library() {
           {/* SECTION LABEL */}
           <div className="work-label">
             <span className="coralSquare" />
-            <span>Selected Portfolio ({PORTFOLIO_PROJECTS.length} Shipped Projects)</span>
+            <span>Selected Portfolio ({PORTFOLIO_PROJECTS.length})</span>
           </div>
 
           {/* HEADER ROW */}
@@ -609,7 +440,7 @@ export default function Library() {
               <span className="headlineMuted">Bespoke code, verified commercial ROI.</span>
             </h2>
             <p className="work-subtext">
-              Real production products engineered for category leaders across India and global markets. Filter by sector or click to inspect live metrics.
+              Real production products engineered for category leaders across India and global markets.
             </p>
           </div>
 
@@ -637,7 +468,6 @@ export default function Library() {
           {/* 2-COLUMN PROJECT CARDS GRID */}
           <div className="work-grid">
             {filteredProjects.map((p) => {
-              const isExpanded = !!expandedDrawers[p.id];
               const displayUrl = p.link.replace(/^https?:\/\//, '').replace(/\/$/, '');
 
               return (
@@ -679,97 +509,45 @@ export default function Library() {
                     </a>
                   </div>
 
-                  {/* CARD BODY */}
+                  {/* SIMPLIFIED CARD BODY */}
                   <div className="cardBody">
-                    <div className="cardHeaderRow">
-                      <span className="cardCatBadge">{p.categoryLabel}</span>
-                      <span className="cardLiveBadge">
-                        <span className="liveDot" />
-                        SHIPPED IN PRODUCTION
+                    <div className="cardTopRow">
+                      <span className="cardCategory">{p.categoryLabel}</span>
+                      <span className="outcomeBadge">
+                        ✓ {p.primaryMetric.val} · {p.primaryMetric.lbl}
                       </span>
                     </div>
 
-                    <div>
-                      <h3 className="cardTitle">{p.title}</h3>
-                      <p className="cardDesc">{p.desc}</p>
-                    </div>
-
-                    {/* PRIMARY METRIC BANNER */}
-                    <div className="primaryMetricBox">
-                      <div className="metricLeft">
-                        <span className="metricVal">{p.primaryMetric.val}</span>
-                        <span className="metricLbl">✓ {p.primaryMetric.lbl}</span>
-                      </div>
-                      <div className="metricCtx">{p.primaryMetric.ctx}</div>
-                    </div>
-
-                    {/* EXPANDABLE CASE METRICS TOGGLE */}
-                    {p.bottleneck && (
-                      <button
-                        type="button"
-                        className="drawerToggleBtn"
-                        onClick={(e) => toggleDrawer(p.id, e)}
-                        aria-expanded={isExpanded}
+                    <h3 className="cardTitle">
+                      <a
+                        href={p.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="titleLink"
                       >
-                        <span>📊 Case Strategy &amp; Metrics Breakdown</span>
-                        <span>{isExpanded ? '▲ Hide' : '▼ Expand'}</span>
-                      </button>
-                    )}
+                        <span>{p.title}</span>
+                        <span>↗</span>
+                      </a>
+                    </h3>
 
-                    {/* EXPANDED CONTENT DRAWER */}
-                    {isExpanded && p.bottleneck && (
-                      <div className="drawerContent">
-                        <div className="strategyGrid">
-                          <div className="strategyItem">
-                            <span className="strategyLbl">Bottleneck</span>
-                            <p className="strategyTxt">{p.bottleneck}</p>
-                          </div>
-                          <div className="strategyItem">
-                            <span className="strategyLbl">Strategic Move</span>
-                            <p className="strategyTxt">{p.strategicMove}</p>
-                          </div>
-                        </div>
+                    <p className="cardDesc">{p.desc}</p>
 
-                        {p.metrics && p.metrics.length > 0 && (
-                          <div className="metricsSubgrid">
-                            {p.metrics.map((m, idx) => (
-                              <div key={idx} className="submetricBox">
-                                <span className="submetricVal">{m.val}</span>
-                                <span className="submetricLbl">{m.lbl}</span>
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    )}
+                    <div className="cardFooter">
+                      <a
+                        href={p.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="siteLink"
+                      >
+                        Visit Website ↗
+                      </a>
 
-                    {/* TAGS & ACTIONS */}
-                    <div className="cardBottomRow">
-                      <div className="tagsWrap">
-                        {p.metaTags.map((t, idx) => (
-                          <span key={idx} className="tagPill">
-                            {t}
-                          </span>
-                        ))}
-                      </div>
-
-                      <div className="actionsWrap">
-                        <a
-                          href={p.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="siteLinkBtn"
-                        >
-                          Visit Site ↗
-                        </a>
-
-                        <Link
-                          href={`/contact?project=${encodeURIComponent(p.title)}`}
-                          className="sprintBtn"
-                        >
-                          Book Sprint ↗
-                        </Link>
-                      </div>
+                      <Link
+                        href={`/contact?project=${encodeURIComponent(p.title)}`}
+                        className="bookSprintLink"
+                      >
+                        Book Sprint ↗
+                      </Link>
                     </div>
                   </div>
                 </div>
