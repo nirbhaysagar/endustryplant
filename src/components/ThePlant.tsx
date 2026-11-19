@@ -7,45 +7,45 @@ const STUDIO_CARDS = [
   {
     image: '/anime_terminal.jpg',
     tag: 'ARCHITECTURE',
-    title: 'Systems & Infrastructure',
+    title: 'Systems & Database Design',
   },
   {
     image: '/anime_writing.png',
-    tag: 'STRATEGY',
-    title: 'Brand & UX Research',
+    tag: 'DESIGN',
+    title: 'UI/UX & Conversion Flows',
   },
   {
     image: '/anime_hands.jpg',
     tag: 'ENGINEERING',
-    title: 'Full-Stack Execution',
+    title: 'Full-Stack Next.js & Mobile',
   },
   {
     image: '/hero_image.png',
-    tag: 'AUTOMATION',
-    title: 'Autonomous Pipelines',
+    tag: 'PRODUCTION',
+    title: 'Deployment & SLA Support',
   },
 ];
 
 const METRICS = [
   {
+    num: '14+',
+    title: 'Live Products',
+    desc: 'Shipped websites, mobile apps, and eCommerce stores for Indian & global brands.',
+  },
+  {
     num: '100%',
     title: 'Custom Code',
-    desc: 'Zero bloated WordPress themes. Real engineering built with Next.js, React, and TypeScript.',
-  },
-  {
-    num: '50+',
-    title: 'Clients Served',
-    desc: 'From startups to category giants across India and globally — each treated with extreme craft.',
-  },
-  {
-    num: '100%',
-    title: 'Success Score',
-    desc: 'All 5-star delivery milestones. Strict SLA adherence with zero excuses or scope surprises.',
+    desc: 'Zero bloated templates or WordPress plugins. Engineered in Next.js, React, and TypeScript.',
   },
   {
     num: '4–6 Wk',
-    title: 'Average Delivery',
-    desc: 'High-velocity sprint cycles with weekly live staging demos and continuous GitHub integration.',
+    title: 'Average Launch',
+    desc: 'Rapid milestone sprints with weekly live staging demos and zero scope surprises.',
+  },
+  {
+    num: '30 Days',
+    title: 'Free SLA Warranty',
+    desc: 'Complete peace of mind. Any bugs or regressions post-launch are fixed immediately.',
   },
 ];
 
@@ -56,18 +56,18 @@ export default function ThePlant() {
         {/* SECTION LABEL */}
         <div className={styles.label}>
           <span className={styles.coralSquare} />
-          <span>Who We Are</span>
+          <span>The Studio</span>
         </div>
 
         {/* HEADLINE + LINK */}
         <div className={styles.headerRow}>
           <h2 className={styles.headline}>
-            We build high-leverage digital systems to help category{' '}
-            <span className={styles.headlineMuted}>leaders lead their industries.</span>
+            Two senior engineers. Zero agency middlemen.{' '}
+            <span className={styles.headlineMuted}>We design, build, and ship your product directly.</span>
           </h2>
 
           <Link href="/contact" className={styles.aboutLink}>
-            → ABOUT THE STUDIO
+            → START A SPRINT
           </Link>
         </div>
 

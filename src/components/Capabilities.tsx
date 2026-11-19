@@ -43,10 +43,10 @@ const SERVICES: ServiceItem[] = [
   },
   {
     id: 'automation',
-    title: 'AI Workflow Automation',
-    category: 'Autonomous Agents & LLM Pipelines',
+    title: 'WhatsApp & CRM System Automation',
+    category: 'WhatsApp Cloud API · Lead Routing',
     image: '/service_automation.png',
-    tech: 'WhatsApp Bot · Document Extraction',
+    tech: 'Instant Capture · Automated Followups',
   },
 ];
 
@@ -73,16 +73,15 @@ export default function Capabilities() {
           <div>
             <div className={styles.sectionLabel}>
               <span className={styles.coralSquare} />
-              <span>Capabilities</span>
+              <span>Services</span>
             </div>
             <p className={styles.topLeft}>
-              We help ambitious brands grow through high-speed code, creative
-              direction, and conversion-first digital systems designed for leverage.
+              We build fast, bespoke digital products designed to increase conversion rates and scale operations.
             </p>
           </div>
 
           <p className={styles.topRight}>
-            Explore the core services that shape every product we engineer and ship.
+            Fixed pricing. 4–6 week delivery. 100% custom code.
           </p>
         </div>
 

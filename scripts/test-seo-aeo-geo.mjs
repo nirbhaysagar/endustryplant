@@ -91,10 +91,11 @@ assert(brandsFound >= 5, `High-intent industry brands leveraged for comparative 
 console.log('\n🌓 5. Dark Mode & Scroll To Top Tests');
 const globalsContent = fs.readFileSync('src/app/globals.css', 'utf8');
 const floatContent = fs.readFileSync('src/components/FloatingActions.tsx', 'utf8');
+const navContent = fs.readFileSync('src/components/Nav.tsx', 'utf8');
 
 assert(globalsContent.includes("[data-theme='dark']"), 'CSS tokens contain full dark theme overrides');
 assert(floatContent.includes('scrollToTop') && floatContent.includes("behavior: 'smooth'"), 'Smooth scroll to top handler present');
-assert(floatContent.includes('toggleTheme') && floatContent.includes('localStorage'), 'Theme toggle with localStorage persistence present');
+assert(navContent.includes('toggleTheme') && navContent.includes('localStorage'), 'Header theme toggle with localStorage persistence present');
 
 console.log('\n====================================================');
 console.log(`🏁 TEST RESULTS: ${passedTests} / ${totalTests} TESTS PASSED`);

@@ -19,7 +19,7 @@
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
 }
 
-/* Ambient glow & dark cinematics */
+/* Ambient glow */
 .heroGlow {
   position: absolute;
   top: 20%;
@@ -103,23 +103,23 @@
 
 .actionsRight {
   display: flex;
-  flex-direction: column;
-  gap: 14px;
-  max-width: 380px;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
 }
 
 .servicesPitch {
-  font-size: 15px;
-  font-weight: 600;
-  line-height: 1.4;
-  color: #F8FAFC;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #CBD5E1;
+  text-align: right;
+  max-width: 320px;
 }
 
 .btnGroup {
   display: flex;
   align-items: center;
   gap: 12px;
-  flex-wrap: wrap;
 }
 
 .coralBtn {
@@ -135,13 +135,13 @@
   align-items: center;
   gap: 6px;
   transition: all 0.2s ease;
-  box-shadow: 0 4px 16px rgba(255, 75, 62, 0.35);
+  box-shadow: 0 6px 20px rgba(255, 75, 62, 0.35);
 }
 
 .coralBtn:hover {
   background: #E03E32;
   transform: translateY(-2px);
-  box-shadow: 0 6px 22px rgba(255, 75, 62, 0.5);
+  box-shadow: 0 8px 24px rgba(255, 75, 62, 0.5);
 }
 
 .whiteBtn {
@@ -165,29 +165,25 @@
   transform: translateY(-2px);
 }
 
-/* ─── LOGO STRIP (BELOW HERO) ───────────────────────────────── */
+/* ─── MOVING LOGOS & PROJECTS MARQUEE STRIP ─────────────────── */
 .logoStrip {
-  max-width: 1280px;
+  max-width: 1320px;
   margin: 0 auto;
-  padding: 48px 24px 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 40px;
-  flex-wrap: wrap;
+  padding: 40px 24px 50px;
   border-bottom: 1px solid var(--border);
+  overflow: hidden;
 }
 
-.logoStripLeft {
+.marqueeHeader {
   display: flex;
   align-items: center;
   gap: 12px;
-  max-width: 320px;
+  margin-bottom: 24px;
 }
 
 .starIcon {
-  font-size: 26px;
-  color: var(--text-primary);
+  font-size: 20px;
+  color: #FF4B3E;
   line-height: 1;
 }
 
@@ -195,30 +191,77 @@
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   color: var(--text-primary);
-  line-height: 1.4;
   text-transform: uppercase;
 }
 
-.logoRow {
+.marqueeWrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+}
+
+.marqueeTrack {
   display: flex;
+  gap: 20px;
+  width: max-content;
+  animation: marqueeScroll 36s linear infinite;
+}
+
+.marqueeTrack:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.logoItem {
+  display: inline-flex;
   align-items: center;
-  gap: 36px;
-  flex-wrap: wrap;
-}
-
-.clientLogo {
-  font-family: var(--font-mono);
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--text-secondary);
-  letter-spacing: 0.05em;
-  transition: color 0.2s ease;
-}
-
-.clientLogo:hover {
+  gap: 10px;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
   color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.logoItem:hover {
+  border-color: var(--coral);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.logoIconWrap {
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.logoSubLabel {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-left: 2px;
 }
 
 @media (max-width: 900px) {
@@ -234,9 +277,15 @@
     align-items: flex-start;
     gap: 24px;
   }
-  .logoStrip {
+  .actionsRight {
     flex-direction: column;
     align-items: flex-start;
-    gap: 24px;
+    gap: 16px;
+  }
+  .servicesPitch {
+    text-align: left;
+  }
+  .logoStrip {
+    padding: 30px 16px 40px;
   }
 }
