@@ -397,7 +397,7 @@ function ContactContent() {
             </h1>
             <p className="contact-subtext">
               Share your project vision, timeline, and goals. Technical founders
-              Nirbhay Sagar &amp; Aditya Kumar will review your scope and provide a
+              Nirbhay Sagar & Aditya Kumar will review your scope and provide a
               transparent, fixed-price proposal within 24 hours.
             </p>
 

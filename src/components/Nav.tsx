@@ -69,14 +69,12 @@ export default function Nav() {
         {/* DESKTOP CENTER NAVIGATION LINKS */}
         <nav className={styles.centerLinks} aria-label="Main Navigation">
           <Link href="/" className={styles.navLink}>Home</Link>
-          <Link href="/#about" className={styles.navLink}>Studio</Link>
-          <Link href="/#services" className={styles.navLink}>Services</Link>
-          <Link href="/#process" className={styles.navLink}>Process</Link>
-          <Link href="/#work" className={styles.navLink}>
+          <Link href="/about" className={styles.navLink}>About</Link>
+          <Link href="/services" className={styles.navLink}>Services</Link>
+          <Link href="/work" className={styles.navLink}>
             Work <span className={styles.badgeWork}>13</span>
           </Link>
-          <Link href="/#why-us" className={styles.navLink}>Why Us</Link>
-          <Link href="/#faq" className={styles.navLink}>FAQ</Link>
+          <Link href="/#process" className={styles.navLink}>Process</Link>
           <Link href="/blog" className={styles.navLink}>Journal</Link>
           <Link href="/contact" className={styles.navLink}>Contact</Link>
         </nav>
@@ -142,23 +140,17 @@ export default function Nav() {
           <Link href="/" className={styles.mobileNavLink} onClick={() => setMobileOpen(false)}>
             <span>Home</span> <span>→</span>
           </Link>
-          <Link href="/#about" className={styles.mobileNavLink} onClick={() => setMobileOpen(false)}>
-            <span>Studio</span> <span>→</span>
+          <Link href="/about" className={styles.mobileNavLink} onClick={() => setMobileOpen(false)}>
+            <span>About Studio & Leadership</span> <span>→</span>
           </Link>
-          <Link href="/#services" className={styles.mobileNavLink} onClick={() => setMobileOpen(false)}>
-            <span>Services</span> <span>→</span>
+          <Link href="/services" className={styles.mobileNavLink} onClick={() => setMobileOpen(false)}>
+            <span>Services & Capabilities</span> <span>→</span>
+          </Link>
+          <Link href="/work" className={styles.mobileNavLink} onClick={() => setMobileOpen(false)}>
+            <span>Work (13 Client Projects)</span> <span className={styles.badgeWork}>13</span>
           </Link>
           <Link href="/#process" className={styles.mobileNavLink} onClick={() => setMobileOpen(false)}>
-            <span>Process</span> <span>→</span>
-          </Link>
-          <Link href="/#work" className={styles.mobileNavLink} onClick={() => setMobileOpen(false)}>
-            <span>Work (13 Projects)</span> <span className={styles.badgeWork}>13</span>
-          </Link>
-          <Link href="/#why-us" className={styles.mobileNavLink} onClick={() => setMobileOpen(false)}>
-            <span>Why Us</span> <span>→</span>
-          </Link>
-          <Link href="/#faq" className={styles.mobileNavLink} onClick={() => setMobileOpen(false)}>
-            <span>FAQ &amp; Pricing</span> <span>→</span>
+            <span>Engineering Process</span> <span>→</span>
           </Link>
           <Link href="/blog" className={styles.mobileNavLink} onClick={() => setMobileOpen(false)}>
             <span>Engineering Journal (10 Posts)</span> <span>→</span>

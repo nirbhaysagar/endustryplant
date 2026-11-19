@@ -316,11 +316,11 @@ export default function BlogIndex() {
           </div>
 
           <h1 className="blog-title">
-            Essays on Code, Systems &amp; Digital Commerce
+            Essays on Code, Systems & Digital Commerce
           </h1>
 
           <p className="blog-sub">
-            Real architectural blueprints, Indian market benchmarks, and zero-bullshit engineering breakdowns written directly by technical founders Nirbhay Sagar &amp; Aditya Kumar.
+            Real architectural blueprints, Indian market benchmarks, and zero-bullshit engineering breakdowns written directly by technical founders Nirbhay Sagar & Aditya Kumar.
           </p>
 
           {/* ─── FEATURED ARTICLE ────────────────────────────── */}

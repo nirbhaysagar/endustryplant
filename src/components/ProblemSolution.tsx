@@ -29,7 +29,7 @@ export default function ProblemSolution() {
             <div className={styles.pointsList}>
               <div className={styles.pointRow}>
                 <span className={styles.pointCross}>✕</span>
-                <span>Unpredictable timelines &amp; dropped calls</span>
+                <span>Unpredictable timelines & dropped calls</span>
               </div>
               <div className={styles.pointRow}>
                 <span className={styles.pointCross}>✕</span>
@@ -93,7 +93,7 @@ export default function ProblemSolution() {
               </div>
               <div className={styles.pointRow}>
                 <span className={styles.pointCheck}>✓</span>
-                <span>100% bespoke Next.js &amp; React code (zero bloat)</span>
+                <span>100% bespoke Next.js & React code (zero bloat)</span>
               </div>
               <div className={styles.pointRow}>
                 <span className={styles.pointCheck}>✓</span>

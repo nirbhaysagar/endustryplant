@@ -156,7 +156,7 @@ export default function Library() {
           <div className={styles.ctaLeft}>
             <h3 className={styles.ctaTitle}>Have a product to build or storefront to scale?</h3>
             <p className={styles.ctaSub}>
-              We engineer and ship full-scale products in 4–6 week fixed-milestone sprints. Direct communication with technical founders Nirbhay &amp; Aditya, with 100% IP code handover.
+              We engineer and ship full-scale products in 4–6 week fixed-milestone sprints. Direct communication with technical founders Nirbhay & Aditya, with 100% IP code handover.
             </p>
           </div>
 

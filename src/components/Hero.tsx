@@ -156,8 +156,8 @@ export default function Hero() {
 
             <div className={styles.actionsRight}>
               <p className={styles.servicesPitch}>
-                High-Speed Websites, Mobile Apps &amp; eCommerce<br />
-                Built for Category Leaders &amp; Startups
+                High-Speed Websites, Mobile Apps & eCommerce<br />
+                Built for Category Leaders & Startups
               </p>
 
               <div className={styles.btnGroup}>
@@ -178,7 +178,7 @@ export default function Hero() {
         <div className={styles.marqueeHeader}>
           <span className={styles.starIcon}>✱</span>
           <span className={styles.stripText}>
-            Work With Trusted Platforms &amp; High-Growth Brands
+            Work With Trusted Platforms & High-Growth Brands
           </span>
         </div>
 

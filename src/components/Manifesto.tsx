@@ -145,7 +145,7 @@ export default function Manifesto() {
 
           <h3 className={styles.ctaBoxTitle}>Ready to Build With High-Leverage Code?</h3>
           <p className={styles.ctaBoxSub}>
-            Schedule a 15-minute scoping call with lead founders Nirbhay &amp; Aditya.
+            Schedule a 15-minute scoping call with lead founders Nirbhay & Aditya.
             We will review your requirements and provide a fixed-price proposal within 24 hours.
           </p>
 

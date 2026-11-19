@@ -43,25 +43,25 @@ export default function TerminalFooter() {
           <div className={styles.footerLinksGrid}>
             <div className={styles.footerCol}>
               <div className={styles.footerColTitle}>Services</div>
-              <Link href="/#services" className={styles.footerLink}>Websites</Link>
-              <Link href="/#services" className={styles.footerLink}>eCommerce</Link>
-              <Link href="/#services" className={styles.footerLink}>Mobile Apps</Link>
-              <Link href="/#services" className={styles.footerLink}>Web Applications</Link>
-              <Link href="/#services" className={styles.footerLink}>AI Automation</Link>
+              <Link href="/services#websites" className={styles.footerLink}>Bespoke Websites</Link>
+              <Link href="/services#ecommerce" className={styles.footerLink}>eCommerce Stores</Link>
+              <Link href="/services#mobile" className={styles.footerLink}>Mobile Applications</Link>
+              <Link href="/services#webapps" className={styles.footerLink}>Web Applications</Link>
+              <Link href="/services#automation" className={styles.footerLink}>AI & Workflows</Link>
             </div>
 
             <div className={styles.footerCol}>
               <div className={styles.footerColTitle}>Company</div>
-              <Link href="/#why-us" className={styles.footerLink}>About Us</Link>
-              <Link href="/#work" className={styles.footerLink}>Portfolio (13)</Link>
-              <Link href="/#process" className={styles.footerLink}>Process</Link>
+              <Link href="/about" className={styles.footerLink}>About Studio & Leadership</Link>
+              <Link href="/work" className={styles.footerLink}>Portfolio Archive (13)</Link>
+              <Link href="/services" className={styles.footerLink}>All Services</Link>
+              <Link href="/#process" className={styles.footerLink}>Engineering Process</Link>
               <Link href="/blog" className={styles.footerLink}>Engineering Journal</Link>
-              <Link href="/#faq" className={styles.footerLink}>Pricing &amp; FAQ</Link>
               <Link href="/contact" className={styles.footerLink} style={{ color: '#FF4B3E' }}>Start a Project ↗</Link>
             </div>
 
             <div className={styles.footerCol}>
-              <div className={styles.footerColTitle}>Direct &amp; Legal</div>
+              <div className={styles.footerColTitle}>Direct & Legal</div>
               <Link href="/terms" className={styles.footerLink}>Terms of Service</Link>
               <Link href="/privacy" className={styles.footerLink}>Privacy Policy</Link>
               <a

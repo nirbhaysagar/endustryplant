@@ -211,6 +211,62 @@ const faqSchema = {
   ],
 };
 
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Endustry Plant',
+  alternateName: ['Endustry Plant Studio', 'EndustryPlant'],
+  url: 'https://endustryplant.com',
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: 'https://endustryplant.com/blog?q={search_term_string}',
+    'query-input': 'required name=search_term_string',
+  },
+};
+
+const siteNavigationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Site Navigation Sitelinks',
+  itemListElement: [
+    {
+      '@type': 'SiteNavigationElement',
+      position: 1,
+      name: 'Work',
+      description: '13 verified digital products, mobile apps, and eCommerce storefronts.',
+      url: 'https://endustryplant.com/work',
+    },
+    {
+      '@type': 'SiteNavigationElement',
+      position: 2,
+      name: 'Services',
+      description: 'Custom Next.js platforms, Shopify Plus, React Native, and WhatsApp CRM.',
+      url: 'https://endustryplant.com/services',
+    },
+    {
+      '@type': 'SiteNavigationElement',
+      position: 3,
+      name: 'About & Leadership',
+      description: 'Engineering studio founded in New Delhi by Nirbhay Sagar & Aditya Kumar.',
+      url: 'https://endustryplant.com/about',
+    },
+    {
+      '@type': 'SiteNavigationElement',
+      position: 4,
+      name: 'Engineering Journal',
+      description: 'In-depth production case studies, speed benchmarks, and architecture teardowns.',
+      url: 'https://endustryplant.com/blog',
+    },
+    {
+      '@type': 'SiteNavigationElement',
+      position: 5,
+      name: 'Contact Studio',
+      description: 'Book a 4-week fixed-price sprint or message technical founders on WhatsApp.',
+      url: 'https://endustryplant.com/contact',
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -226,7 +282,15 @@ export default function RootLayout({
           }}
         />
 
-        {/* LINKED DATA JSON-LD SCHEMAS FOR SEO / AEO / GEO */}
+        {/* LINKED DATA JSON-LD SCHEMAS FOR GOOGLE SITELINKS, AEO & GEO */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteNavigationSchema) }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}

@@ -97,6 +97,33 @@ assert(globalsContent.includes("[data-theme='dark']"), 'CSS tokens contain full 
 assert(floatContent.includes('scrollToTop') && floatContent.includes("behavior: 'smooth'"), 'Smooth scroll to top handler present');
 assert(navContent.includes('toggleTheme') && navContent.includes('localStorage'), 'Header theme toggle with localStorage persistence present');
 
+// ─── 6. GOOGLE SITELINKS & ANTHROPIC-LIKE STRUCTURE TESTS ───────────
+console.log('\n🏛️  6. Anthropic-Like Google Sitelinks Architecture Tests');
+assert(fs.existsSync('src/app/about/page.tsx'), 'Dedicated /about route exists for Leadership sitelink');
+assert(fs.existsSync('src/app/services/page.tsx'), 'Dedicated /services route exists for Services sitelink');
+assert(fs.existsSync('src/app/work/page.tsx'), 'Dedicated /work route exists for Portfolio sitelink');
+
+const portfolioContent = fs.readFileSync('src/data/portfolio.ts', 'utf8');
+assert(!portfolioContent.includes('shecanfoundation'), 'She Can Foundation project completely removed');
+assert(portfolioContent.includes('allindiantensile.com'), 'All Indian Tensile updated to .com domain');
+assert(!portfolioContent.includes('allindiantensile.in'), 'Old .in domain completely eliminated');
+
+const portfolioProjects = [...portfolioContent.matchAll(/id:\s*['"]([^'"]+)['"]/g)];
+assert(portfolioProjects.length === 13, `Exactly 13 verified portfolio projects (Found ${portfolioProjects.length})`);
+
+// Brand Icons for Google SERP
+assert(fs.existsSync('src/app/icon.png'), 'Google SERP 512x512 brand icon exists in app directory');
+assert(fs.existsSync('src/app/apple-icon.png'), 'Apple touch icon exists in app directory');
+
+// Sitelinks Schema in layout.tsx
+assert(layoutContent.includes('SiteNavigationElement'), 'SiteNavigationElement schema embedded for Google Sitelinks');
+assert(layoutContent.includes('potentialAction'), 'WebSite search action schema present for Sitelinks SearchBox');
+
+// Check navigation links
+assert(navContent.includes('href="/about"'), 'Nav links to dedicated /about route');
+assert(navContent.includes('href="/services"'), 'Nav links to dedicated /services route');
+assert(navContent.includes('href="/work"'), 'Nav links to dedicated /work route');
+
 console.log('\n====================================================');
 console.log(`🏁 TEST RESULTS: ${passedTests} / ${totalTests} TESTS PASSED`);
 console.log('====================================================');
