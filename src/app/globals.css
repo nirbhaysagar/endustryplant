@@ -1,50 +1,48 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500;700&family=Caveat:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
-/* ─── DESIGN TOKENS ─────────────────────────────────────────── */
+/* ─── CLEAN, MODERN INDIAN AGENCY DESIGN TOKENS ──────────────── */
 :root {
-  /* Core palette — black / white / phosphor green */
-  --bg:            #080808;
-  --bg-mid:        #0D0D0D;
-  --bg-card:       #111111;
-  --bg-paper:      #F2F2EE;
-  --bg-paper-warm: #EAE6DA;
+  /* Surfaces */
+  --bg:            #FFFFFF;
+  --bg-subtle:     #F8FAFC;
+  --bg-card:       #FFFFFF;
+  --bg-card-hover: #F8FAFC;
+  --bg-dark:       #0A0F1D;
+  --bg-dark-card:  #111827;
 
-  --white:         #F2F2EE;
-  --white-60:      rgba(242, 242, 238, 0.6);
-  --white-40:      rgba(242, 242, 238, 0.4);
-  --white-20:      rgba(242, 242, 238, 0.2);
-  --white-10:      rgba(242, 242, 238, 0.1);
-  --white-06:      rgba(242, 242, 238, 0.06);
-  --white-04:      rgba(242, 242, 238, 0.04);
+  /* Typography */
+  --text-primary:   #0F172A;
+  --text-secondary: #475569;
+  --text-muted:     #64748B;
+  --text-faint:     #94A3B8;
+  --text-white:     #FFFFFF;
 
-  /* Single accent — phosphor green */
-  --green:         #39FF85;
-  --green-80:      rgba(57, 255, 133, 0.8);
-  --green-40:      rgba(57, 255, 133, 0.4);
-  --green-20:      rgba(57, 255, 133, 0.2);
-  --green-10:      rgba(57, 255, 133, 0.1);
-  --green-06:      rgba(57, 255, 133, 0.06);
-  --green-04:      rgba(57, 255, 133, 0.04);
+  /* Accents */
+  --accent:         #0F172A;
+  --accent-hover:   #1E293B;
+  --brand:          #4F46E5;
+  --brand-light:    rgba(79, 70, 229, 0.08);
+  --emerald:        #10B981;
+  --emerald-light:  rgba(16, 185, 129, 0.1);
+  --whatsapp:       #25D366;
 
-  /* Semantic aliases */
-  --text-primary:  var(--white);
-  --text-muted:    var(--white-60);
-  --text-faint:    var(--white-40);
-  --text-ghost:    var(--white-20);
-  --border:        var(--white-06);
-  --border-mid:    var(--white-10);
-  --border-bright: var(--white-20);
-  --accent:        var(--green);
+  /* Hairline Borders */
+  --border:         #E2E8F0;
+  --border-subtle:  #F1F5F9;
+  --border-dark:    #CBD5E1;
+  --border-focus:   #4F46E5;
 
   /* Fonts */
-  --font-display:  'Cormorant', 'Georgia', serif;
-  --font-body:     var(--font-mono);
-  --font-mono:     'IBM Plex Mono', 'Courier New', monospace;
-  --font-hand:     'Caveat', cursive;
+  --font-body:      'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-mono:      'IBM Plex Mono', 'Courier New', monospace;
 
-  /* Easing */
-  --ease-expo:     cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-in-out:   cubic-bezier(0.4, 0, 0.2, 1);
+  /* Shadows */
+  --shadow-sm:      0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-md:      0 4px 20px -2px rgba(15, 23, 42, 0.06);
+  --shadow-lg:      0 12px 35px -4px rgba(15, 23, 42, 0.08);
+
+  /* Transitions */
+  --ease:           cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* ─── RESET ─────────────────────────────────────────────────── */
@@ -57,6 +55,7 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  color-scheme: light;
 }
 
 body {
@@ -76,24 +75,30 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 ul, ol { list-style: none; }
 
 /* ─── SCROLLBAR ─────────────────────────────────────────────── */
-::-webkit-scrollbar { width: 3px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--white-20); }
-::-webkit-scrollbar-thumb:hover { background: var(--green); }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #F8FAFC; }
+::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
 
 /* ─── SELECTION ─────────────────────────────────────────────── */
 ::selection {
-  background: var(--green-40);
-  color: var(--bg);
+  background: #E0E7FF;
+  color: #1E1B4B;
 }
 
-/* ─── FADE IN UTILITY ───────────────────────────────────────── */
-.fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.8s var(--ease-expo), transform 0.8s var(--ease-expo);
+/* ─── LAYOUT UTILITIES ──────────────────────────────────────── */
+.container {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
+
+.section-pad {
+  padding: 90px 24px;
+}
+
+@media (min-width: 768px) {
+  .section-pad {
+    padding: 120px 40px;
+  }
 }

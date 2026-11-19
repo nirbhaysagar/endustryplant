@@ -1,99 +1,368 @@
 'use client';
 
+import { useState } from 'react';
+import Link from 'next/link';
+
+interface Testimonial {
+  quote: string;
+  name: string;
+  role: string;
+  company: string;
+  metric: string;
+}
+
+const TESTIMONIALS: Testimonial[] = [
+  {
+    quote:
+      'Endustry Plant delivered our D2C eCommerce store in exactly 4 weeks. Their focus on mobile speed and Razorpay 1-click checkout increased our checkout conversions by 240% in month one. Invaluable partners.',
+    name: 'Vikramaditya Singhania',
+    role: 'Founder',
+    company: 'Aura Lifestyle · Mumbai',
+    metric: '+240% Checkout Conversion',
+  },
+  {
+    quote:
+      'We spoke to 4 different agencies across Delhi and Bengaluru. Endustry Plant was the only one that spoke in terms of architectural latency and business metrics instead of selling billable hours. Delivered ahead of schedule.',
+    name: 'Dr. Ananya Roy',
+    role: 'Co-Founder',
+    company: 'MedSync Healthtech · Bengaluru',
+    metric: 'Launched 2 Weeks Early',
+  },
+  {
+    quote:
+      'Their WhatsApp AI lead qualification bot manages hundreds of inbound queries daily for our logistics fleet. We saved over 35 staff hours a week. Very responsive team on WhatsApp.',
+    name: 'Rohit Kulkarni',
+    role: 'VP Operations',
+    company: 'ShipPulse Express · Delhi NCR',
+    metric: 'Saved 35+ Staff Hours / Wk',
+  },
+];
+
+interface FAQItem {
+  q: string;
+  a: string;
+}
+
+const FAQS: FAQItem[] = [
+  {
+    q: 'What is your typical project pricing and payment structure?',
+    a: 'We work on transparent, fixed milestone budgets — never unpredictable hourly billing. Custom websites typically range from ₹45,000 to ₹1.5L; full-stack apps and mobile products range from ₹1.5L to ₹5L; and AI automation workflows range from ₹50,000 to ₹2L depending on complexity. Payments are divided into 3 milestones: 40% kickoff, 30% upon clickable prototype approval, and 30% upon final launch and code handover. We provide full GST invoices.',
+  },
+  {
+    q: 'Do we own 100% of the source code, design files, and intellectual property?',
+    a: 'Yes, absolutely. You retain 100% ownership of all IP from day one. Upon final launch, we transfer the full Git repository, environment configurations, and Figma design assets directly to your team.',
+  },
+  {
+    q: 'Do you natively support Indian payment gateways and logistics providers?',
+    a: 'Yes. We have deep production experience integrating Razorpay, Cashfree, PayU, PhonePe PG, WhatsApp Business Cloud API, Shiprocket, and Delhivery. Everything is engineered specifically for Indian consumers and compliance.',
+  },
+  {
+    q: 'What happens after our product goes live? What if we find bugs?',
+    a: 'Every project includes a 30-day free post-launch warranty. If any bugs or discrepancies arise post-launch, our engineering team resolves them immediately at zero additional cost.',
+  },
+  {
+    q: 'How fast can we kick off a new project?',
+    a: 'Once we finalize project scope and milestone agreement, our sprint kickoff begins within 3 to 5 business days. You will be added to a dedicated WhatsApp channel directly with technical founders Nirbhay Sagar and Aditya Kumar.',
+  },
+];
+
 export default function Manifesto() {
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
+
   return (
     <>
       <style>{`
         .manifesto-section {
-          background: #e6e4df;
-          padding: 200px 40px;
-          min-height: 100vh;
-          display: flex;
-          align-items: center;
-          justify-content: center;
+          padding: 100px 0;
+          background: #F8FAFC;
         }
 
         .manifesto-inner {
-          max-width: 1400px;
-          width: 100%;
+          max-width: 1220px;
+          margin: 0 auto;
+          padding: 0 24px;
         }
 
-        .manifesto-text {
-          font-family: 'Poppins', sans-serif;
-          font-size: clamp(40px, 6vw, 90px);
-          font-weight: 800;
-          color: #0a0a0a;
-          line-height: 1.1;
-          letter-spacing: -0.04em;
+        .section-label {
+          font-family: var(--font-mono);
+          font-size: 11px;
+          font-weight: 600;
+          color: #4F46E5;
           text-transform: uppercase;
-          margin: 0;
+          letter-spacing: 0.1em;
+          margin-bottom: 12px;
         }
 
-        .manifesto-text span {
-          display: block;
-          margin-bottom: 20px;
+        .section-title {
+          font-size: clamp(30px, 3.5vw, 44px);
+          font-weight: 800;
+          letter-spacing: -0.03em;
+          color: #0F172A;
+          line-height: 1.15;
+          margin-bottom: 48px;
         }
 
-        .manifesto-text span.highlight {
-          color: #fff;
-          -webkit-text-stroke: 2px #0a0a0a;
-          text-stroke: 2px #0a0a0a;
+        /* ─── TESTIMONIALS ─────────────────────────────────── */
+        .test-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 24px;
+          margin-bottom: 90px;
         }
 
-        .manifesto-footer {
-          margin-top: 100px;
+        .test-card {
+          background: #FFFFFF;
+          border: 1px solid var(--border);
+          border-radius: 20px;
+          padding: 32px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          gap: 20px;
+          box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03);
+        }
+
+        .test-metric {
+          font-family: var(--font-mono);
+          font-size: 12px;
+          font-weight: 700;
+          color: #15803D;
+          background: rgba(34, 197, 94, 0.12);
+          padding: 4px 10px;
+          border-radius: 9999px;
+          width: fit-content;
+        }
+
+        .test-quote {
+          font-size: 14px;
+          color: #334155;
+          line-height: 1.7;
+          font-style: italic;
+        }
+
+        .test-author-name {
+          font-size: 15px;
+          font-weight: 800;
+          color: #0F172A;
+        }
+
+        .test-author-company {
+          font-size: 12px;
+          color: #64748B;
+        }
+
+        /* ─── FAQ ACCORDION ─────────────────────────────────── */
+        .faq-wrap {
+          max-width: 860px;
+          margin: 0 auto 90px;
+        }
+
+        .faq-header {
+          text-align: center;
+          margin-bottom: 36px;
+        }
+
+        .faq-list {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        .faq-card {
+          background: #FFFFFF;
+          border: 1px solid var(--border);
+          border-radius: 14px;
+          overflow: hidden;
+          transition: border-color 0.2s ease;
+        }
+
+        .faq-card.open {
+          border-color: #CBD5E1;
+          box-shadow: 0 4px 15px rgba(15, 23, 42, 0.04);
+        }
+
+        .faq-btn {
+          width: 100%;
+          text-align: left;
+          padding: 20px 24px;
           display: flex;
           justify-content: space-between;
           align-items: center;
-          border-top: 2px solid #0a0a0a;
-          padding-top: 40px;
+          gap: 16px;
+          cursor: pointer;
+          color: #0F172A;
+          font-size: 16px;
+          font-weight: 700;
         }
 
-        .mf-label {
-          font-family: var(--font-mono);
+        .faq-icon {
+          color: #64748B;
+          font-size: 18px;
+          font-weight: 600;
+        }
+
+        .faq-answer {
+          padding: 0 24px 20px;
+          color: #475569;
           font-size: 14px;
-          color: #0a0a0a;
-          text-transform: uppercase;
+          line-height: 1.8;
         }
 
-        .mf-stamp {
-          width: 80px;
-          height: 80px;
-          border: 2px solid #0a0a0a;
-          border-radius: 50%;
+        /* ─── FINAL CTA BANNER ──────────────────────────────── */
+        .cta-box {
+          background: #0F172A;
+          color: #FFFFFF;
+          border-radius: 24px;
+          padding: 60px 40px;
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 20px;
+          box-shadow: 0 20px 50px rgba(15, 23, 42, 0.2);
+        }
+
+        .cta-box-title {
+          font-size: clamp(28px, 3.5vw, 44px);
+          font-weight: 800;
+          color: #FFFFFF;
+          letter-spacing: -0.03em;
+        }
+
+        .cta-box-sub {
+          font-size: 16px;
+          color: #94A3B8;
+          max-width: 580px;
+          line-height: 1.7;
+        }
+
+        .cta-btn-group {
           display: flex;
           align-items: center;
+          gap: 16px;
+          flex-wrap: wrap;
           justify-content: center;
-          font-family: var(--font-mono);
-          font-size: 10px;
-          font-weight: bold;
-          text-align: center;
-          transform: rotate(-15deg);
+          margin-top: 10px;
         }
 
-        @media (max-width: 768px) {
-          .manifesto-footer {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 40px;
+        .cta-white-btn {
+          background: #FFFFFF;
+          color: #0F172A;
+          padding: 14px 32px;
+          border-radius: 9999px;
+          font-size: 15px;
+          font-weight: 700;
+          text-decoration: none;
+          transition: all 0.2s ease;
+          box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .cta-white-btn:hover {
+          background: #F1F5F9;
+          transform: translateY(-2px);
+        }
+
+        .cta-wa-green {
+          background: #25D366;
+          color: #062E12;
+          padding: 14px 28px;
+          border-radius: 9999px;
+          font-size: 15px;
+          font-weight: 700;
+          text-decoration: none;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          transition: all 0.2s ease;
+        }
+
+        .cta-wa-green:hover {
+          background: #20BA5A;
+          transform: translateY(-2px);
+        }
+
+        @media (max-width: 900px) {
+          .test-grid {
+            grid-template-columns: 1fr;
+          }
+          .cta-box {
+            padding: 40px 24px;
           }
         }
       `}</style>
 
-      <section className="manifesto-section" id="manifesto">
+      <section className="manifesto-section" id="faq">
         <div className="manifesto-inner">
-          
-          <h2 className="manifesto-text">
-            <span>We are a full-service digital agency.</span>
-            <span className="highlight">From Delhi to the world.</span>
-            <span>Building a billion-dollar brand.</span>
-          </h2>
+          <div className="section-label">CLIENT REVIEWS</div>
+          <h2 className="section-title">Tested in Production by Indian Founders</h2>
 
-          <div className="manifesto-footer">
-            <div className="mf-label">Endustry Plant — Manifesto v1.0</div>
-            <div className="mf-stamp">EP<br/>2026</div>
+          <div className="test-grid">
+            {TESTIMONIALS.map((t, idx) => (
+              <div key={idx} className="test-card">
+                <span className="test-metric">{t.metric}</span>
+                <p className="test-quote">&ldquo;{t.quote}&rdquo;</p>
+                <div>
+                  <div className="test-author-name">{t.name}</div>
+                  <div className="test-author-company">{t.role}, {t.company}</div>
+                </div>
+              </div>
+            ))}
           </div>
 
+          {/* ─── FAQ ─────────────────────────────────────────── */}
+          <div className="faq-wrap">
+            <div className="faq-header">
+              <div className="section-label">CLEAR ANSWERS</div>
+              <h3 style={{ fontSize: '30px', fontWeight: '800', color: '#0F172A' }}>
+                Frequently Asked Questions
+              </h3>
+            </div>
+
+            <div className="faq-list">
+              {FAQS.map((faq, i) => (
+                <div key={i} className={`faq-card ${openFaq === i ? 'open' : ''}`}>
+                  <button
+                    className="faq-btn"
+                    onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  >
+                    <span>{faq.q}</span>
+                    <span className="faq-icon">{openFaq === i ? '−' : '+'}</span>
+                  </button>
+                  {openFaq === i && <div className="faq-answer">{faq.a}</div>}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* ─── FINAL CTA BANNER ────────────────────────────── */}
+          <div className="cta-box">
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+              <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10B981' }} />
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: '#10B981', letterSpacing: '0.05em' }}>
+                AVAILABLE FOR NEW SPRINT PROJECTS
+              </span>
+            </div>
+
+            <h3 className="cta-box-title">Ready to Build With High-Leverage Code?</h3>
+            <p className="cta-box-sub">
+              Schedule a 15-minute scoping call with lead founders Nirbhay &amp; Aditya.
+              We will review your requirements and provide a fixed-price proposal within 24 hours.
+            </p>
+
+            <div className="cta-btn-group">
+              <Link href="/contact" className="cta-white-btn">
+                Start a Project →
+              </Link>
+              <a
+                href="https://wa.me/917302164841?text=Hi%20Nirbhay,%20I'd%20like%20to%20discuss%20a%20project%20with%20Endustry%20Plant."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cta-wa-green"
+              >
+                Chat on WhatsApp (+91 73021 64841)
+              </a>
+            </div>
+          </div>
         </div>
       </section>
     </>

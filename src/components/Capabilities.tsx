@@ -1,89 +1,130 @@
 'use client';
 
+import React from 'react';
+import Link from 'next/link';
 import styles from './Capabilities.module.css';
 
-const SERVICES = [
+interface ServiceItem {
+  id: string;
+  category: string;
+  title: string;
+  desc: string;
+  image: string;
+  deliverables: string[];
+}
+
+const SERVICES: ServiceItem[] = [
   {
-    num: '1',
-    category: 'WEBSITES',
+    id: 'web',
+    category: 'WEBSITES & LANDING PAGES',
     title: 'Website Building',
-    desc: 'Custom, built-for-purpose websites designed to capture leverage and convert traffic. No generic templates. Real, bespoke code engineered for your business.',
-    img: '/service_websites.png',
-    status: '( ACTIVE - )'
+    desc: 'Custom, built-for-purpose websites engineered to capture leverage and convert traffic. No generic templates — bespoke Next.js code tailored for your brand.',
+    image: '/service_websites.png',
+    deliverables: [
+      'Sub-second Core Web Vitals speed',
+      'Mobile-first responsive design',
+      'Integrated WhatsApp & lead capture forms',
+      'SEO architecture & schema markup',
+    ],
   },
   {
-    num: '2',
-    category: 'ECOMMERCE',
+    id: 'ecommerce',
+    category: 'ECOMMERCE STORES',
     title: 'eCommerce Store Building',
-    desc: 'High-performance stores built on Shopify and custom headless stacks. Complete end-to-end design, custom integration, launch, and speed optimization.',
-    img: '/service_ecommerce.png',
-    status: '( ACTIVE - )'
+    desc: 'High-performance stores built on Shopify Plus and custom headless stacks. Complete end-to-end design, custom payment integration, and speed optimization.',
+    image: '/service_ecommerce.png',
+    deliverables: [
+      'Razorpay & Cashfree 1-click UPI checkout',
+      'Automated WhatsApp abandoned cart recovery',
+      'Shiprocket & Delhivery courier sync',
+      'Mobile conversion rate optimization',
+    ],
   },
   {
-    num: '3',
-    category: 'AUTOMATION',
-    title: 'AI Automation',
-    desc: 'Automating business operations using AI. Deep integration of custom workflows, processing pipelines, and tools that eliminate repetitive manual work.',
-    img: '/service_automation.png',
-    status: '( ACTIVE - )'
+    id: 'mobile',
+    category: 'MOBILE APPLICATIONS',
+    title: 'Mobile Apps (iOS & Android)',
+    desc: 'Product-level native and cross-platform mobile development using Flutter and React Native. Built for scale, smooth 60fps animations, and rapid app approval.',
+    image: '/service_mobile_apps.png',
+    deliverables: [
+      'Cross-platform iOS & Android releases',
+      'One-click UPI & in-app purchases',
+      'Native push notifications & device APIs',
+      'App Store & Play Store publishing handled',
+    ],
   },
   {
-    num: '4',
-    category: 'WEB APPS',
-    title: 'End-to-End Web Apps',
-    desc: 'Full-stack applications engineered from scratch. Something you need built securely, scaled rapidly, and handed over running in perfect operational condition.',
-    img: '/service_web_apps.png',
-    status: '( ACTIVE - )'
+    id: 'webapp',
+    category: 'FULL-STACK WEB APPS',
+    title: 'End-to-End Web Applications',
+    desc: 'Complex SaaS products, client portals, and internal business dashboards engineered from scratch with secure database design and real-time synchronization.',
+    image: '/service_web_apps.png',
+    deliverables: [
+      'Supabase & PostgreSQL database architecture',
+      'Role-based authentication & permissions',
+      'Real-time analytics & reporting dashboards',
+      'Automated GST invoicing & billing flows',
+    ],
   },
   {
-    num: '5',
-    category: 'MOBILE APPS',
-    title: 'Mobile Apps',
-    desc: 'Product-level native and cross-platform mobile development for iOS and Android. High-performance, App Store-ready products built for scale.',
-    img: '/service_mobile_apps.png',
-    status: '( ACTIVE - )'
+    id: 'automation',
+    category: 'AI AUTOMATION',
+    title: 'AI Workflow Automation',
+    desc: 'Eliminate repetitive manual operations. We build custom AI agents and deterministic pipelines that handle lead qualification, customer support, and document extraction.',
+    image: '/service_automation.png',
+    deliverables: [
+      'WhatsApp AI sales & customer booking agent',
+      'Automated invoice & document data extraction',
+      'CRM integration (HubSpot, Zoho, Sheets)',
+      '24/7 autonomous operations without human delay',
+    ],
   },
 ];
 
 export default function Capabilities() {
   return (
-    <section className={styles.sectionWrapper} id="capabilities">
+    <section className={styles.sectionWrapper} id="services">
       <div className={styles.outerContainer}>
-        
+        <div className={styles.headerRow}>
+          <div>
+            <div className={styles.sectionLabel}>SERVICES &amp; CAPABILITIES</div>
+            <h2 className={styles.heading}>Everything Your Business Needs Online</h2>
+          </div>
+          <p className={styles.subtext}>
+            We handle design, full-stack engineering, and launch under one roof.
+            Every solution is engineered for speed, conversions, and clean code.
+          </p>
+        </div>
 
-
-        {/* 2x2 Grid */}
         <div className={styles.grid}>
-          {SERVICES.map((srv, i) => (
-            <div key={i} className={styles.card}>
-              <div className={styles.cardInner}>
-                
-                {/* Front */}
-                <div className={styles.cardFront}>
-                  <div className={styles.frontCategory}>({srv.category})</div>
-                  <div className={styles.frontNumber}>{srv.num}</div>
-                  <div className={styles.frontTitle}>{srv.title}</div>
-                  <div className={styles.arrowBtn}>→</div>
-                </div>
+          {SERVICES.map((srv) => (
+            <div key={srv.id} className={styles.card}>
+              <div className={styles.cardImageWrap}>
+                <img src={srv.image} alt={srv.title} />
+              </div>
 
-                {/* Back (Hover state) */}
-                <div className={styles.cardBack}>
-                  <div className={styles.backCategory}>({srv.category})</div>
-                  <img src={srv.img} alt={srv.title} className={styles.backImg} />
-                  <div className={styles.backContent}>
-                    <div className={styles.backDesc}>{srv.desc}</div>
-                    <div className={styles.backBottom}>
-                      <div className={styles.backPill}>{srv.status}</div>
-                      <div className={styles.arrowBtnWhite}>→</div>
+              <div className={styles.cardBody}>
+                <div className={styles.cardCategory}>{srv.category}</div>
+                <h3 className={styles.cardTitle}>{srv.title}</h3>
+                <p className={styles.cardDesc}>{srv.desc}</p>
+
+                <div className={styles.deliverablesList}>
+                  {srv.deliverables.map((item, idx) => (
+                    <div key={idx} className={styles.deliverableItem}>
+                      <span className={styles.checkIcon}>✓</span>
+                      <span>{item}</span>
                     </div>
-                  </div>
+                  ))}
                 </div>
 
+                <Link href={`/contact?service=${encodeURIComponent(srv.title)}`} className={styles.cardAction}>
+                  <span>Book this service</span>
+                  <span>→</span>
+                </Link>
               </div>
             </div>
           ))}
         </div>
-
       </div>
     </section>
   );

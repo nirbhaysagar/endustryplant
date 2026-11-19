@@ -1,34 +1,47 @@
 'use client';
 
-import { useState } from 'react';
-import GrainOverlay from '@/components/GrainOverlay';
+import { useState, useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import Nav from '@/components/Nav';
 import TerminalFooter from '@/components/TerminalFooter';
-
-
+import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 
 const SERVICE_OPTIONS = [
   { label: 'Website Building', value: 'website' },
   { label: 'eCommerce Store', value: 'ecommerce' },
-  { label: 'AI Automation', value: 'automation' },
-  { label: 'End-to-End Web App', value: 'webapp' },
-  { label: 'Mobile App', value: 'mobile' }
+  { label: 'Mobile App (iOS/Android)', value: 'mobile' },
+  { label: 'Full-Stack Web App', value: 'webapp' },
+  { label: 'AI Workflow Automation', value: 'automation' },
 ];
 
-export default function ContactPage() {
+function ContactContent() {
+  const searchParams = useSearchParams();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [company, setCompany] = useState('');
+  const [phone, setPhone] = useState('');
+  const [budget, setBudget] = useState('₹75K – ₹1.5L');
   const [details, setDetails] = useState('');
-  const [selectedServices, setSelectedServices] = useState<string[]>([]);
+  const [selectedServices, setSelectedServices] = useState<string[]>(['website']);
   const [submitted, setSubmitted] = useState(false);
   const [refNo, setRefNo] = useState('');
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
 
+  useEffect(() => {
+    const serviceParam = searchParams.get('service');
+    if (serviceParam) {
+      if (serviceParam.includes('Mobile')) setSelectedServices(['mobile']);
+      else if (serviceParam.includes('AI') || serviceParam.includes('Automation')) setSelectedServices(['automation']);
+      else if (serviceParam.includes('eCommerce') || serviceParam.includes('Store')) setSelectedServices(['ecommerce']);
+      else if (serviceParam.includes('Web App')) setSelectedServices(['webapp']);
+      else setSelectedServices(['website']);
+    }
+  }, [searchParams]);
+
   const handleServiceToggle = (val: string) => {
-    setSelectedServices(prev =>
-      prev.includes(val) ? prev.filter(s => s !== val) : [...prev, val]
+    setSelectedServices((prev) =>
+      prev.includes(val) ? prev.filter((s) => s !== val) : [...prev, val]
     );
   };
 
@@ -37,17 +50,15 @@ export default function ContactPage() {
     if (!name || !email) return;
     setLoading(true);
     setErrorMsg('');
-    
-    // Generate an on-brand random reference code
+
     const rand = Math.floor(1000 + Math.random() * 9000);
-    const reference = `EP-2026-${rand}`;
+    const reference = `EP-IND-${rand}`;
     setRefNo(reference);
 
     let supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
     const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
     if (supabaseUrl && supabaseKey) {
-      // Normalize URL (strip trailing slashes, remove duplicate rest/v1 suffixes)
       supabaseUrl = supabaseUrl.replace(/\/$/, '');
       if (supabaseUrl.endsWith('/rest/v1')) {
         supabaseUrl = supabaseUrl.slice(0, -8);
@@ -56,19 +67,21 @@ export default function ContactPage() {
         const response = await fetch(`${supabaseUrl}/rest/v1/inquiries`, {
           method: 'POST',
           headers: {
-            'apikey': supabaseKey,
-            'Authorization': `Bearer ${supabaseKey}`,
+            apikey: supabaseKey,
+            Authorization: `Bearer ${supabaseKey}`,
             'Content-Type': 'application/json',
-            'Prefer': 'return=minimal'
+            Prefer: 'return=minimal',
           },
           body: JSON.stringify({
             ref_no: reference,
             name,
             email,
             company: company || null,
+            phone: phone || null,
+            budget,
             services: selectedServices,
-            details: details || null
-          })
+            details: details || null,
+          }),
         });
 
         if (!response.ok) {
@@ -83,138 +96,182 @@ export default function ContactPage() {
         setLoading(false);
       }
     } else {
-      console.warn('[SUPABASE] Offline mode: Env variables missing. Simulating database insertion.');
       setTimeout(() => {
         setSubmitted(true);
         setLoading(false);
-      }, 600);
+      }, 500);
     }
   };
 
   return (
     <>
-      <GrainOverlay />
-      <Nav />
-      
       <style>{`
         .contact-layout {
-          background: #f4f4f0;
-          color: #0a0a0a;
+          background: #FFFFFF;
           min-height: 100vh;
-          padding: 160px 40px 100px;
+          padding: 80px 24px 100px;
           display: flex;
           justify-content: center;
           align-items: flex-start;
-          border-bottom: 1px solid rgba(0,0,0,0.1);
+          color: #0F172A;
         }
 
         .contact-inner {
           width: 100%;
-          max-width: 1400px;
+          max-width: 1220px;
           display: grid;
-          grid-template-columns: 1fr 1.2fr;
-          gap: 100px;
+          grid-template-columns: 1fr 1.3fr;
+          gap: 60px;
+          align-items: start;
         }
 
         .info-col {
           display: flex;
           flex-direction: column;
-          gap: 60px;
+          gap: 32px;
+        }
+
+        .contact-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 6px 14px;
+          border-radius: 9999px;
+          background: #EEF2FF;
+          border: 1px solid #C7D2FE;
+          color: #4338CA;
+          font-family: var(--font-mono);
+          font-size: 11px;
+          font-weight: 600;
+          width: fit-content;
         }
 
         .contact-title {
-          font-family: 'Poppins', sans-serif;
-          font-size: clamp(40px, 6vw, 80px);
+          font-size: clamp(34px, 4vw, 50px);
           font-weight: 800;
-          line-height: 0.9;
-          letter-spacing: -0.04em;
-          text-transform: uppercase;
-          color: #0a0a0a;
-          margin: 0;
+          line-height: 1.15;
+          letter-spacing: -0.03em;
+          color: #0F172A;
         }
 
-        .contact-title span {
-          background-color: rgba(187, 250, 194, 0.7);
-          padding: 4px 16px;
-          display: inline-block;
-          margin-top: 4px;
+        .contact-subtext {
+          font-size: 16px;
+          line-height: 1.7;
+          color: #475569;
         }
 
-        .info-details {
+        .direct-card {
+          background: #F8FAFC;
+          border: 1px solid var(--border);
+          border-radius: 18px;
+          padding: 24px;
           display: flex;
           flex-direction: column;
-          gap: 24px;
+          gap: 16px;
         }
 
-        .info-item {
+        .direct-item {
+          display: flex;
+          align-items: center;
+          gap: 14px;
+        }
+
+        .direct-icon {
+          width: 40px;
+          height: 40px;
+          border-radius: 10px;
+          background: #FFFFFF;
+          border: 1px solid var(--border);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 18px;
+        }
+
+        .direct-label {
+          font-family: var(--font-mono);
+          font-size: 11px;
+          color: #64748B;
+          text-transform: uppercase;
+        }
+
+        .direct-val {
+          font-size: 15px;
+          font-weight: 600;
+          color: #0F172A;
+        }
+
+        .wa-instant-banner {
+          background: rgba(34, 197, 94, 0.08);
+          border: 1px solid rgba(34, 197, 94, 0.25);
+          border-radius: 16px;
+          padding: 20px;
           display: flex;
           flex-direction: column;
           gap: 8px;
         }
 
-        .info-label {
-          font-family: var(--font-mono);
-          font-size: 11px;
-          color: #666;
-          text-transform: uppercase;
-          letter-spacing: 0.1em;
-        }
-
-        .info-val {
-          font-family: var(--font-mono);
-          font-size: 18px;
-          color: #0a0a0a;
-          text-transform: uppercase;
-        }
-
-        .form-col {
-          background: #e6e4df;
-          border: 1px solid rgba(0,0,0,0.1);
-          border-radius: 16px;
-          padding: 48px;
-          box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+        /* ── RIGHT FORM CARD ── */
+        .form-card {
+          background: #FFFFFF;
+          border: 1px solid var(--border);
+          border-radius: 24px;
+          padding: 40px;
+          box-shadow: 0 10px 40px rgba(15, 23, 42, 0.05);
         }
 
         .form-title {
-          font-family: 'Poppins', sans-serif;
-          font-size: 28px;
-          font-weight: 700;
-          color: #0a0a0a;
-          margin-bottom: 40px;
+          font-size: 24px;
+          font-weight: 800;
+          margin-bottom: 6px;
           letter-spacing: -0.02em;
-          text-transform: uppercase;
+          color: #0F172A;
+        }
+
+        .form-subtitle {
+          font-size: 14px;
+          color: #64748B;
+          margin-bottom: 28px;
         }
 
         .field-group {
-          margin-bottom: 36px;
+          margin-bottom: 22px;
           display: flex;
           flex-direction: column;
-          gap: 12px;
+          gap: 8px;
         }
 
         .field-label {
           font-family: var(--font-mono);
           font-size: 12px;
-          color: #333;
+          font-weight: 600;
+          color: #334155;
           text-transform: uppercase;
-          letter-spacing: 0.05em;
+          letter-spacing: 0.04em;
+        }
+
+        .input-row-2 {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 16px;
         }
 
         .text-input {
-          border: none;
-          border-bottom: 2px solid #0a0a0a;
-          background: transparent;
-          padding: 12px 0;
-          font-family: var(--font-mono);
-          font-size: 16px;
           width: 100%;
-          color: #0a0a0a;
+          border: 1px solid var(--border);
+          background: #F8FAFC;
+          border-radius: 12px;
+          padding: 13px 16px;
+          font-size: 15px;
+          color: #0F172A;
           outline: none;
-          transition: border-color 0.3s ease;
+          transition: all 0.2s ease;
         }
 
         .text-input:focus {
-          border-color: #39FF85;
+          background: #FFFFFF;
+          border-color: #4F46E5;
+          box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
         }
 
         .selector-grid {
@@ -224,228 +281,305 @@ export default function ContactPage() {
         }
 
         .btn-select {
-          border: 1px solid rgba(0,0,0,0.2);
-          border-radius: 30px;
-          padding: 12px 20px;
-          font-family: var(--font-mono);
+          border: 1px solid var(--border);
+          background: #F8FAFC;
+          border-radius: 10px;
+          padding: 10px 14px;
           font-size: 13px;
-          color: #0a0a0a;
-          text-align: center;
+          color: #475569;
+          text-align: left;
           cursor: pointer;
           transition: all 0.2s ease;
-          background: transparent;
+          font-weight: 500;
         }
 
         .btn-select:hover {
-          border-color: #0a0a0a;
+          border-color: #CBD5E1;
+          color: #0F172A;
         }
 
         .btn-select.active {
-          background: #0a0a0a;
-          color: #ffffff;
-          border-color: #0a0a0a;
+          background: #0F172A;
+          border-color: #0F172A;
+          color: #FFFFFF;
+          font-weight: 600;
         }
 
         .submit-btn {
-          font-family: var(--font-mono);
-          font-size: 14px;
-          font-weight: 500;
-          color: #ffffff;
-          background: #000000;
-          padding: 16px 32px;
-          border-radius: 40px;
           width: 100%;
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-          transition: transform 0.2s ease, opacity 0.2s ease;
-          box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 8px;
+          background: #0F172A;
+          color: #FFFFFF;
+          padding: 16px;
+          border-radius: 12px;
+          font-size: 15px;
+          font-weight: 700;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          margin-top: 10px;
+          box-shadow: 0 4px 14px rgba(15, 23, 42, 0.15);
         }
 
         .submit-btn:hover {
-          transform: scale(1.02);
-          opacity: 0.9;
+          background: #1E293B;
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(15, 23, 42, 0.25);
         }
 
         .success-box {
-          background: #0a0a0a;
-          color: #39FF85;
-          padding: 40px;
-          border-radius: 12px;
-          font-family: var(--font-mono);
+          background: rgba(34, 197, 94, 0.08);
+          border: 1px solid rgba(34, 197, 94, 0.3);
+          border-radius: 16px;
+          padding: 32px;
           display: flex;
           flex-direction: column;
-          gap: 20px;
-          box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-          border: 1px solid rgba(57,255,133,0.2);
+          gap: 16px;
         }
 
-        .success-header {
-          font-size: 18px;
-          font-weight: bold;
-          border-bottom: 1px solid rgba(57,255,133,0.2);
-          padding-bottom: 16px;
-        }
-
-        .success-details {
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
-          font-size: 14px;
-          line-height: 1.6;
-        }
-
-        @media (max-width: 1024px) {
+        @media (max-width: 960px) {
           .contact-inner {
             grid-template-columns: 1fr;
-            gap: 60px;
           }
-          .form-col {
-            padding: 30px;
+          .input-row-2 {
+            grid-template-columns: 1fr;
           }
-        }
-
-        @media (max-width: 600px) {
           .selector-grid {
             grid-template-columns: 1fr;
           }
-          .contact-layout {
-            padding: 120px 20px 60px;
+          .form-card {
+            padding: 24px;
           }
         }
       `}</style>
 
       <main className="contact-layout">
         <div className="contact-inner">
-          
-          {/* Info Column */}
+          {/* ── LEFT INFO ── */}
           <div className="info-col">
+            <div className="contact-badge">● DIRECT FOUNDER CONSULTATION</div>
             <h1 className="contact-title">
-              Let's build<br />
-              <span>leveraged</span><br />
-              systems
+              Let&apos;s Build Something Great Together.
             </h1>
-            
-            <div className="info-details">
-              <div className="info-item">
-                <div className="info-label">E-Mail</div>
-                <div className="info-val" style={{ textTransform: 'none' }}>endustryplant.com@gmail.com</div>
-              </div>
-              <div className="info-item">
-                <div className="info-label">Base Location</div>
-                <div className="info-val">New Delhi, India (Global)</div>
-              </div>
-              <div className="info-item">
-                <div className="info-label">Contact Numbers</div>
-                <div className="info-val" style={{ fontSize: '15px', textTransform: 'none', lineHeight: '1.5' }}>
-                  +91 73021 64841 (Nirbhay Sagar)<br />
-                  +91 95486 91732 (Aditya Kumar)
+            <p className="contact-subtext">
+              Share your project vision, timeline, and goals. Technical founders
+              Nirbhay Sagar &amp; Aditya Kumar will review your scope and provide a
+              transparent, fixed-price proposal within 24 hours.
+            </p>
+
+            <div className="direct-card">
+              <div className="direct-item">
+                <div className="direct-icon">📍</div>
+                <div>
+                  <div className="direct-label">Studio Base</div>
+                  <div className="direct-val">New Delhi, India (Global Timezones)</div>
                 </div>
               </div>
-            </div>
-          </div>
 
-          {/* Form Column */}
-          <div className="form-col">
-            {submitted ? (
-              <div className="success-box">
-                <div className="success-header">[ TRANSMISSION SUCCESSFUL ]</div>
-                <div className="success-details">
-                  <div>REF_NO: {refNo}</div>
-                  <div>STATUS: LOGGED_IN_PIPELINE</div>
-                  <div>TARGET: SYSTEM_ENGINEERS</div>
-                  <div style={{ marginTop: '10px', color: '#ffffff' }}>
-                    Thank you. We have received your project details. A systems architect from our Delhi lab will contact you within 24 hours.
+              <div className="direct-item">
+                <div className="direct-icon">📞</div>
+                <div>
+                  <div className="direct-label">Lead Engineering Phones</div>
+                  <div className="direct-val">
+                    +91 73021 64841 (Nirbhay Sagar)<br />
+                    +91 95486 91732 (Aditya Kumar)
                   </div>
                 </div>
               </div>
+
+              <div className="direct-item">
+                <div className="direct-icon">✉️</div>
+                <div>
+                  <div className="direct-label">Direct Inbox</div>
+                  <div className="direct-val">endustryplant.com@gmail.com</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="wa-instant-banner">
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span style={{ fontSize: '18px' }}>💬</span>
+                <span style={{ fontWeight: '700', color: '#15803D' }}>Prefer an Immediate Conversation?</span>
+              </div>
+              <p style={{ fontSize: '13px', color: '#475569', margin: '4px 0' }}>
+                Text us directly on WhatsApp to discuss your scope and get instant feedback.
+              </p>
+              <a
+                href="https://wa.me/917302164841?text=Hi%20Nirbhay,%20I'd%20like%20to%20discuss%20a%20digital%20project."
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  color: '#15803D',
+                  fontWeight: '700',
+                  fontSize: '13px',
+                }}
+              >
+                Chat on WhatsApp (+91 73021 64841) →
+              </a>
+            </div>
+          </div>
+
+          {/* ── RIGHT FORM ── */}
+          <div className="form-card">
+            {submitted ? (
+              <div className="success-box">
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span style={{ fontSize: '24px' }}>✅</span>
+                  <span style={{ fontSize: '20px', fontWeight: '800', color: '#15803D' }}>
+                    Project Brief Received!
+                  </span>
+                </div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '13px', color: '#4F46E5', fontWeight: '600' }}>
+                  REFERENCE TICKET: {refNo}
+                </div>
+                <p style={{ fontSize: '14px', color: '#334155', lineHeight: '1.7' }}>
+                  Thank you, <strong>{name}</strong>. Your project brief has been received.
+                  Founder Nirbhay Sagar will review your requirements and follow up via WhatsApp / Email within 24 hours.
+                </p>
+                <a
+                  href={`https://wa.me/917302164841?text=Hi%20Nirbhay,%20I%20just%20submitted%20brief%20${refNo}%20on%20your%20website.`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    color: '#15803D',
+                    fontSize: '14px',
+                    fontWeight: '700',
+                    marginTop: '8px',
+                  }}
+                >
+                  Follow up immediately on WhatsApp with Ticket #{refNo} →
+                </a>
+              </div>
             ) : (
               <form onSubmit={handleSubmit}>
-                <div className="form-title">Start a Project</div>
-                
-                <div className="field-group">
-                  <div className="field-label">What should we call you? *</div>
-                  <input
-                    type="text"
-                    required
-                    value={name}
-                    onChange={e => setName(e.target.value)}
-                    placeholder="Your Name"
-                    className="text-input"
-                  />
-                </div>
+                <h2 className="form-title">Start a Project Sprint</h2>
+                <p className="form-subtitle">
+                  Fill in your project scope below for a 1-day turnaround proposal.
+                </p>
 
                 <div className="field-group">
-                  <div className="field-label">Where should we reach you? *</div>
-                  <input
-                    type="email"
-                    required
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                    placeholder="email@company.com"
-                    className="text-input"
-                  />
-                </div>
-
-                <div className="field-group">
-                  <div className="field-label">Company / Product Name</div>
-                  <input
-                    type="text"
-                    value={company}
-                    onChange={e => setCompany(e.target.value)}
-                    placeholder="e.g. Acme Corp"
-                    className="text-input"
-                  />
-                </div>
-
-                <div className="field-group">
-                  <div className="field-label">What are we building?</div>
+                  <label className="field-label">What do you want to build?</label>
                   <div className="selector-grid">
-                    {SERVICE_OPTIONS.map(opt => (
+                    {SERVICE_OPTIONS.map((opt) => (
                       <button
                         type="button"
                         key={opt.value}
                         onClick={() => handleServiceToggle(opt.value)}
                         className={`btn-select ${selectedServices.includes(opt.value) ? 'active' : ''}`}
                       >
+                        {selectedServices.includes(opt.value) ? '✓ ' : '+ '}
                         {opt.label}
                       </button>
                     ))}
                   </div>
                 </div>
 
+                <div className="input-row-2">
+                  <div className="field-group">
+                    <label className="field-label">Your Name *</label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g. Rahul Sharma"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      className="text-input"
+                    />
+                  </div>
+
+                  <div className="field-group">
+                    <label className="field-label">Email Address *</label>
+                    <input
+                      type="email"
+                      required
+                      placeholder="rahul@company.com"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="text-input"
+                    />
+                  </div>
+                </div>
+
+                <div className="input-row-2">
+                  <div className="field-group">
+                    <label className="field-label">Company / Brand</label>
+                    <input
+                      type="text"
+                      placeholder="e.g. Acme Lifestyle"
+                      value={company}
+                      onChange={(e) => setCompany(e.target.value)}
+                      className="text-input"
+                    />
+                  </div>
+
+                  <div className="field-group">
+                    <label className="field-label">Phone / WhatsApp</label>
+                    <input
+                      type="tel"
+                      placeholder="+91 98765 43210"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      className="text-input"
+                    />
+                  </div>
+                </div>
+
                 <div className="field-group">
-                  <div className="field-label">Tell us about the project</div>
+                  <label className="field-label">Estimated Budget</label>
+                  <div className="selector-grid">
+                    {['₹45K – ₹1L', '₹1L – ₹2.5L', '₹2.5L – ₹5L', '₹5L+'].map((b) => (
+                      <button
+                        type="button"
+                        key={b}
+                        onClick={() => setBudget(b)}
+                        className={`btn-select ${budget === b ? 'active' : ''}`}
+                      >
+                        {b}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="field-group">
+                  <label className="field-label">Project Details</label>
                   <textarea
-                    rows={4}
+                    rows={3}
+                    placeholder="Briefly describe what you're building, target launch dates, or key features..."
                     value={details}
-                    onChange={e => setDetails(e.target.value)}
-                    placeholder="Describe your vision, timelines, or systems complexity..."
+                    onChange={(e) => setDetails(e.target.value)}
                     className="text-input"
                     style={{ resize: 'vertical' }}
                   />
                 </div>
 
                 {errorMsg && (
-                  <div style={{ color: '#E63946', fontFamily: 'var(--font-mono)', fontSize: '12px', marginBottom: '20px' }}>
-                    [ ERROR: {errorMsg.toUpperCase()} ]
+                  <div style={{ color: '#EF4444', fontSize: '13px', marginBottom: '16px' }}>
+                    {errorMsg}
                   </div>
                 )}
 
                 <button type="submit" className="submit-btn" disabled={loading}>
-                  {loading ? 'Transmitting...' : 'Submit Brief →'}
+                  {loading ? 'Submitting...' : 'Send Project Brief →'}
                 </button>
               </form>
             )}
           </div>
-
         </div>
       </main>
+    </>
+  );
+}
 
+export default function ContactPage() {
+  return (
+    <>
+      <Nav />
+      <Suspense fallback={<div style={{ minHeight: '100vh', background: '#FFFFFF' }} />}>
+        <ContactContent />
+      </Suspense>
       <TerminalFooter />
+      <FloatingWhatsApp />
     </>
   );
 }

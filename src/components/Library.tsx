@@ -1,152 +1,274 @@
 'use client';
 
-interface Blueprint {
+import Link from 'next/link';
+
+interface Project {
   id: string;
   category: string;
   title: string;
-  date: string;
-  status: string;
+  client: string;
+  metric: string;
+  metricLabel: string;
+  desc: string;
+  tags: string[];
 }
 
-const BLUEPRINTS: Blueprint[] = [
-  { id: 'bp-01', category: 'RESEARCH', title: 'The Fallacy of Billable Hours', date: '2026.01', status: 'PUBLISHED' },
-  { id: 'bp-02', category: 'ARCHITECTURE', title: 'Zero-Latency Client Onboarding', date: '2026.02', status: 'DRAFT' },
-  { id: 'bp-03', category: 'SYSTEMS', title: 'Autonomous Content Supply Chains', date: '2026.03', status: 'PUBLISHED' },
-  { id: 'bp-04', category: 'OPS', title: 'Decentralized Agency Operations', date: '2026.04', status: 'ARCHIVED' },
-  { id: 'bp-05', category: 'THESIS', title: 'Why Code is a Liability', date: '2026.05', status: 'PUBLISHED' },
+const PROJECTS: Project[] = [
+  {
+    id: 'p1',
+    category: 'D2C ECOMMERCE',
+    title: 'High-Speed Storefront & WhatsApp Checkout Recovery',
+    client: 'Aura Luxury Apparel · Mumbai',
+    metric: '+240%',
+    metricLabel: 'Mobile Checkout Conversion',
+    desc: 'Redesigned and engineered a headless Next.js storefront integrated with Razorpay 1-click checkout and automated WhatsApp recovery. Dropped load time from 4.8s to 0.7s.',
+    tags: ['Next.js 16', 'Shopify Plus', 'Razorpay', 'WhatsApp API'],
+  },
+  {
+    id: 'p2',
+    category: 'MOBILE APP',
+    title: 'On-Demand Hyperlocal Food & Grocery Delivery App',
+    client: 'QuickBite Express · Delhi NCR',
+    metric: '18,000+',
+    metricLabel: 'Daily Active Orders',
+    desc: 'Built a cross-platform React Native app featuring real-time rider GPS tracking, automated UPI payments, and sub-second order dispatching during peak surge hours.',
+    tags: ['React Native', 'Firebase', 'Google Maps SDK', 'Cashfree UPI'],
+  },
+  {
+    id: 'p3',
+    category: 'AI WORKFLOW AUTOMATION',
+    title: 'Autonomous Inbound Sales & Lead Qualification Engine',
+    client: 'PropTech Capital · Bengaluru',
+    metric: '35 hrs',
+    metricLabel: 'Saved Per Week / Agent',
+    desc: 'Replaced manual calling processes with an autonomous WhatsApp LLM agent that pre-qualifies high-intent real estate buyers, schedules site visits, and syncs directly to CRM.',
+    tags: ['OpenAI GPT-4o', 'Python FastAPI', 'Supabase Vector', 'HubSpot API'],
+  },
+  {
+    id: 'p4',
+    category: 'SAAS WEB APPLICATION',
+    title: 'Enterprise Fleet Dispatch & GST Billing Portal',
+    client: 'ShipPulse Logistics · Gurugram',
+    metric: '₹12Cr+',
+    metricLabel: 'Quarterly GMV Processed',
+    desc: 'Engineered a high-concurrency internal web application managing 400+ commercial vehicles, driver telematics, route planning, and automated GST-compliant e-way invoicing.',
+    tags: ['React 19', 'PostgreSQL', 'Tailwind CSS', 'Vercel Edge'],
+  },
 ];
 
 export default function Library() {
   return (
     <>
       <style>{`
-        .library-section {
-          background: #ffffff;
-          padding: 160px 40px;
-          min-height: 100vh;
-          border-top: 1px solid rgba(0,0,0,0.1);
+        .work-section {
+          padding: 100px 0;
+          background: #FFFFFF;
+          border-bottom: 1px solid var(--border);
         }
 
-        .library-inner {
-          max-width: 1400px;
+        .work-inner {
+          max-width: 1220px;
           margin: 0 auto;
+          padding: 0 24px;
         }
 
-        .library-header {
-          margin-bottom: 80px;
+        .work-header {
           display: flex;
-          align-items: flex-start;
-          gap: 40px;
+          justify-content: space-between;
+          align-items: flex-end;
+          gap: 32px;
+          margin-bottom: 50px;
+          flex-wrap: wrap;
         }
 
-        .library-title {
-          font-family: 'Poppins', sans-serif;
-          font-size: clamp(60px, 8vw, 120px);
-          font-weight: 800;
-          color: #0a0a0a;
-          line-height: 0.9;
-          letter-spacing: -0.04em;
-          text-transform: uppercase;
-          margin: 0;
-          flex: 1;
-        }
-
-        .library-label {
-          font-family: var(--font-mono);
-          font-size: 14px;
-          text-transform: uppercase;
-          color: #0a0a0a;
-          max-width: 300px;
-          line-height: 1.5;
-        }
-
-        .library-table {
-          width: 100%;
-          border-top: 2px solid #0a0a0a;
-        }
-
-        .library-row {
-          display: grid;
-          grid-template-columns: 1fr 3fr 1fr 1fr;
-          align-items: center;
-          padding: 40px 0;
-          border-bottom: 1px solid rgba(0,0,0,0.2);
-          cursor: pointer;
-          transition: background 0.3s ease, padding 0.3s ease;
-          position: relative;
-        }
-
-        .library-row:hover {
-          background: #f4f4f0;
-          padding-left: 20px;
-          padding-right: 20px;
-        }
-
-        .row-category {
-          font-family: var(--font-mono);
-          font-size: 13px;
-          color: #666;
-        }
-
-        .row-title {
-          font-family: 'Poppins', sans-serif;
-          font-size: clamp(24px, 3vw, 48px);
-          font-weight: 600;
-          color: #0a0a0a;
-          letter-spacing: -0.02em;
-          line-height: 1.1;
-        }
-
-        .row-date {
-          font-family: var(--font-mono);
-          font-size: 13px;
-          color: #666;
-        }
-
-        .row-status {
+        .work-label {
           font-family: var(--font-mono);
           font-size: 11px;
-          color: #111;
-          border: 1px solid #111;
-          padding: 4px 12px;
+          font-weight: 600;
+          color: #4F46E5;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          margin-bottom: 12px;
+        }
+
+        .work-title {
+          font-size: clamp(30px, 3.5vw, 44px);
+          font-weight: 800;
+          letter-spacing: -0.03em;
+          color: #0F172A;
+          line-height: 1.15;
+        }
+
+        .work-subtext {
+          font-size: 16px;
+          color: #475569;
+          max-width: 500px;
+          line-height: 1.7;
+        }
+
+        /* ─── PROJECTS GRID ─────────────────────────────────── */
+        .work-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 28px;
+        }
+
+        .project-card {
+          background: #F8FAFC;
+          border: 1px solid var(--border);
           border-radius: 20px;
-          justify-self: end;
+          padding: 32px;
+          display: flex;
+          flex-direction: column;
+          gap: 18px;
+          transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .library-row:hover .row-title {
-          text-decoration: line-through;
-          color: #888;
+        .project-card:hover {
+          transform: translateY(-4px);
+          border-color: #CBD5E1;
+          box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+          background: #FFFFFF;
         }
 
-        @media (max-width: 1024px) {
-          .library-row {
+        .project-top {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        .project-cat {
+          font-family: var(--font-mono);
+          font-size: 11px;
+          font-weight: 600;
+          color: #4F46E5;
+          letter-spacing: 0.05em;
+        }
+
+        .project-live {
+          font-family: var(--font-mono);
+          font-size: 11px;
+          color: #15803D;
+          background: rgba(34, 197, 94, 0.12);
+          padding: 3px 8px;
+          border-radius: 4px;
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          font-weight: 600;
+        }
+
+        .project-title {
+          font-size: 20px;
+          font-weight: 800;
+          color: #0F172A;
+          line-height: 1.35;
+        }
+
+        .project-client {
+          font-size: 13px;
+          color: #64748B;
+          margin-top: 4px;
+        }
+
+        .metric-banner {
+          background: #FFFFFF;
+          border: 1px solid var(--border);
+          border-radius: 12px;
+          padding: 14px 18px;
+          display: flex;
+          align-items: baseline;
+          gap: 12px;
+        }
+
+        .metric-val {
+          font-family: var(--font-mono);
+          font-size: 28px;
+          font-weight: 800;
+          color: #0F172A;
+        }
+
+        .metric-caption {
+          font-size: 13px;
+          color: #15803D;
+          font-weight: 700;
+        }
+
+        .project-desc {
+          font-size: 14px;
+          color: #475569;
+          line-height: 1.7;
+          flex-grow: 1;
+        }
+
+        .project-tags {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 6px;
+        }
+
+        .project-tag {
+          font-family: var(--font-mono);
+          font-size: 11px;
+          padding: 4px 8px;
+          border-radius: 6px;
+          background: #E2E8F0;
+          color: #334155;
+        }
+
+        @media (max-width: 900px) {
+          .work-grid {
             grid-template-columns: 1fr;
-            gap: 16px;
-            padding: 30px 0;
           }
-          .row-status {
-            justify-self: start;
-          }
-          .library-header {
-            flex-direction: column;
+          .project-card {
+            padding: 24px;
           }
         }
       `}</style>
 
-      <section className="library-section" id="library">
-        <div className="library-inner">
-          <div className="library-header">
-            <h2 className="library-title">Index</h2>
-            <div className="library-label">Internal documentation, blueprints, and operational thesis.</div>
+      <section className="work-section" id="work">
+        <div className="work-inner">
+          <div className="work-header">
+            <div>
+              <div className="work-label">PORTFOLIO &amp; CASE STUDIES</div>
+              <h2 className="work-title">Featured Work &amp; Results</h2>
+            </div>
+            <p className="work-subtext">
+              A sample of digital products engineered and shipped for growing companies.
+              Every project is measured by real business outcomes.
+            </p>
           </div>
 
-          <div className="library-table">
-            {BLUEPRINTS.map((bp) => (
-              <div key={bp.id} className="library-row">
-                <div className="row-category">{bp.category}</div>
-                <div className="row-title">{bp.title}</div>
-                <div className="row-date">{bp.date}</div>
-                <div className="row-status">{bp.status}</div>
+          <div className="work-grid">
+            {PROJECTS.map((p) => (
+              <div key={p.id} className="project-card">
+                <div className="project-top">
+                  <span className="project-cat">{p.category}</span>
+                  <span className="project-live">
+                    <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#10B981' }} />
+                    SHIPPED IN PRODUCTION
+                  </span>
+                </div>
+
+                <div>
+                  <h3 className="project-title">{p.title}</h3>
+                  <div className="project-client">{p.client}</div>
+                </div>
+
+                <div className="metric-banner">
+                  <span className="metric-val">{p.metric}</span>
+                  <span className="metric-caption">{p.metricLabel}</span>
+                </div>
+
+                <p className="project-desc">{p.desc}</p>
+
+                <div className="project-tags">
+                  {p.tags.map((t, idx) => (
+                    <span key={idx} className="project-tag">
+                      {t}
+                    </span>
+                  ))}
+                </div>
               </div>
             ))}
           </div>

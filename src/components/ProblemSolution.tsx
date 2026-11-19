@@ -1,94 +1,128 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
 import styles from './ProblemSolution.module.css';
-
-function AnimatedCounter({ target, duration = 2000 }: { target: number, duration?: number }) {
-  const [count, setCount] = useState(0);
-  const ref = useRef<HTMLSpanElement>(null);
-  
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    
-    let startTime: number | null = null;
-    let animId: number;
-    let started = false;
-
-    const animate = (timestamp: number) => {
-      if (!startTime) startTime = timestamp;
-      const progress = Math.min((timestamp - startTime) / duration, 1);
-      const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-      setCount(Math.floor(easeProgress * target));
-      
-      if (progress < 1) {
-        animId = requestAnimationFrame(animate);
-      }
-    };
-
-    const obs = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting && !started) {
-        started = true;
-        animId = requestAnimationFrame(animate);
-        obs.disconnect();
-      }
-    }, { threshold: 0.5 });
-    
-    obs.observe(el);
-    
-    return () => {
-      obs.disconnect();
-      if (animId) cancelAnimationFrame(animId);
-    };
-  }, [target, duration]);
-
-  return <span ref={ref}>{count}</span>;
-}
-
-const STATS = [
-  { target: 90, suffix: '%', desc: "of digital products fail because they focus on code instead of compounding distribution systems." },
-  { target: 78, suffix: '%', desc: "of agencies sell billable hours instead of tangible, revenue-generating outcomes." },
-  { target: 10, suffix: 'x', desc: "more time is wasted on manual workflows that should be fully autonomous AI agents." }
-];
 
 export default function ProblemSolution() {
   return (
-    <section className={styles.section} id="problem">
+    <section className={styles.section}>
       <div className={styles.inner}>
-        
         <div className={styles.header}>
-          <h2 className={styles.heading}>
-            THE INDUSTRY IS <em>BROKEN</em>
-          </h2>
+          <div className={styles.label}>WHY ENDUSTRY PLANT</div>
+          <h2 className={styles.heading}>The Honest Market Comparison</h2>
+          <p className={styles.subtext}>
+            We built our model specifically to eliminate the delays, hidden costs,
+            and poor code quality that frustrate Indian founders.
+          </p>
         </div>
 
-        <div className={styles.statsContainer}>
-          {STATS.map((stat, i) => (
-            <div key={i} className={styles.statRow}>
-              <div className={styles.statNumberWrap}>
-                <div className={styles.statNumber}>
-                  <AnimatedCounter target={stat.target} />
-                </div>
-                <div className={styles.statSuffix}>{stat.suffix}</div>
-              </div>
-              <p className={styles.statDesc}>{stat.desc}</p>
+        <div className={styles.compGrid}>
+          {/* ─── FREELANCERS ─── */}
+          <div className={styles.compCardBad}>
+            <div className={styles.cardHeader}>
+              <h3 className={styles.cardType}>Freelancer Collectives</h3>
+              <div className={styles.cardSubtitle}>Inexpensive upfront, high hidden risk</div>
             </div>
-          ))}
-        </div>
 
-        <div className={styles.solutionBlock}>
-          <p className={styles.solutionIntro}>THE ENDUSTRY PLANT APPROACH</p>
-          <p className={styles.solutionLine}>
-            Instead of freelancer collectives <span>→</span> <strong>We are a Full-Service Studio.</strong>
-          </p>
-          <p className={styles.solutionLine}>
-            Instead of generic templates <span>→</span> <strong>We Build Custom, Built-For-Purpose Sites.</strong>
-          </p>
-          <p className={styles.solutionLine}>
-            Instead of manual operations <span>→</span> <strong>We Automate with AI.</strong>
-          </p>
-        </div>
+            <div className={styles.pointsList}>
+              <div className={styles.pointRow}>
+                <span className={styles.pointCross}>✕</span>
+                <span style={{ color: '#475569' }}>
+                  <strong>Unreliable timelines:</strong> Frequent project abandonment and unreturned WhatsApp calls.
+                </span>
+              </div>
+              <div className={styles.pointRow}>
+                <span className={styles.pointCross}>✕</span>
+                <span style={{ color: '#475569' }}>
+                  <strong>Template bloat:</strong> Heavy reliance on generic WordPress themes with 30+ fragile plugins.
+                </span>
+              </div>
+              <div className={styles.pointRow}>
+                <span className={styles.pointCross}>✕</span>
+                <span style={{ color: '#475569' }}>
+                  <strong>Zero documentation:</strong> Spaghetti code that no other developer can maintain or scale.
+                </span>
+              </div>
+              <div className={styles.pointRow}>
+                <span className={styles.pointCross}>✕</span>
+                <span style={{ color: '#475569' }}>
+                  <strong>Disappearing post-launch:</strong> Bug fixes after final payment become impossible.
+                </span>
+              </div>
+            </div>
+          </div>
 
+          {/* ─── TRADITIONAL AGENCIES ─── */}
+          <div className={styles.compCardBad}>
+            <div className={styles.cardHeader}>
+              <h3 className={styles.cardType}>Traditional Agencies</h3>
+              <div className={styles.cardSubtitle}>Heavy bureaucracy, exorbitant bills</div>
+            </div>
+
+            <div className={styles.pointsList}>
+              <div className={styles.pointRow}>
+                <span className={styles.pointCross}>✕</span>
+                <span style={{ color: '#475569' }}>
+                  <strong>Inflated hourly rates:</strong> Endless billing cycles, scoping fees, and unexpected overages.
+                </span>
+              </div>
+              <div className={styles.pointRow}>
+                <span className={styles.pointCross}>✕</span>
+                <span style={{ color: '#475569' }}>
+                  <strong>Junior handoff:</strong> Pitched by agency partners, but coded by inexperienced interns.
+                </span>
+              </div>
+              <div className={styles.pointRow}>
+                <span className={styles.pointCross}>✕</span>
+                <span style={{ color: '#475569' }}>
+                  <strong>Slow change turnaround:</strong> Days of delay just to get small copy or design edits approved.
+                </span>
+              </div>
+              <div className={styles.pointRow}>
+                <span className={styles.pointCross}>✕</span>
+                <span style={{ color: '#475569' }}>
+                  <strong>Complex retainers:</strong> Locked into expensive monthly contracts for minimal support.
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* ─── ENDUSTRY PLANT (HERO) ─── */}
+          <div className={styles.compCardHero}>
+            <div className={styles.heroTag}>THE ENDUSTRY ADVANTAGE</div>
+
+            <div className={styles.cardHeader}>
+              <h3 className={styles.cardType}>Endustry Plant Studio</h3>
+              <div className={styles.cardSubtitle}>Modern product engineering, direct founder access</div>
+            </div>
+
+            <div className={styles.pointsList}>
+              <div className={styles.pointRow}>
+                <span className={styles.pointCheck}>✓</span>
+                <span style={{ color: '#0F172A' }}>
+                  <strong>Fixed sprint pricing:</strong> Guaranteed milestone budget with zero hidden hourly fees.
+                </span>
+              </div>
+              <div className={styles.pointRow}>
+                <span className={styles.pointCheck}>✓</span>
+                <span style={{ color: '#0F172A' }}>
+                  <strong>Senior developers only:</strong> Direct communication with technical founders Nirbhay &amp; Aditya.
+                </span>
+              </div>
+              <div className={styles.pointRow}>
+                <span className={styles.pointCheck}>✓</span>
+                <span style={{ color: '#0F172A' }}>
+                  <strong>100% Custom Next.js code:</strong> Sub-second speeds, zero templates, and full IP handover.
+                </span>
+              </div>
+              <div className={styles.pointRow}>
+                <span className={styles.pointCheck}>✓</span>
+                <span style={{ color: '#0F172A' }}>
+                  <strong>30-Day free SLA warranty:</strong> Any bugs or adjustments post-launch are fixed immediately.
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

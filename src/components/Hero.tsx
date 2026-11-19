@@ -1,69 +1,140 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
-import HeroHeadline from './HeroHeadline';
 import styles from './Hero.module.css';
 
+interface ShowcaseItem {
+  id: string;
+  name: string;
+  tabLabel: string;
+  image: string;
+  tag: string;
+  desc: string;
+}
+
+const SHOWCASE_ITEMS: ShowcaseItem[] = [
+  {
+    id: 'web',
+    tabLabel: 'Websites',
+    name: 'Custom High-Conversion Websites',
+    image: '/service_websites.png',
+    tag: 'NEXT.JS 16 · ZERO TEMPLATES',
+    desc: 'Sub-second speed, bespoke UI design, and seamless lead capture engineered for Indian scaleups.',
+  },
+  {
+    id: 'ecommerce',
+    tabLabel: 'eCommerce',
+    name: 'Shopify Plus & Headless Stores',
+    image: '/service_ecommerce.png',
+    tag: 'RAZORPAY 1-CLICK · FAST CHECKOUT',
+    desc: 'High-speed mobile checkout, WhatsApp automated cart recovery, and live courier tracking integration.',
+  },
+  {
+    id: 'mobile',
+    tabLabel: 'Mobile Apps',
+    name: 'Native iOS & Android Apps',
+    image: '/service_mobile_apps.png',
+    tag: 'FLUTTER / REACT NATIVE',
+    desc: 'Fluid 60fps mobile interfaces, one-click UPI payments, and App Store submission handled end-to-end.',
+  },
+  {
+    id: 'automation',
+    tabLabel: 'AI Automation',
+    name: 'Autonomous AI Workflows',
+    image: '/service_automation.png',
+    tag: 'WHATSAPP BOT · LLM PIPELINES',
+    desc: 'Automating lead qualification, invoice parsing, and internal CRM sync with custom OpenAI & Claude agents.',
+  },
+];
+
 export default function Hero() {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return <div className={styles.hero} />;
+  const [activeItem, setActiveItem] = useState(SHOWCASE_ITEMS[0]);
 
   return (
     <section className={styles.hero} id="hero">
-      
-      {/* Decorative Hand-drawn Sketches */}
-      <svg className={styles.sketch} style={{ top: '15%', right: '10%', transform: 'rotate(15deg)' }} width="130" height="110" viewBox="0 0 130 110">
-        <path d="M30 50 C30 35 45 30 50 50 C55 70 70 65 70 50 C70 35 55 30 50 50 C45 70 30 65 30 50 Z" stroke="#1A1A1A" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-        <path d="M52 35 L50 50 L63 45" stroke="#1A1A1A" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-        <text x="5" y="95" fontFamily="var(--font-hand)" fontSize="15" fill="#1A1A1A">continuous integration</text>
-      </svg>
+      <div className={styles.inner}>
+        {/* LEFT COLUMN: Crystal Clear Agency Proposition */}
+        <div className={styles.left}>
+          <div className={styles.badge}>
+            <span className={styles.pulseDot} />
+            <span>Digital Product Studio · New Delhi (Global Clients)</span>
+          </div>
 
-      <svg className={styles.sketch} style={{ top: '45%', left: '8%', transform: 'rotate(-10deg)' }} width="130" height="110" viewBox="0 0 130 110">
-        <path d="M40 70 L60 40 L80 70 Z" stroke="#1A1A1A" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M10 50 L110 50" stroke="#1A1A1A" strokeWidth="2.5" fill="none" strokeLinecap="round" />
-        <path d="M20 20 L20 45 M15 35 L20 45 L25 35" stroke="#39FF85" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M100 45 L100 20 M95 30 L100 20 L105 30" stroke="#1A1A1A" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-        <text x="5" y="95" fontFamily="var(--font-hand)" fontSize="15" fill="#1A1A1A">compounding leverage</text>
-      </svg>
+          <h1 className={styles.h1}>
+            We build websites, apps &amp; digital products that{' '}
+            <span className={styles.h1Highlight}>grow your business.</span>
+          </h1>
 
-      <svg className={styles.sketch} style={{ bottom: '15%', right: '8%', transform: 'rotate(5deg)' }} width="130" height="110" viewBox="0 0 130 110">
-        <circle cx="20" cy="20" r="6" stroke="#1A1A1A" strokeWidth="1.5" fill="none" />
-        <circle cx="50" cy="50" r="6" stroke="#1A1A1A" strokeWidth="1.5" fill="none" />
-        <circle cx="80" cy="30" r="6" stroke="#1A1A1A" strokeWidth="1.5" fill="none" />
-        <circle cx="30" cy="70" r="6" stroke="#1A1A1A" strokeWidth="1.5" fill="none" />
-        <path d="M26 20 L44 45 M56 50 L74 34 M36 65 L46 54 M24 25 L28 65 M50 56 L80 34" stroke="#1A1A1A" strokeWidth="1.2" strokeDasharray="3 3" fill="none" />
-        <text x="10" y="95" fontFamily="var(--font-hand)" fontSize="15" fill="#1A1A1A">database schema v1.0</text>
-      </svg>
+          <p className={styles.subtext}>
+            Endustry Plant is a full-service digital agency based in Delhi. We design and
+            engineer custom websites, high-converting eCommerce stores, mobile apps, and
+            automated AI workflows. Fixed sprint pricing. Guaranteed timelines. 100% custom code.
+          </p>
 
-      <div className={styles.content}>
-        
-        <HeroHeadline />
+          <div className={styles.ctaRow}>
+            <Link href="/contact" className={styles.ctaPrimary}>
+              Get a Free Quote <span>→</span>
+            </Link>
 
-        <p className={styles.subtext}>
-          from bespoke code and ecommerce stores to mobile platforms
-          and autonomous workflows — we build systems that yield compounding leverage
-        </p>
+            <a
+              href="https://wa.me/917302164841?text=Hi%20Nirbhay,%20I'd%20like%20to%20discuss%20a%20project%20with%20Endustry%20Plant."
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.ctaWhatsApp}
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.974.532 1.766.784 2.8.784h.005c3.179 0 5.766-2.587 5.767-5.767.001-3.18-2.585-5.769-5.776-5.769zm8.441 5.769c-.002 4.673-3.8 8.473-8.472 8.473-1.42 0-2.812-.355-4.048-1.026l-4.952 1.299 1.323-4.827c-.742-1.288-1.134-2.753-1.133-4.25.002-4.674 3.801-8.474 8.474-8.474 4.672 0 8.47 3.801 8.472 8.474z"/>
+              </svg>
+              WhatsApp Us
+            </a>
+          </div>
 
-        <Link href="/#showcase" className={styles.ctaButton}>
-          See it in action <span className={styles.arrow}>→</span>
-        </Link>
-
-        {/* Hand drawn Annotation */}
-        <div className={styles.annotationWrap}>
-          <svg width="30" height="24" viewBox="0 0 30 24" style={{ marginRight: '8px' }}>
-            <path d="M25 20 Q15 10 5 5 M15 5 L5 5 L5 15" stroke="#1A1A1A" strokeWidth="2" fill="none" strokeLinecap="round" />
-          </svg>
-          <span>Manufactured for global scale</span>
+          <div className={styles.trustList}>
+            <div className={styles.trustItem}>
+              <span className={styles.checkIcon}>✓</span>
+              <span>100% Custom Code (No WordPress)</span>
+            </div>
+            <div className={styles.trustItem}>
+              <span className={styles.checkIcon}>✓</span>
+              <span>Fixed Milestone Pricing</span>
+            </div>
+            <div className={styles.trustItem}>
+              <span className={styles.checkIcon}>✓</span>
+              <span>30-Day Free Post-Launch Warranty</span>
+            </div>
+          </div>
         </div>
 
+        {/* RIGHT COLUMN: Real Visual Artwork Showcase */}
+        <div className={styles.showcaseCard}>
+          <div className={styles.showcaseTabs}>
+            {SHOWCASE_ITEMS.map((item) => (
+              <button
+                key={item.id}
+                className={`${styles.showcaseTabBtn} ${activeItem.id === item.id ? styles.showcaseTabActive : ''}`}
+                onClick={() => setActiveItem(item)}
+              >
+                {item.tabLabel}
+              </button>
+            ))}
+          </div>
+
+          <div className={styles.imageFrame}>
+            <img src={activeItem.image} alt={activeItem.name} />
+          </div>
+
+          <div>
+            <div className={styles.showcaseMeta}>
+              <div className={styles.showcaseTitle}>{activeItem.name}</div>
+              <span className={styles.showcaseTag}>{activeItem.tag}</span>
+            </div>
+            <p className={styles.showcaseDesc} style={{ marginTop: '6px' }}>
+              {activeItem.desc}
+            </p>
+          </div>
+        </div>
       </div>
-      
     </section>
   );
 }

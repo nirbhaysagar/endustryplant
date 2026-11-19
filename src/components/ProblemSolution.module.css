@@ -1,156 +1,136 @@
 .section {
-  background: #f4f4f0;
-  padding: 160px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-top: 1px solid rgba(0,0,0,0.1);
-  border-bottom: 1px solid rgba(0,0,0,0.1);
+  padding: 100px 0;
+  background: #FFFFFF;
+  border-bottom: 1px solid var(--border);
 }
 
 .inner {
-  width: 100%;
-  max-width: 1600px;
-  padding: 0 40px;
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
 .header {
-  margin-bottom: 80px;
-  border-bottom: 2px solid #000;
-  padding-bottom: 20px;
+  text-align: center;
+  max-width: 650px;
+  margin: 0 auto 50px;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: #4F46E5;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
 }
 
 .heading {
-  font-family: 'Poppins', sans-serif;
-  font-size: clamp(50px, 8vw, 140px);
+  font-size: clamp(30px, 3.5vw, 44px);
   font-weight: 800;
-  color: #0a0a0a;
-  line-height: 0.85;
-  letter-spacing: -0.04em;
-  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  color: #0F172A;
+  line-height: 1.2;
 }
 
-.heading em {
-  font-style: normal;
-  color: #a0a0a0;
-  text-decoration: line-through;
+.subtext {
+  font-size: 16px;
+  color: #475569;
+  margin-top: 14px;
+  line-height: 1.7;
 }
 
-/* Stats */
-.statsContainer {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 160px;
-  border-top: 2px solid #000;
-}
-
-.statRow {
+/* ─── 3-COL COMPARISON MATRIX ───────────────────────────────── */
+.compGrid {
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  align-items: center;
-  border-bottom: 1px solid rgba(0,0,0,0.2);
-  padding: 60px 0;
-  transition: background 0.3s ease;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: stretch;
 }
 
-.statRow:hover {
-  background: #ffffff;
-  padding-left: 20px;
-  padding-right: 20px;
-  margin-left: -20px;
-  margin-right: -20px;
-}
-
-.statNumberWrap {
-  display: flex;
-  align-items: baseline;
-}
-
-.statNumber {
-  font-family: 'Poppins', sans-serif;
-  font-size: clamp(80px, 12vw, 180px);
-  font-weight: 800;
-  color: #0a0a0a;
-  line-height: 0.8;
-  letter-spacing: -0.05em;
-}
-
-.statSuffix {
-  font-family: 'Poppins', sans-serif;
-  font-size: clamp(40px, 6vw, 80px);
-  font-weight: 800;
-  color: #0a0a0a;
-  margin-left: 8px;
-}
-
-.statDesc {
-  font-family: var(--font-body);
-  font-size: clamp(18px, 2.5vw, 28px);
-  color: #333;
-  line-height: 1.3;
-  font-weight: 500;
-  text-transform: uppercase;
-  max-width: 800px;
-}
-
-/* Solution Block */
-.solutionBlock {
-  background: #0a0a0a;
-  color: #fff;
-  padding: 80px;
+.compCardBad {
+  background: #F8FAFC;
+  border: 1px solid var(--border);
   border-radius: 20px;
+  padding: 32px;
   display: flex;
   flex-direction: column;
-  gap: 40px;
-  box-shadow: 0 40px 80px rgba(0,0,0,0.15);
+  gap: 20px;
 }
 
-.solutionIntro {
+.compCardHero {
+  background: #FFFFFF;
+  border: 2px solid #0F172A;
+  border-radius: 20px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.08);
+  position: relative;
+}
+
+.heroTag {
+  position: absolute;
+  top: -12px;
+  left: 32px;
+  background: #0F172A;
+  color: #FFFFFF;
   font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  letter-spacing: 0.05em;
+}
+
+.cardHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.cardType {
+  font-size: 18px;
+  font-weight: 800;
+  color: #0F172A;
+}
+
+.cardSubtitle {
+  font-size: 13px;
+  color: #64748B;
+}
+
+.pointsList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.pointRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
   font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #888;
-  border-bottom: 1px solid #333;
-  padding-bottom: 20px;
+  line-height: 1.6;
 }
 
-.solutionLine {
-  font-family: 'Poppins', sans-serif;
-  font-size: clamp(24px, 4vw, 50px);
-  font-weight: 600;
-  line-height: 1.1;
-  color: #444;
-  letter-spacing: -0.02em;
+.pointCross {
+  color: #EF4444;
+  font-weight: bold;
 }
 
-.solutionLine strong {
-  color: #fff;
-}
-
-.solutionLine span {
-  display: inline-block;
-  margin: 0 20px;
-  color: #333;
+.pointCheck {
+  color: #10B981;
+  font-weight: bold;
 }
 
 @media (max-width: 1024px) {
-  .statRow {
+  .compGrid {
     grid-template-columns: 1fr;
-    gap: 20px;
-    padding: 40px 0;
-  }
-  .statRow:hover {
-    padding-left: 0;
-    padding-right: 0;
-    margin-left: 0;
-    margin-right: 0;
-  }
-  .solutionBlock {
-    padding: 40px;
-  }
-  .solutionLine span {
-    display: block;
-    margin: 10px 0;
+    gap: 32px;
   }
 }

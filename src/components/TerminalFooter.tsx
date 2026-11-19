@@ -12,164 +12,225 @@ export default function TerminalFooter() {
     <>
       <style>{`
         .footer-section {
-          background: #0a0a0a;
-          color: #ffffff;
-          padding: 100px 40px 40px;
-          display: flex;
-          flex-direction: column;
+          background: #0A0F1D;
+          color: #F8FAFC;
+          padding: 80px 24px 40px;
+          border-top: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .footer-inner {
-          max-width: 1400px;
+          max-width: 1220px;
           margin: 0 auto;
-          width: 100%;
           display: flex;
           flex-direction: column;
-          gap: 100px;
+          gap: 60px;
         }
 
         .footer-top {
-          display: flex;
-          justify-content: space-between;
-          align-items: flex-start;
-          border-bottom: 1px solid rgba(255,255,255,0.2);
-          padding-bottom: 60px;
-        }
-
-        .footer-cta {
-          font-family: 'Poppins', sans-serif;
-          font-size: clamp(60px, 10vw, 160px);
-          font-weight: 800;
-          line-height: 0.8;
-          letter-spacing: -0.04em;
-          text-transform: uppercase;
-          color: #ffffff;
-          text-decoration: none;
-          transition: color 0.3s ease;
-        }
-
-        .footer-cta:hover {
-          color: #888;
-        }
-
-        .footer-cta span {
-          display: block;
-        }
-
-        .footer-links {
-          display: flex;
+          display: grid;
+          grid-template-columns: 1.2fr 1fr;
           gap: 60px;
+          align-items: start;
+        }
+
+        .footer-brand {
+          display: flex;
+          flex-direction: column;
+          gap: 18px;
+        }
+
+        .footer-logo {
+          display: inline-flex;
+          align-items: center;
+          gap: 12px;
+          text-decoration: none;
+        }
+
+        .footer-logo-box {
+          width: 38px;
+          height: 38px;
+          border-radius: 8px;
+          background: #FFFFFF;
+          color: #0A0F1D;
+          font-family: var(--font-mono);
+          font-weight: 800;
+          font-size: 14px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .footer-logo-text {
+          font-size: 17px;
+          font-weight: 800;
+          letter-spacing: -0.02em;
+          color: #FFFFFF;
+        }
+
+        .footer-tagline {
+          font-size: 14px;
+          color: #94A3B8;
+          max-width: 440px;
+          line-height: 1.7;
+        }
+
+        .footer-contacts-list {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          margin-top: 10px;
+        }
+
+        .footer-contact-row {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          font-size: 14px;
+          color: #CBD5E1;
+        }
+
+        .footer-links-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 32px;
         }
 
         .footer-col {
           display: flex;
           flex-direction: column;
-          gap: 16px;
+          gap: 12px;
         }
 
-        .col-title {
+        .footer-col-title {
           font-family: var(--font-mono);
           font-size: 11px;
+          color: #64748B;
           text-transform: uppercase;
-          color: #666;
-          margin-bottom: 16px;
+          letter-spacing: 0.08em;
+          margin-bottom: 6px;
         }
 
         .footer-link {
-          font-family: var(--font-body);
-          font-size: 16px;
-          color: #fff;
+          font-size: 14px;
+          color: #94A3B8;
           text-decoration: none;
-          transition: color 0.2s;
+          transition: color 0.2s ease;
         }
 
         .footer-link:hover {
-          color: #888;
-          text-decoration: underline;
+          color: #FFFFFF;
         }
 
         .footer-bottom {
           display: flex;
           justify-content: space-between;
           align-items: center;
+          padding-top: 30px;
+          border-top: 1px solid rgba(255, 255, 255, 0.08);
           font-family: var(--font-mono);
           font-size: 12px;
-          color: #666;
-          text-transform: uppercase;
+          color: #64748B;
+          flex-wrap: wrap;
+          gap: 16px;
         }
 
-        .back-to-top {
-          background: none;
-          border: none;
-          color: #fff;
+        .back-to-top-btn {
+          color: #94A3B8;
           cursor: pointer;
           font-family: var(--font-mono);
           font-size: 12px;
-          text-transform: uppercase;
           display: flex;
           align-items: center;
-          gap: 8px;
+          gap: 6px;
+          transition: color 0.2s ease;
         }
 
-        .back-to-top:hover {
-          color: #888;
+        .back-to-top-btn:hover {
+          color: #FFFFFF;
         }
 
         @media (max-width: 900px) {
           .footer-top {
-            flex-direction: column;
-            gap: 60px;
+            grid-template-columns: 1fr;
+            gap: 40px;
           }
-          .footer-links {
-            width: 100%;
-            justify-content: space-between;
-          }
-          .footer-bottom {
-            flex-direction: column;
-            gap: 20px;
-            align-items: flex-start;
+          .footer-links-grid {
+            grid-template-columns: repeat(2, 1fr);
           }
         }
       `}</style>
 
-      <footer className="footer-section" id="contact">
+      <footer className="footer-section">
         <div className="footer-inner">
-          
           <div className="footer-top">
-            <a href="mailto:endustryplant.com@gmail.com" className="footer-cta">
-              <span>Let's</span>
-              <span>Build</span>
-            </a>
+            <div className="footer-brand">
+              <Link href="/" className="footer-logo">
+                <div className="footer-logo-box">EP</div>
+                <span className="footer-logo-text">ENDUSTRY PLANT</span>
+              </Link>
+              <p className="footer-tagline">
+                Senior-led digital product studio based in New Delhi.
+                We design and engineer bespoke websites, eCommerce stores, mobile apps, and automated workflows.
+              </p>
 
-            <div className="footer-links">
-              <div className="footer-col">
-                <div className="col-title">Navigation</div>
-                <Link href="/#hero" className="footer-link">Home</Link>
-                <Link href="/#process" className="footer-link">Process</Link>
-                <Link href="/#capabilities" className="footer-link">Services</Link>
-                <Link href="/#library" className="footer-link">Index</Link>
+              <div className="footer-contacts-list">
+                <div className="footer-contact-row">
+                  <span>📍</span>
+                  <span>New Delhi, India (Serving Global Clients)</span>
+                </div>
+                <div className="footer-contact-row">
+                  <span>📞</span>
+                  <span>+91 73021 64841 (Nirbhay Sagar) · +91 95486 91732 (Aditya Kumar)</span>
+                </div>
+                <div className="footer-contact-row">
+                  <span>✉️</span>
+                  <span>endustryplant.com@gmail.com</span>
+                </div>
               </div>
+            </div>
+
+            <div className="footer-links-grid">
               <div className="footer-col">
-                <div className="col-title">Legal</div>
+                <div className="footer-col-title">Services</div>
+                <Link href="/#services" className="footer-link">Websites</Link>
+                <Link href="/#services" className="footer-link">eCommerce</Link>
+                <Link href="/#services" className="footer-link">Mobile Apps</Link>
+                <Link href="/#services" className="footer-link">Web Applications</Link>
+                <Link href="/#services" className="footer-link">AI Automation</Link>
+              </div>
+
+              <div className="footer-col">
+                <div className="footer-col-title">Company</div>
+                <Link href="/#why-us" className="footer-link">About Us</Link>
+                <Link href="/#work" className="footer-link">Portfolio</Link>
+                <Link href="/#process" className="footer-link">Process</Link>
+                <Link href="/#faq" className="footer-link">Pricing &amp; FAQ</Link>
+                <Link href="/contact" className="footer-link" style={{ color: '#818CF8' }}>Start a Project</Link>
+              </div>
+
+              <div className="footer-col">
+                <div className="footer-col-title">Direct &amp; Legal</div>
                 <Link href="/terms" className="footer-link">Terms of Service</Link>
                 <Link href="/privacy" className="footer-link">Privacy Policy</Link>
-              </div>
-              <div className="footer-col">
-                <div className="col-title">Socials</div>
-                <a href="#" className="footer-link">Twitter / X</a>
-                <a href="#" className="footer-link">LinkedIn</a>
-                <a href="#" className="footer-link">GitHub</a>
+                <a
+                  href="https://wa.me/917302164841"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="footer-link"
+                  style={{ color: '#25D366' }}
+                >
+                  WhatsApp Direct
+                </a>
               </div>
             </div>
           </div>
 
           <div className="footer-bottom">
-            <div>© 2026 ENDUSTRY PLANT LLC. ALL RIGHTS RESERVED.</div>
-            <button onClick={handleScrollTop} className="back-to-top">
+            <div>© 2026 ENDUSTRY PLANT LLC. REGISTERED IN DELHI, INDIA. ALL RIGHTS RESERVED.</div>
+            <button onClick={handleScrollTop} className="back-to-top-btn">
               ↑ Back to top
             </button>
           </div>
-
         </div>
       </footer>
     </>
