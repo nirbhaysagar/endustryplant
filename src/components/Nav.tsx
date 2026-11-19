@@ -29,7 +29,7 @@ export default function Nav() {
           <Link href="/" className={styles.navLink}>Home</Link>
           <Link href="/#about" className={styles.navLink}>Studio</Link>
           <Link href="/#work" className={styles.navLink}>
-            Work <span className={styles.badgeWork}>12</span>
+            Work <span className={styles.badgeWork}>14</span>
           </Link>
           <Link href="/#services" className={styles.navLink}>Services</Link>
           <Link href="/#process" className={styles.navLink}>Process</Link>

@@ -2,136 +2,37 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-
-interface Project {
-  id: string;
-  category: string;
-  categoryKey: 'all' | 'ecommerce' | 'mobile' | 'web' | 'ai';
-  title: string;
-  client: string;
-  urlMock: string;
-  metric: string;
-  metricLabel: string;
-  desc: string;
-  tags: string[];
-  mockupType: 'store' | 'mobile' | 'ai' | 'dashboard';
-  accentColor: string;
-  previewImage?: string;
-}
-
-const PROJECTS: Project[] = [
-  {
-    id: 'lumen',
-    category: 'AUTONOMOUS AI',
-    categoryKey: 'ai',
-    title: 'Lumen Memory Engine & Real-Time Context Layer',
-    client: 'Lumen Labs · Silicon Valley & Delhi NCR',
-    urlMock: 'lumen.ai/engine/vector-context',
-    metric: '<65ms',
-    metricLabel: 'Vector Context Retrieval Latency',
-    desc: 'Engineered a high-throughput semantic memory layer connecting proprietary enterprise databases to live LLM inference pipelines with sub-100ms retrieval.',
-    tags: ['Python FastAPI', 'pgvector', 'OpenAI', 'Vercel AI SDK', 'Next.js 16'],
-    mockupType: 'ai',
-    accentColor: '#6366F1',
-    previewImage: '/service_automation.png',
-  },
-  {
-    id: 'aura',
-    category: 'D2C ECOMMERCE',
-    categoryKey: 'ecommerce',
-    title: 'Aura Luxury Apparel Headless Storefront & UPI Checkout',
-    client: 'Aura Luxury · Mumbai',
-    urlMock: 'auraluxury.in/collections/curated',
-    metric: '+240%',
-    metricLabel: 'Mobile Checkout Conversion Rate',
-    desc: 'Redesigned and engineered a headless Next.js storefront integrated with Razorpay 1-click checkout and automated WhatsApp abandoned cart recovery. Dropped load time from 4.8s to 0.7s.',
-    tags: ['Next.js 16', 'Shopify Plus API', 'Razorpay UPI', 'Tailwind 4'],
-    mockupType: 'store',
-    accentColor: '#FF4B3E',
-    previewImage: '/service_ecommerce.png',
-  },
-  {
-    id: 'quickbite',
-    category: 'MOBILE APP',
-    categoryKey: 'mobile',
-    title: 'QuickBite Hyperlocal Food & Grocery Delivery Platform',
-    client: 'QuickBite Express · Delhi NCR',
-    urlMock: 'quickbite.app/tracking/live-dispatch',
-    metric: '18,000+',
-    metricLabel: 'Daily Active Orders Processed',
-    desc: 'Built a cross-platform React Native app featuring real-time rider GPS tracking, automated UPI payments, and sub-second order dispatching during peak surge hours.',
-    tags: ['React Native', 'Firebase Realtime', 'Google Maps SDK', 'Cashfree UPI'],
-    mockupType: 'mobile',
-    accentColor: '#10B981',
-    previewImage: '/service_mobile_apps.png',
-  },
-  {
-    id: 'proptech',
-    category: 'AUTONOMOUS AI',
-    categoryKey: 'ai',
-    title: 'PropTech WhatsApp Inbound Sales & Lead Qualification Engine',
-    client: 'PropTech Capital · Bengaluru',
-    urlMock: 'proptech.ai/whatsapp-lead-funnel',
-    metric: '35 hrs',
-    metricLabel: 'Saved Per Sales Agent / Week',
-    desc: 'Replaced manual calling processes with an autonomous WhatsApp LLM agent that pre-qualifies high-intent real estate buyers, schedules site visits, and syncs directly to HubSpot CRM.',
-    tags: ['OpenAI GPT-4o', 'WhatsApp Cloud API', 'Supabase Vector', 'HubSpot API'],
-    mockupType: 'ai',
-    accentColor: '#F59E0B',
-    previewImage: '/service_automation.png',
-  },
-  {
-    id: 'shippulse',
-    category: 'WEB PLATFORM',
-    categoryKey: 'web',
-    title: 'ShipPulse Enterprise Fleet Dispatch & GST Invoicing Portal',
-    client: 'ShipPulse Logistics · Gurugram',
-    urlMock: 'shippulse.in/portal/fleet-dispatch',
-    metric: '₹12Cr+',
-    metricLabel: 'Quarterly GMV Processed',
-    desc: 'Engineered a high-concurrency internal web application managing 400+ commercial vehicles, driver telematics, route planning, and automated GST-compliant e-way invoicing.',
-    tags: ['React 19', 'PostgreSQL', 'Tailwind CSS', 'Vercel Edge', 'Docker'],
-    mockupType: 'dashboard',
-    accentColor: '#3B82F6',
-    previewImage: '/service_web_apps.png',
-  },
-  {
-    id: 'clientsync',
-    category: 'WEB PLATFORM',
-    categoryKey: 'web',
-    title: 'ClientSync Agency Milestone & Escrow Operations OS',
-    client: 'ClientSync · New Delhi',
-    urlMock: 'clientsync.io/escrow/milestones',
-    metric: '100%',
-    metricLabel: 'On-Time Milestone Settlement Rate',
-    desc: 'The operational backbone for modern digital agencies: automates client onboarding, deliverable sprint contracts, live staging previews, and automated milestone billing reconciliation.',
-    tags: ['Next.js 16', 'TypeScript', 'Supabase Auth', 'Stripe & Razorpay'],
-    mockupType: 'dashboard',
-    accentColor: '#EC4899',
-    previewImage: '/service_websites.png',
-  },
-];
+import { PORTFOLIO_PROJECTS, PortfolioProject } from '@/data/portfolio';
 
 const FILTERS = [
-  { key: 'all', label: 'All Projects', count: 6 },
-  { key: 'ecommerce', label: 'eCommerce & D2C', count: 1 },
-  { key: 'mobile', label: 'Mobile Apps', count: 1 },
-  { key: 'web', label: 'Web Platforms', count: 2 },
-  { key: 'ai', label: 'Autonomous AI', count: 2 },
+  { key: 'all', label: 'All Work', count: 14 },
+  { key: 'ecommerce', label: 'eCommerce & D2C', count: 5 },
+  { key: 'saas', label: 'SaaS & AI Platforms', count: 3 },
+  { key: 'website', label: 'Websites & Portals', count: 6 },
 ] as const;
 
 export default function Library() {
-  const [activeFilter, setActiveFilter] = useState<'all' | 'ecommerce' | 'mobile' | 'web' | 'ai'>('all');
+  const [activeFilter, setActiveFilter] = useState<'all' | 'ecommerce' | 'saas' | 'website'>('all');
+  const [expandedDrawers, setExpandedDrawers] = useState<Record<string, boolean>>({});
+
+  const toggleDrawer = (id: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setExpandedDrawers((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
 
   const filteredProjects = activeFilter === 'all'
-    ? PROJECTS
-    : PROJECTS.filter((p) => p.categoryKey === activeFilter);
+    ? PORTFOLIO_PROJECTS
+    : PORTFOLIO_PROJECTS.filter((p) => p.categoryKey === activeFilter);
 
   return (
     <>
       <style>{`
         .work-section {
-          padding: 120px 0 130px;
+          padding: 120px 0 140px;
           background: #FFFFFF;
           border-bottom: 1px solid var(--border);
           scroll-margin-top: 80px;
@@ -169,7 +70,7 @@ export default function Library() {
           justify-content: space-between;
           align-items: flex-end;
           gap: 40px;
-          margin-bottom: 40px;
+          margin-bottom: 36px;
           flex-wrap: wrap;
         }
 
@@ -190,7 +91,7 @@ export default function Library() {
         .work-subtext {
           font-size: 15px;
           color: #64748B;
-          max-width: 440px;
+          max-width: 460px;
           line-height: 1.6;
         }
 
@@ -208,7 +109,7 @@ export default function Library() {
         .filterBtn {
           background: #F8F9FA;
           border: 1px solid var(--border);
-          padding: 8px 16px;
+          padding: 9px 18px;
           border-radius: 9999px;
           font-family: var(--font-body);
           font-size: 13px;
@@ -218,7 +119,7 @@ export default function Library() {
           transition: all 0.2s ease;
           display: inline-flex;
           align-items: center;
-          gap: 6px;
+          gap: 8px;
         }
 
         .filterBtn:hover {
@@ -240,9 +141,9 @@ export default function Library() {
 
         .filterCount {
           font-family: var(--font-mono);
-          font-size: 10px;
+          font-size: 10.5px;
           background: rgba(255, 255, 255, 0.2);
-          padding: 1px 6px;
+          padding: 1px 7px;
           border-radius: 9999px;
         }
 
@@ -251,12 +152,12 @@ export default function Library() {
           color: #334155;
         }
 
-        /* ─── 2-COLUMN PORTFOLIO CARDS GRID ─────────────────── */
+        /* ─── 2-COLUMN PROJECT CARDS GRID ───────────────────── */
         .work-grid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
           gap: 32px;
-          margin-bottom: 56px;
+          margin-bottom: 60px;
         }
 
         .portfolioCard {
@@ -268,27 +169,31 @@ export default function Library() {
           flex-direction: column;
           transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
           box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+          position: relative;
         }
 
         .portfolioCard:hover {
           transform: translateY(-5px);
           border-color: #0A0A0A;
-          box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+          box-shadow: 0 16px 40px rgba(0, 0, 0, 0.09);
         }
 
-        /* ─── CARD MOCKUP PREVIEW HEADER ─────────────────────── */
-        .mockupHeader {
-          background: #0D0E15;
-          padding: 24px 24px 20px;
+        /* ─── CARD SCREENSHOT PREVIEW ────────────────────────── */
+        .browserMockup {
+          background: #0E1017;
           border-bottom: 1px solid #1E2230;
           position: relative;
+          overflow: hidden;
         }
 
-        .browserChrome {
+        .browserTopBar {
+          padding: 12px 18px;
           display: flex;
           align-items: center;
+          justify-content: space-between;
           gap: 12px;
-          margin-bottom: 16px;
+          border-bottom: 1px solid #1A1E2C;
+          background: #141722;
         }
 
         .browserDots {
@@ -297,81 +202,73 @@ export default function Library() {
           gap: 6px;
         }
 
-        .dot {
+        .bDot {
           width: 9px;
           height: 9px;
           border-radius: 50%;
-          display: inline-block;
         }
-        .dotRed { background: #FF5F56; }
-        .dotYellow { background: #FFBD2E; }
-        .dotGreen { background: #27C93F; }
+        .bDotRed { background: #FF5F56; }
+        .bDotYellow { background: #FFBD2E; }
+        .bDotGreen { background: #27C93F; }
 
         .browserUrl {
           font-family: var(--font-mono);
           font-size: 11px;
           color: #94A3B8;
-          background: #181B26;
-          padding: 4px 12px;
+          background: #0B0D14;
+          padding: 3px 12px;
           border-radius: 6px;
-          border: 1px solid #282D3F;
-          flex-grow: 1;
+          border: 1px solid #232738;
+          max-width: 320px;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
         }
 
-        .mockupBody {
-          background: #141622;
-          border: 1px solid #24293D;
-          border-radius: 12px;
-          padding: 18px 20px;
+        .browserExtLink {
+          color: #94A3B8;
+          font-size: 12px;
+          text-decoration: none;
+          transition: color 0.15s ease;
+        }
+
+        .browserExtLink:hover {
+          color: #FFFFFF;
+        }
+
+        .screenshotWrapper {
+          position: relative;
+          width: 100%;
+          height: 280px;
+          background: #0A0A0E;
+          overflow: hidden;
           display: flex;
           align-items: center;
-          justify-content: space-between;
-          gap: 16px;
+          justify-content: center;
         }
 
-        .mockupLeft {
-          display: flex;
-          flex-direction: column;
-          gap: 6px;
+        .screenshotImg {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: top center;
+          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .mockupHeroStat {
-          font-family: var(--font-mono);
-          font-size: 26px;
-          font-weight: 800;
-          color: #FFFFFF;
-          line-height: 1;
+        .portfolioCard:hover .screenshotImg {
+          transform: scale(1.03);
         }
 
-        .mockupHeroLabel {
-          font-size: 12px;
-          color: #94A3B8;
-          font-weight: 500;
-        }
-
-        .mockupBadge {
-          font-family: var(--font-mono);
-          font-size: 10px;
-          font-weight: 700;
-          padding: 4px 10px;
-          border-radius: 6px;
-          letter-spacing: 0.05em;
-          text-transform: uppercase;
-        }
-
-        /* ─── CARD CONTENT BODY ──────────────────────────────── */
+        /* ─── CARD BODY CONTENT ──────────────────────────────── */
         .cardBody {
           padding: 28px 28px 24px;
           display: flex;
           flex-direction: column;
           flex-grow: 1;
-          gap: 18px;
+          gap: 16px;
         }
 
-        .cardMetaRow {
+        .cardHeaderRow {
           display: flex;
           justify-content: space-between;
           align-items: center;
@@ -379,7 +276,7 @@ export default function Library() {
           flex-wrap: wrap;
         }
 
-        .cardCategory {
+        .cardCatBadge {
           font-family: var(--font-mono);
           font-size: 11px;
           font-weight: 700;
@@ -388,7 +285,7 @@ export default function Library() {
           text-transform: uppercase;
         }
 
-        .cardStatus {
+        .cardLiveBadge {
           display: inline-flex;
           align-items: center;
           gap: 6px;
@@ -397,11 +294,11 @@ export default function Library() {
           font-weight: 600;
           color: #15803D;
           background: #DCFCE7;
-          padding: 3px 8px;
+          padding: 3px 9px;
           border-radius: 9999px;
         }
 
-        .statusDot {
+        .liveDot {
           width: 6px;
           height: 6px;
           border-radius: 50%;
@@ -409,53 +306,154 @@ export default function Library() {
         }
 
         .cardTitle {
-          font-size: 21px;
+          font-size: 24px;
           font-weight: 800;
-          letter-spacing: -0.02em;
+          letter-spacing: -0.025em;
           color: #0A0A0A;
-          line-height: 1.3;
-        }
-
-        .cardClient {
-          font-size: 13px;
-          color: #64748B;
-          font-weight: 500;
-          margin-top: 4px;
+          line-height: 1.25;
         }
 
         .cardDesc {
           font-size: 14px;
           line-height: 1.65;
           color: #475569;
-          flex-grow: 1;
         }
 
-        /* ─── METRIC OUTCOME BOX ────────────────────────────── */
-        .outcomeBox {
+        /* ─── PRIMARY METRIC HIGHLIGHT BOX ──────────────────── */
+        .primaryMetricBox {
           background: #F8F9FA;
           border: 1px solid var(--border);
           border-radius: 12px;
-          padding: 12px 18px;
+          padding: 14px 18px;
+          display: flex;
+          align-items: baseline;
+          justify-content: space-between;
+          gap: 12px;
+          flex-wrap: wrap;
+        }
+
+        .metricLeft {
           display: flex;
           align-items: baseline;
           gap: 10px;
         }
 
-        .outcomeVal {
+        .metricVal {
           font-family: var(--font-mono);
-          font-size: 24px;
+          font-size: 26px;
           font-weight: 800;
           color: #0A0A0A;
         }
 
-        .outcomeLabel {
-          font-size: 13px;
+        .metricLbl {
+          font-size: 13.5px;
           font-weight: 700;
           color: #16A34A;
         }
 
-        /* ─── TAGS & ACTIONS ─────────────────────────────────── */
-        .tagsAndAction {
+        .metricCtx {
+          font-size: 12px;
+          color: #64748B;
+          width: 100%;
+          margin-top: -4px;
+        }
+
+        /* ─── EXPANDABLE CASE METRICS DRAWER ─────────────────── */
+        .drawerToggleBtn {
+          background: #F1F5F9;
+          border: 1px solid #E2E8F0;
+          padding: 8px 14px;
+          border-radius: 8px;
+          font-family: var(--font-mono);
+          font-size: 11.5px;
+          font-weight: 700;
+          color: #334155;
+          cursor: pointer;
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          transition: all 0.2s ease;
+          width: 100%;
+          justify-content: space-between;
+        }
+
+        .drawerToggleBtn:hover {
+          background: #E2E8F0;
+          color: #0A0A0A;
+        }
+
+        .drawerContent {
+          background: #F8FAFC;
+          border: 1px solid #E2E8F0;
+          border-radius: 12px;
+          padding: 18px;
+          display: flex;
+          flex-direction: column;
+          gap: 14px;
+          animation: fadeIn 0.25s ease;
+        }
+
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(-4px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        .strategyGrid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 14px;
+        }
+
+        .strategyItem {
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+        }
+
+        .strategyLbl {
+          font-family: var(--font-mono);
+          font-size: 10px;
+          font-weight: 700;
+          color: #64748B;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+        }
+
+        .strategyTxt {
+          font-size: 12.5px;
+          line-height: 1.5;
+          color: #1E293B;
+        }
+
+        .metricsSubgrid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 10px;
+          padding-top: 12px;
+          border-top: 1px solid #E2E8F0;
+        }
+
+        .submetricBox {
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+        }
+
+        .submetricVal {
+          font-family: var(--font-mono);
+          font-size: 18px;
+          font-weight: 800;
+          color: #0A0A0A;
+        }
+
+        .submetricLbl {
+          font-size: 11px;
+          font-weight: 600;
+          color: #64748B;
+        }
+
+        /* ─── TAGS & BOTTOM ACTIONS ─────────────────────────── */
+        .cardBottomRow {
           display: flex;
           justify-content: space-between;
           align-items: center;
@@ -466,14 +464,14 @@ export default function Library() {
           flex-wrap: wrap;
         }
 
-        .cardTags {
+        .tagsWrap {
           display: flex;
           flex-wrap: wrap;
           gap: 6px;
-          max-width: 400px;
+          max-width: 380px;
         }
 
-        .cardTag {
+        .tagPill {
           font-family: var(--font-mono);
           font-size: 10px;
           font-weight: 600;
@@ -483,7 +481,13 @@ export default function Library() {
           border-radius: 6px;
         }
 
-        .cardActionBtn {
+        .actionsWrap {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
+
+        .siteLinkBtn {
           font-size: 13px;
           font-weight: 700;
           color: #0A0A0A;
@@ -491,21 +495,36 @@ export default function Library() {
           display: inline-flex;
           align-items: center;
           gap: 4px;
+          transition: color 0.15s ease;
+        }
+
+        .siteLinkBtn:hover {
+          color: #FF4B3E;
+        }
+
+        .sprintBtn {
+          background: #0A0A0A;
+          color: #FFFFFF;
+          font-size: 12px;
+          font-weight: 700;
+          padding: 6px 14px;
+          border-radius: 9999px;
+          text-decoration: none;
           transition: all 0.2s ease;
           white-space: nowrap;
         }
 
-        .cardActionBtn:hover {
-          color: #FF4B3E;
-          transform: translateX(2px);
+        .sprintBtn:hover {
+          background: #FF4B3E;
+          transform: translateY(-1px);
         }
 
-        /* ─── BOTTOM PORTFOLIO CTA BANNER ────────────────────── */
-        .portfolioCtaBanner {
+        /* ─── BOTTOM CTA BANNER ──────────────────────────────── */
+        .workCtaBanner {
           background: #0A0A0E;
           color: #FFFFFF;
           border-radius: 20px;
-          padding: 36px 44px;
+          padding: 38px 44px;
           display: flex;
           justify-content: space-between;
           align-items: center;
@@ -560,14 +579,17 @@ export default function Library() {
         }
 
         @media (max-width: 640px) {
-          .portfolioCtaBanner {
+          .workCtaBanner {
             padding: 28px 24px;
           }
           .cardBody {
             padding: 20px;
           }
-          .mockupHeader {
-            padding: 16px;
+          .strategyGrid {
+            grid-template-columns: 1fr;
+          }
+          .metricsSubgrid {
+            grid-template-columns: 1fr;
           }
         }
       `}</style>
@@ -577,24 +599,28 @@ export default function Library() {
           {/* SECTION LABEL */}
           <div className="work-label">
             <span className="coralSquare" />
-            <span>Selected Portfolio</span>
+            <span>Selected Portfolio ({PORTFOLIO_PROJECTS.length} Shipped Projects)</span>
           </div>
 
           {/* HEADER ROW */}
           <div className="work-headerRow">
             <h2 className="work-headline">
-              Products engineered for momentum.{' '}
-              <span className="headlineMuted">Bespoke code, verified ROI.</span>
+              Work that had to do something.{' '}
+              <span className="headlineMuted">Bespoke code, verified commercial ROI.</span>
             </h2>
             <p className="work-subtext">
-              A sample of high-speed web apps, mobile products, and autonomous AI systems delivered for category leaders across India and global markets.
+              Real production products engineered for category leaders across India and global markets. Filter by sector or click to inspect live metrics.
             </p>
           </div>
 
-          {/* FILTER BAR */}
+          {/* CATEGORY FILTER BAR */}
           <div className="filterBar">
             {FILTERS.map((f) => {
               const isActive = activeFilter === f.key;
+              const count = f.key === 'all'
+                ? PORTFOLIO_PROJECTS.length
+                : PORTFOLIO_PROJECTS.filter((p) => p.categoryKey === f.key).length;
+
               return (
                 <button
                   key={f.key}
@@ -602,9 +628,7 @@ export default function Library() {
                   onClick={() => setActiveFilter(f.key)}
                 >
                   <span>{f.label}</span>
-                  <span className="filterCount">
-                    {f.key === 'all' ? PROJECTS.length : PROJECTS.filter((p) => p.categoryKey === f.key).length}
-                  </span>
+                  <span className="filterCount">{count}</span>
                 </button>
               );
             })}
@@ -612,95 +636,158 @@ export default function Library() {
 
           {/* 2-COLUMN PROJECT CARDS GRID */}
           <div className="work-grid">
-            {filteredProjects.map((p) => (
-              <div key={p.id} className="portfolioCard">
-                {/* MOCKUP PREVIEW HEADER */}
-                <div className="mockupHeader">
-                  <div className="browserChrome">
-                    <div className="browserDots">
-                      <span className="dot dotRed" />
-                      <span className="dot dotYellow" />
-                      <span className="dot dotGreen" />
+            {filteredProjects.map((p) => {
+              const isExpanded = !!expandedDrawers[p.id];
+              const displayUrl = p.link.replace(/^https?:\/\//, '').replace(/\/$/, '');
+
+              return (
+                <div key={p.id} className="portfolioCard">
+                  {/* BROWSER MOCKUP SCREENSHOT */}
+                  <div className="browserMockup">
+                    <div className="browserTopBar">
+                      <div className="browserDots">
+                        <span className="bDot bDotRed" />
+                        <span className="bDot bDotYellow" />
+                        <span className="bDot bDotGreen" />
+                      </div>
+
+                      <div className="browserUrl">https://{displayUrl}</div>
+
+                      <a
+                        href={p.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="browserExtLink"
+                        title={`Open ${p.title} in new tab`}
+                      >
+                        ↗
+                      </a>
                     </div>
-                    <div className="browserUrl">https://{p.urlMock}</div>
+
+                    <a
+                      href={p.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="screenshotWrapper"
+                    >
+                      <img
+                        src={p.image}
+                        alt={`${p.title} Live Interface Screenshot`}
+                        className="screenshotImg"
+                        loading="lazy"
+                      />
+                    </a>
                   </div>
 
-                  <div className="mockupBody">
-                    <div className="mockupLeft">
-                      <span className="mockupHeroStat">{p.metric}</span>
-                      <span className="mockupHeroLabel">{p.metricLabel}</span>
+                  {/* CARD BODY */}
+                  <div className="cardBody">
+                    <div className="cardHeaderRow">
+                      <span className="cardCatBadge">{p.categoryLabel}</span>
+                      <span className="cardLiveBadge">
+                        <span className="liveDot" />
+                        SHIPPED IN PRODUCTION
+                      </span>
                     </div>
 
-                    <span
-                      className="mockupBadge"
-                      style={{
-                        background: `${p.accentColor}18`,
-                        color: p.accentColor,
-                        border: `1px solid ${p.accentColor}40`,
-                      }}
-                    >
-                      {p.category}
-                    </span>
+                    <div>
+                      <h3 className="cardTitle">{p.title}</h3>
+                      <p className="cardDesc">{p.desc}</p>
+                    </div>
+
+                    {/* PRIMARY METRIC BANNER */}
+                    <div className="primaryMetricBox">
+                      <div className="metricLeft">
+                        <span className="metricVal">{p.primaryMetric.val}</span>
+                        <span className="metricLbl">✓ {p.primaryMetric.lbl}</span>
+                      </div>
+                      <div className="metricCtx">{p.primaryMetric.ctx}</div>
+                    </div>
+
+                    {/* EXPANDABLE CASE METRICS TOGGLE */}
+                    {p.bottleneck && (
+                      <button
+                        type="button"
+                        className="drawerToggleBtn"
+                        onClick={(e) => toggleDrawer(p.id, e)}
+                        aria-expanded={isExpanded}
+                      >
+                        <span>📊 Case Strategy &amp; Metrics Breakdown</span>
+                        <span>{isExpanded ? '▲ Hide' : '▼ Expand'}</span>
+                      </button>
+                    )}
+
+                    {/* EXPANDED CONTENT DRAWER */}
+                    {isExpanded && p.bottleneck && (
+                      <div className="drawerContent">
+                        <div className="strategyGrid">
+                          <div className="strategyItem">
+                            <span className="strategyLbl">Bottleneck</span>
+                            <p className="strategyTxt">{p.bottleneck}</p>
+                          </div>
+                          <div className="strategyItem">
+                            <span className="strategyLbl">Strategic Move</span>
+                            <p className="strategyTxt">{p.strategicMove}</p>
+                          </div>
+                        </div>
+
+                        {p.metrics && p.metrics.length > 0 && (
+                          <div className="metricsSubgrid">
+                            {p.metrics.map((m, idx) => (
+                              <div key={idx} className="submetricBox">
+                                <span className="submetricVal">{m.val}</span>
+                                <span className="submetricLbl">{m.lbl}</span>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    )}
+
+                    {/* TAGS & ACTIONS */}
+                    <div className="cardBottomRow">
+                      <div className="tagsWrap">
+                        {p.metaTags.map((t, idx) => (
+                          <span key={idx} className="tagPill">
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+
+                      <div className="actionsWrap">
+                        <a
+                          href={p.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="siteLinkBtn"
+                        >
+                          Visit Site ↗
+                        </a>
+
+                        <Link
+                          href={`/contact?project=${encodeURIComponent(p.title)}`}
+                          className="sprintBtn"
+                        >
+                          Book Sprint ↗
+                        </Link>
+                      </div>
+                    </div>
                   </div>
                 </div>
-
-                {/* CARD BODY */}
-                <div className="cardBody">
-                  <div className="cardMetaRow">
-                    <span className="cardCategory">{p.category}</span>
-                    <span className="cardStatus">
-                      <span className="statusDot" />
-                      SHIPPED IN PRODUCTION
-                    </span>
-                  </div>
-
-                  <div>
-                    <h3 className="cardTitle">{p.title}</h3>
-                    <div className="cardClient">{p.client}</div>
-                  </div>
-
-                  {/* OUTCOME BOX */}
-                  <div className="outcomeBox">
-                    <span className="outcomeVal">{p.metric}</span>
-                    <span className="outcomeLabel">✓ {p.metricLabel}</span>
-                  </div>
-
-                  <p className="cardDesc">{p.desc}</p>
-
-                  {/* TAGS & CTA */}
-                  <div className="tagsAndAction">
-                    <div className="cardTags">
-                      {p.tags.map((t, idx) => (
-                        <span key={idx} className="cardTag">
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-
-                    <Link
-                      href={`/contact?project=${encodeURIComponent(p.title)}`}
-                      className="cardActionBtn"
-                    >
-                      <span>Book Sprint</span>
-                      <span>↗</span>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
-          {/* BOTTOM PORTFOLIO CTA BANNER */}
-          <div className="portfolioCtaBanner">
+          {/* BOTTOM CTA BANNER */}
+          <div className="workCtaBanner">
             <div className="ctaLeft">
-              <h3 className="ctaTitle">Ready to build your next digital flagship?</h3>
+              <h3 className="ctaTitle">Have a product to build or storefront to scale?</h3>
               <p className="ctaSub">
-                We engineer and ship full products in 4–6 week fixed-milestone sprints. Direct communication with lead technical founders, 100% code ownership handed over.
+                We engineer and ship full-scale products in 4–6 week fixed-milestone sprints. Direct communication with technical founders Nirbhay &amp; Aditya, with 100% IP code handover.
               </p>
             </div>
 
             <Link href="/contact" className="ctaBtn">
-              Start a Project ↗
+              Start a Project Sprint ↗
             </Link>
           </div>
         </div>

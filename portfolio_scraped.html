@@ -1,0 +1,2943 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Selected digital work by Endustry Plant — websites, ecommerce, web applications and digital experiences.">
+    <title>Selected Work — Endustry Plant</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap');
+
+        :root {
+            --bg: #e9e8e2;
+            --ink: #111210;
+            --muted: #666761;
+            --line: rgba(17, 18, 16, .14);
+            --accent: #a7d8b6;
+            --dark: #10110f;
+            --card: #deddd6
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--ink);
+            font-family: Manrope, Arial, sans-serif;
+            overflow-x: hidden
+        }
+
+        .grain {
+            position: fixed;
+            inset: 0;
+            opacity: .12;
+            pointer-events: none;
+            z-index: 20;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.25'/%3E%3C/svg%3E")
+        }
+
+        .cursor-glow {
+            position: fixed;
+            width: 360px;
+            height: 360px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(167, 216, 182, .15), transparent 65%);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 0;
+            opacity: .8
+        }
+
+        .section {
+            position: relative;
+            max-width: 1440px;
+            margin: auto;
+            padding-left: 5vw;
+            padding-right: 5vw
+        }
+
+        .site-header {
+            height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5vw;
+            position: relative;
+            z-index: 10;
+            border-bottom: 1px solid var(--line)
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            color: inherit;
+            text-decoration: none;
+            font: 500 10px "DM Mono";
+            letter-spacing: .05em
+        }
+
+        .brand-mark {
+            width: 10px;
+            height: 10px;
+            background: #10110f;
+            display: block
+        }
+
+        .desktop-nav {
+            display: flex;
+            gap: 28px;
+            font: 10px "DM Mono"
+        }
+
+        .desktop-nav a,
+        .text-link {
+            color: inherit;
+            text-decoration: none
+        }
+
+        .header-cta {
+            background: #111;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 14px;
+            border-radius: 999px;
+            font: 10px "DM Mono"
+        }
+
+        .header-cta span,
+        .arrow {
+            margin-left: 8px
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: 0;
+            width: 34px
+        }
+
+        .menu-toggle span {
+            display: block;
+            height: 1px;
+            background: #111;
+            margin: 7px 0
+        }
+
+        .hero {
+            min-height: 630px;
+            padding-top: 92px;
+            padding-bottom: 90px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center
+        }
+
+        .eyebrow {
+            font: 10px "DM Mono";
+            letter-spacing: .12em;
+            color: #555;
+            text-transform: uppercase;
+            margin-bottom: 22px
+        }
+
+        .hero-title {
+            font-family: "Instrument Serif", Georgia, serif;
+            font-size: clamp(48px, 6.3vw, 94px);
+            font-weight: 400;
+            line-height: .92;
+            letter-spacing: -.045em;
+            max-width: 1000px;
+            margin: 0
+        }
+
+        .hero-title em,
+        h2 em,
+        h3 em,
+        .fashion-word em,
+        .choco-box em,
+        .travel-card em,
+        .game-title em,
+        .santa-word em,
+        .memory-copy em,
+        .ngo-copy em,
+        .yong-type em,
+        .luxova-type em {
+            font-style: italic
+        }
+
+        .hero-title span {
+            display: block
+        }
+
+        .hero-title em {
+            display: inline;
+            text-decoration: underline;
+            text-decoration-color: var(--accent);
+            text-decoration-thickness: .12em;
+            text-underline-offset: .08em
+        }
+
+        .hero-copy {
+            max-width: 610px;
+            font: 16px/1.8 "DM Mono";
+            color: #000;
+            margin: 28px auto
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 20px;
+            align-items: center
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            padding: 16px 28px;
+            border-radius: 999px;
+            font: 500 12px "DM Mono";
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            transition: all .3s cubic-bezier(.4, 0, .2, 1);
+            box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+        }
+
+        .button-dark {
+            background: #111;
+            color: #fff;
+            border: 1px solid #111;
+        }
+
+        .button-accent {
+            background: #0b24e6;
+            color: #fff;
+            border: 1px solid #0b24e6;
+        }
+
+        .button-accent:hover {
+            background: #0719a3;
+            border-color: #0719a3;
+        }
+
+        .button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        .text-link {
+            font: 10px "DM Mono";
+            border-bottom: 1px solid var(--line);
+            padding-bottom: 4px
+        }
+
+        .hero-orbit {
+            position: absolute;
+            font: 7px "DM Mono";
+            color: #666;
+            text-align: center
+        }
+
+        .hero-orbit svg {
+            width: 100px;
+            stroke: #555;
+            stroke-width: .8;
+            display: block;
+            margin: auto
+        }
+
+        .orbit-a {
+            left: 6vw;
+            top: 48%
+        }
+
+        .orbit-b {
+            right: 6vw;
+            bottom: 18%
+        }
+
+        .proof-strip {
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr) 2fr;
+            align-items: center;
+            padding-top: 30px;
+            padding-bottom: 30px;
+            gap: 20px
+        }
+
+        .proof-strip div {
+            display: flex;
+            flex-direction: column;
+            gap: 3px
+        }
+
+        .proof-strip strong {
+            font: 500 32px "Instrument Serif"
+        }
+
+        .proof-strip span,
+        .proof-strip p {
+            font: 14px/1.5 "DM Mono";
+            color: #000;
+            margin: 0
+        }
+
+        .work-section {
+            padding-top: 130px;
+            padding-bottom: 130px
+        }
+
+        .section-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 50px;
+            align-items: flex-end;
+            margin-bottom: 58px
+        }
+
+        .section-top h2,
+        .capabilities h2,
+        .closing h2 {
+            font: 400 clamp(42px, 5vw, 78px)/.92 "Instrument Serif";
+            letter-spacing: -.04em;
+            margin: 0
+        }
+
+        .section-top>p {
+            max-width: 380px;
+            font: 13px/1.8 "DM Mono";
+            color: #000;
+            margin: 0
+        }
+
+        .filters {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            border-bottom: 1px solid var(--line);
+            padding-bottom: 22px;
+            margin-bottom: 28px
+        }
+
+        .filter {
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 999px;
+            padding: 12px 20px;
+            font: 500 14px "DM Mono";
+            color: #000;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .filter.active,
+        .filter:hover {
+            background: #111;
+            color: #fff;
+            border-color: #111;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .filter span {
+            opacity: .6
+        }
+
+        .project-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .project-card {
+            border-top: 1px solid var(--line);
+            padding-top: 25px;
+            padding-bottom: 5px;
+            transition: opacity 0.4s;
+        }
+        
+        .project-card:last-child {
+            border-bottom: 1px solid var(--line);
+            padding-bottom: 25px;
+        }
+
+        .project-card.hidden {
+            display: none
+        }
+
+        .project-link {
+            color: inherit;
+            text-decoration: none;
+            display: grid;
+            grid-template-columns: 2.8fr 1fr;
+            gap: 40px;
+            align-items: stretch;
+        }
+
+        .project-visual {
+            height: 480px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            background: #d5d4cd;
+            transition: transform .5s
+        }
+
+        .project-card:hover .project-visual {
+            transform: scale(.992)
+        }
+
+        .project-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .project-visual.tensile .project-img,
+        .project-visual.ngo .project-img {
+            object-position: left center;
+        }
+
+        .project-visual.yong .project-img,
+        .project-visual.orbit .project-img,
+        .project-visual.agenttrace .project-img,
+        .project-visual.forion .project-img {
+            object-fit: contain;
+        }
+
+        .project-visual.orbit, .project-visual.agenttrace, .project-visual.forion {
+            background: #111;
+        }
+
+        .visual-label {
+            display: none;
+        }
+
+        .project-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 10px 0;
+        }
+
+        .info-top h3 {
+            font: 700 48px/1 "Manrope", sans-serif;
+            color: #0b24e6;
+            letter-spacing: -0.04em;
+            margin: 0 0 8px 0;
+        }
+
+        .info-top p {
+            font: 13px/1.6 "DM Mono";
+            color: #333;
+            margin: 0;
+        }
+
+        .info-bottom {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .project-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .project-meta span {
+            font: 11px "DM Mono";
+            color: #0b24e6;
+        }
+
+        .explore-btn {
+            background: #0b24e6;
+            color: #fff;
+            padding: 9px 24px;
+            border-radius: 999px;
+            font: 12px "Manrope", sans-serif;
+            font-weight: 600;
+            transition: transform 0.2s ease, background 0.2s ease;
+            display: inline-block;
+        }
+
+        .project-card:hover .explore-btn {
+            background: #0719a3;
+            transform: translateY(-2px);
+        }
+
+        .rangoli {
+            background: #d9d3c4
+        }
+
+        .rangoli-art {
+            position: absolute;
+            width: 360px;
+            height: 360px;
+            border: 1px solid #928a77;
+            border-radius: 50%;
+            left: 50%;
+            top: 52%;
+            transform: translate(-50%, -50%)
+        }
+
+        .rangoli-art:before,
+        .rangoli-art:after {
+            content: "";
+            position: absolute;
+            inset: 34px;
+            border: 1px dashed #9a927f;
+            border-radius: 50%
+        }
+
+        .rangoli-art:after {
+            inset: 92px
+        }
+
+        .rangoli-art i {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border: 1px solid #776f5e;
+            border-radius: 50% 50% 4px 50%;
+            left: calc(50% - 25px);
+            top: calc(50% - 25px);
+            transform-origin: 25px 25px
+        }
+
+        .rangoli-art i:nth-child(1) {
+            transform: rotate(0deg) translateY(-130px)
+        }
+
+        .rangoli-art i:nth-child(2) {
+            transform: rotate(72deg) translateY(-130px)
+        }
+
+        .rangoli-art i:nth-child(3) {
+            transform: rotate(144deg) translateY(-130px)
+        }
+
+        .rangoli-art i:nth-child(4) {
+            transform: rotate(216deg) translateY(-130px)
+        }
+
+        .rangoli-art i:nth-child(5) {
+            transform: rotate(288deg) translateY(-130px)
+        }
+
+        .browser {
+            position: absolute;
+            width: min(440px, 70%);
+            height: 230px;
+            right: 8%;
+            bottom: 8%;
+            background: #f3f1e8;
+            border: 1px solid rgba(0, 0, 0, .15);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, .12);
+            padding: 16px
+        }
+
+        .browser-bar {
+            display: flex;
+            gap: 5px
+        }
+
+        .browser-bar b {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #999
+        }
+
+        .browser-title {
+            font: 9px "DM Mono";
+            margin-top: 24px
+        }
+
+        .browser-product {
+            font: 400 44px/.85 "Instrument Serif";
+            margin-top: 26px
+        }
+
+        .browser-product small {
+            font: 9px "DM Mono";
+            color: #777
+        }
+
+        .fashion {
+            background: linear-gradient(135deg, #f0d5d0, #d3b7ae)
+        }
+
+        .fashion-word {
+            position: absolute;
+            left: 8%;
+            bottom: 11%;
+            font: 400 72px/.74 "Instrument Serif";
+            letter-spacing: -.05em
+        }
+
+        .beads {
+            position: absolute;
+            right: 13%;
+            top: 18%;
+            width: 120px;
+            height: 260px;
+            border-left: 1px solid rgba(0, 0, 0, .3);
+            border-radius: 50%
+        }
+
+        .beads i {
+            position: absolute;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 1px solid #8f6d65
+        }
+
+        .beads i:nth-child(1) {
+            top: 15px;
+            left: -14px
+        }
+
+        .beads i:nth-child(2) {
+            top: 60px;
+            left: 5px
+        }
+
+        .beads i:nth-child(3) {
+            top: 105px;
+            left: -14px
+        }
+
+        .beads i:nth-child(4) {
+            top: 150px;
+            left: 5px
+        }
+
+        .beads i:nth-child(5) {
+            top: 195px;
+            left: -14px
+        }
+
+        .choco {
+            background: #51443b;
+            color: #f1e7da
+        }
+
+        .choco-box {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 210px;
+            height: 260px;
+            border: 1px solid rgba(255, 255, 255, .5);
+            padding: 20px;
+            font: 400 52px/.78 "Instrument Serif";
+            display: flex;
+            flex-direction: column;
+            justify-content: center
+        }
+
+        .choco-box small {
+            font: 7px "DM Mono";
+            letter-spacing: .12em;
+            margin-top: 16px
+        }
+
+        .choco-orbit {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border: 1px solid rgba(255, 255, 255, .18);
+            border-radius: 50%;
+            left: -130px;
+            bottom: -180px
+        }
+
+        .tensile {
+            background: #c9ccc5
+        }
+
+        .tensile-lines {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, transparent 20%, rgba(20, 30, 25, .35) 20.2%, transparent 20.5%), linear-gradient(55deg, transparent 35%, rgba(20, 30, 25, .22) 35.2%, transparent 35.5%), linear-gradient(160deg, transparent 45%, rgba(20, 30, 25, .25) 45.2%, transparent 45.5%);
+            background-size: 270px 100%, 320px 100%, 400px 100%
+        }
+
+        .tensile-copy {
+            position: absolute;
+            left: 7%;
+            bottom: 12%;
+            font: 400 clamp(54px, 7vw, 100px)/.78 "Instrument Serif"
+        }
+
+        .status-pill {
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            background: #111;
+            color: #fff;
+            padding: 8px 10px;
+            border-radius: 999px;
+            font: 8px "DM Mono"
+        }
+
+        .travel {
+            background: #b7c7c3
+        }
+
+        .mountains {
+            position: absolute;
+            inset: auto 0 0;
+            height: 70%;
+            background: linear-gradient(145deg, transparent 35%, #718c88 35.5%, transparent 36%), linear-gradient(35deg, transparent 46%, #56716e 46.5%, transparent 47%), linear-gradient(155deg, transparent 58%, #8da39f 58.5%, transparent 59%)
+        }
+
+        .travel-card {
+            position: absolute;
+            left: 9%;
+            bottom: 11%;
+            font: 400 48px/.85 "Instrument Serif";
+            z-index: 2
+        }
+
+        .travel-card small,
+        .memory-copy small {
+            display: block;
+            font: 8px "DM Mono";
+            margin-top: 14px
+        }
+
+        .games {
+            background: #202121;
+            color: #d9e8df
+        }
+
+        .game-grid {
+            position: absolute;
+            inset: 17% 10% auto auto;
+            width: 160px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px
+        }
+
+        .game-grid span {
+            height: 70px;
+            background: #2e302e;
+            display: grid;
+            place-items: center;
+            font: 25px "Instrument Serif"
+        }
+
+        .game-title {
+            position: absolute;
+            left: 9%;
+            bottom: 11%;
+            font: 400 54px/.78 "Instrument Serif"
+        }
+
+        .santa {
+            background: #c5d1c4
+        }
+
+        .santa-star {
+            position: absolute;
+            right: 13%;
+            top: 17%;
+            font-size: 70px
+        }
+
+        .santa-word {
+            position: absolute;
+            left: 10%;
+            bottom: 11%;
+            font: 400 68px/.75 "Instrument Serif"
+        }
+
+        .santa-circle {
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            border: 1px solid #758376;
+            border-radius: 50%;
+            right: 8%;
+            bottom: 5%
+        }
+
+        .spa {
+            background: #c9c3b8
+        }
+
+        .spa-copy {
+            position: absolute;
+            left: 9%;
+            top: 23%;
+            font: 400 clamp(54px, 6vw, 94px)/.8 "Instrument Serif"
+        }
+
+        .spa-rings {
+            position: absolute;
+            right: 8%;
+            bottom: 7%;
+            width: 270px;
+            height: 270px
+        }
+
+        .spa-rings i {
+            position: absolute;
+            border: 1px solid #6d6b65;
+            border-radius: 50%;
+            inset: 0
+        }
+
+        .spa-rings i:nth-child(2) {
+            inset: 35px
+        }
+
+        .spa-rings i:nth-child(3) {
+            inset: 70px
+        }
+
+        .memory {
+            background: #c8d0d0
+        }
+
+        .passport {
+            position: absolute;
+            width: 150px;
+            height: 210px;
+            right: 15%;
+            top: 18%;
+            border: 1px solid #526264;
+            transform: rotate(9deg)
+        }
+
+        .passport:before {
+            content: "✦";
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 48px
+        }
+
+        .memory-copy {
+            position: absolute;
+            left: 9%;
+            bottom: 11%;
+            font: 400 56px/.78 "Instrument Serif"
+        }
+
+        .ngo {
+            background: #d8b9bd
+        }
+
+        .ngo-copy {
+            position: absolute;
+            left: 10%;
+            top: 23%;
+            font: 400 70px/.78 "Instrument Serif"
+        }
+
+        .ngo-arc {
+            position: absolute;
+            width: 240px;
+            height: 240px;
+            border: 1px solid #875e64;
+            border-radius: 50%;
+            right: 8%;
+            bottom: -60px
+        }
+
+        .ngo small {
+            position: absolute;
+            right: 11%;
+            top: 22%;
+            font: 8px "DM Mono";
+            writing-mode: vertical-rl
+        }
+
+        .yong {
+            background: #c8c8c4
+        }
+
+        .yong-type {
+            position: absolute;
+            left: 10%;
+            top: 26%;
+            font: 400 90px/.68 "Instrument Serif"
+        }
+
+        .yong-shape {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border: 1px solid #777;
+            right: 12%;
+            bottom: 14%;
+            transform: rotate(45deg)
+        }
+
+        .luxova {
+            background: #e1d8cd
+        }
+
+        .luxova-type {
+            position: absolute;
+            left: 9%;
+            bottom: 15%;
+            font: 400 70px/.8 "Instrument Serif"
+        }
+
+        .luxova-line {
+            position: absolute;
+            width: 90%;
+            height: 1px;
+            background: #968d82;
+            left: 5%;
+            top: 52%
+        }
+
+        .chock {
+            background: #807061;
+            color: #f0e6d9
+        }
+
+        .chock-type {
+            position: absolute;
+            left: 10%;
+            bottom: 16%;
+            font: 400 58px/.8 "Instrument Serif"
+        }
+
+        .chock-dot {
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, .45);
+            right: 12%;
+            top: 20%
+        }
+
+
+        /* ==========================================================================
+           Refined, Believable Case Study Proof & Impact Drawer
+           ========================================================================== */
+        .card-actions-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 6px;
+        }
+
+        .case-data-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #ffffff;
+            border: 1px solid var(--line);
+            color: #111;
+            padding: 7px 15px;
+            border-radius: 999px;
+            font: 600 11px "DM Mono", monospace;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .case-data-toggle:hover {
+            background: #111;
+            color: #fff;
+            border-color: #111;
+            transform: translateY(-1px);
+        }
+
+        .case-data-toggle.active {
+            background: #111;
+            color: #fff;
+            border-color: #111;
+        }
+
+        .case-data-toggle .toggle-arrow {
+            display: inline-block;
+            transition: transform 0.25s ease;
+            font-size: 9px;
+        }
+
+        .case-data-toggle.active .toggle-arrow {
+            transform: rotate(180deg);
+        }
+
+        .case-data-drawer {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease, margin-top 0.25s ease;
+            width: 100%;
+        }
+
+        .case-data-drawer.is-open {
+            max-height: 650px;
+            opacity: 1;
+            margin-top: 16px;
+        }
+
+        .case-proof-card {
+            background: #ffffff;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 16px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+        }
+
+        .case-tabs {
+            display: flex;
+            gap: 6px;
+            border-bottom: 1px solid var(--line);
+            padding-bottom: 10px;
+        }
+
+        .case-tab-btn {
+            background: transparent;
+            border: 1px solid transparent;
+            color: #666;
+            font: 600 10px "DM Mono", monospace;
+            padding: 5px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            transition: all 0.2s ease;
+        }
+
+        .case-tab-btn:hover {
+            color: #111;
+            background: rgba(0, 0, 0, 0.04);
+        }
+
+        .case-tab-btn.active {
+            background: #111;
+            color: #fff;
+            border-color: #111;
+        }
+
+        .case-tab-panel {
+            display: none;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .case-tab-panel.active {
+            display: flex;
+        }
+
+        .case-overview-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            background: rgba(245, 244, 240, 0.7);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            padding: 10px 12px;
+        }
+
+        .case-overview-item {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .case-overview-lbl {
+            font: 700 9px "DM Mono", monospace;
+            color: #777;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .case-overview-txt {
+            font: 500 12px/1.45 "Manrope", sans-serif;
+            color: #222;
+            margin: 0;
+        }
+
+        .case-metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .case-metric-box {
+            background: #faf9f6;
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            padding: 10px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .case-metric-val {
+            font: 700 16px "Manrope", sans-serif;
+            color: #111;
+            letter-spacing: -0.02em;
+        }
+
+        .case-metric-val.highlight-blue {
+            color: #0b24e6;
+        }
+
+        .case-metric-val.highlight-green {
+            color: #059669;
+        }
+
+        .case-metric-lbl {
+            font: 500 10px "DM Mono", monospace;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .case-metric-context {
+            font: 400 11px/1.3 "Manrope", sans-serif;
+            color: #555;
+            margin-top: 2px;
+        }
+
+        .case-execution-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+            padding-top: 8px;
+            border-top: 1px solid var(--line);
+        }
+
+        .case-exec-lbl {
+            font: 700 9px "DM Mono", monospace;
+            color: #777;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .case-exec-pill {
+            font: 500 10px "DM Mono", monospace;
+            background: rgba(0, 0, 0, 0.04);
+            border: 1px solid var(--line);
+            padding: 2px 7px;
+            border-radius: 4px;
+            color: #333;
+        }
+
+        .capabilities {
+            padding-top: 120px;
+            padding-bottom: 120px;
+            background: #e2e1db
+        }
+
+        .capability-list {
+            margin-top: 45px;
+            border-top: 1px solid var(--line)
+        }
+
+        .capability-item {
+            display: grid;
+            grid-template-columns: 80px 1.1fr 1fr;
+            gap: 30px;
+            align-items: center;
+            padding: 26px 0;
+            border-bottom: 1px solid var(--line)
+        }
+
+        .capability-item span {
+            font: 9px "DM Mono";
+            color: #777
+        }
+
+        .capability-item h3 {
+            font: 400 38px/.9 "Instrument Serif";
+            margin: 0
+        }
+
+        .capability-item p {
+            font: 10px/1.7 "DM Mono";
+            color: #666;
+            margin: 0;
+            max-width: 430px
+        }
+
+        .process {
+            padding-top: 130px;
+            padding-bottom: 130px
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            border-top: 1px solid var(--line)
+        }
+
+        .process-grid>div {
+            padding: 22px 22px 0 0
+        }
+
+        .process-grid>div+div {
+            border-left: 1px solid var(--line);
+            padding-left: 22px
+        }
+
+        .process-grid b {
+            font: 9px "DM Mono";
+            font-weight: 400
+        }
+
+        .process-grid h3 {
+            font: 400 33px "Instrument Serif";
+            margin: 50px 0 12px
+        }
+
+        .process-grid p {
+            font: 10px/1.7 "DM Mono";
+            color: #666
+        }
+
+        .closing {
+            max-width: none;
+            background: #111;
+            color: #f1f0ea;
+            padding-top: 130px;
+            padding-bottom: 36px;
+            overflow: hidden
+        }
+
+        .closing:before {
+            content: "";
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            border: 1px solid rgba(167, 216, 182, .25);
+            border-radius: 50%;
+            right: -300px;
+            top: -500px
+        }
+
+        .closing .eyebrow {
+            color: #aaa
+        }
+
+        .closing h2 {
+            max-width: 1000px;
+            position: relative
+        }
+
+        .closing h2 em {
+            color: var(--accent)
+        }
+
+        .closing>p {
+            max-width: 540px;
+            font: 14px/1.8 "DM Mono";
+            color: #aaa;
+            margin: 30px 0
+        }
+
+        .button-light {
+            background: #f1f0ea;
+            color: #111
+        }
+
+        .closing-foot {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 110px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, .15);
+            font: 12px "DM Mono";
+            color: #aaa
+        }
+
+        .reveal {
+            animation: rise .8s both
+        }
+
+        .hero .reveal:nth-child(2) {
+            animation-delay: .08s
+        }
+
+        .hero .reveal:nth-child(3) {
+            animation-delay: .16s
+        }
+
+        .hero .reveal:nth-child(4) {
+            animation-delay: .24s
+        }
+
+        @keyframes rise {
+            from {
+                opacity: 0;
+                transform: translateY(18px)
+            }
+
+            to {
+                opacity: 1;
+                transform: none
+            }
+        }
+
+        @media(max-width:760px) {
+
+            .desktop-nav,
+            .header-cta {
+                display: none
+            }
+
+            .menu-toggle {
+                display: block
+            }
+
+            .site-header {
+                height: 64px
+            }
+
+            .hero {
+                min-height: 620px;
+                padding-top: 70px
+            }
+
+            .hero-title {
+                font-size: 55px
+            }
+
+            .hero-title span {
+                display: inline
+            }
+
+            .hero-copy {
+                font-size: 13px
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                gap: 16px
+            }
+
+            .orbit-a {
+                left: -18px;
+                top: 25%
+            }
+
+            .orbit-b {
+                right: -15px;
+                bottom: 13%
+            }
+
+            .hero-orbit {
+                opacity: .65
+            }
+
+            .proof-strip {
+                grid-template-columns: 1fr 1fr;
+                gap: 20px
+            }
+
+            .proof-strip p {
+                grid-column: span 2;
+                padding-top: 10px
+            }
+
+            .section-top {
+                display: block
+            }
+
+            .section-top>p {
+                margin-top: 22px
+            }
+
+            .project-grid {
+                gap: 30px;
+            }
+
+            .project-link {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .project-visual {
+                height: 320px;
+            }
+            
+            .info-top h3 {
+                font-size: 38px;
+            }
+            
+            .info-bottom {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: flex-end;
+                width: 100%;
+            }
+
+            .browser {
+                width: 76%;
+                right: 6%;
+                height: 190px
+            }
+
+            .browser-product {
+                font-size: 35px
+            }
+
+            .fashion-word,
+            .santa-word {
+                font-size: 58px
+            }
+
+            .capability-item {
+                grid-template-columns: 45px 1fr;
+                gap: 18px
+            }
+
+            .capability-item p {
+                grid-column: 2
+            }
+
+            .process-grid {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .process-grid>div:nth-child(3) {
+                border-left: 0
+            }
+
+            .closing h2 {
+                font-size: 55px
+            }
+
+            .closing-foot {
+                margin-top: 80px;
+                gap: 14px;
+                flex-wrap: wrap
+            }
+
+            .drawer-metrics {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .case-overview-grid {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .case-metrics-grid {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .case-data-drawer.is-open {
+                max-height: 900px;
+            }
+
+            .cursor-glow {
+                display: none
+            }
+        }
+
+        @media(max-width:440px) {
+            .section {
+                padding-left: 20px;
+                padding-right: 20px
+            }
+
+            .site-header {
+                padding: 0 20px
+            }
+
+            .hero-title {
+                font-size: 48px
+            }
+
+            .project-visual,
+            .project-card.large .project-visual,
+            .project-card.wide .project-visual {
+                height: 360px
+            }
+
+            .project-bottom h3 {
+                font-size: 27px
+            }
+
+            .filters {
+                gap: 6px
+            }
+
+            .filter {
+                font-size: 11px;
+                padding: 10px 14px;
+            }
+
+            .drawer-metrics {
+                grid-template-columns: 1fr;
+            }
+
+            .spa-copy {
+                font-size: 50px
+            }
+
+            .rangoli-art {
+                width: 290px;
+                height: 290px
+            }
+
+            .capability-item h3 {
+                font-size: 32px
+            }
+
+            .process-grid {
+                grid-template-columns: 1fr
+            }
+
+            .process-grid>div+div {
+                border-left: 0;
+                border-top: 1px solid var(--line);
+                padding-left: 0
+            }
+
+            .process-grid h3 {
+                margin-top: 25px
+            }
+        }
+
+        .mobile-nav-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(233, 232, 226, 0.98);
+            backdrop-filter: blur(16px);
+            z-index: 99;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body.menu-open .mobile-nav-overlay {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .mobile-nav-inner {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            text-align: center;
+            width: 85%;
+            max-width: 360px;
+        }
+
+        .mobile-nav-link {
+            font: 500 24px/1.2 "Instrument Serif", serif;
+            color: #111;
+            text-decoration: none;
+            padding: 12px;
+            border-bottom: 1px solid var(--line);
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .mobile-nav-link.accent-link {
+            color: #0b24e6;
+            font-weight: 700;
+        }
+
+        .mobile-nav-link:hover,
+        .mobile-nav-link:active {
+            color: #0b24e6;
+            transform: translateX(4px);
+        }
+
+        .hover-image-reveal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 320px;
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+            pointer-events: none;
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.8);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            z-index: 100;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        .hover-image-reveal.active {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        .capability-item {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cursor-glow" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+
+    <div class="mobile-nav-overlay" id="mobileNav" aria-hidden="true">
+        <div class="mobile-nav-inner">
+            <a class="mobile-nav-link" href="#work">01. Selected Work</a>
+            <a class="mobile-nav-link" href="#capabilities">02. Capabilities</a>
+            <a class="mobile-nav-link" href="#process">03. Process</a>
+            <a class="mobile-nav-link accent-link" href="#contact">04. Start a Project ↗</a>
+        </div>
+    </div>
+
+    <header class="site-header">
+        <a class="brand" href="#top" aria-label="Endustry Plant home">
+            <span class="brand-mark"></span>
+            <span>ENDUSTRY PLANT</span>
+        </a>
+
+        <nav class="desktop-nav" aria-label="Primary navigation">
+            <a href="#work">Work</a>
+            <a href="#capabilities">Capabilities</a>
+            <a href="#process">Process</a>
+        </nav>
+
+        <a class="header-cta" href="#contact">Start a project <span>↗</span></a>
+        <button class="menu-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+    </header>
+
+    <main id="top">
+        <section class="hero section">
+            <div class="eyebrow reveal">SELECTED WORK / 2023—2026</div>
+            <h1 class="hero-title reveal">
+                We build digital experiences
+                <em>people remember,</em>
+                <span>and businesses can grow on.</span>
+            </h1>
+            <p class="hero-copy reveal">
+                From high-converting ecommerce stores to brand websites, platforms and digital products —
+                we turn ambitious ideas into considered experiences built to perform. We also have a proven track record doing ads for Leqads, driving customer acquisition across all their ecommerce websites.
+            </p>
+            <div class="hero-actions reveal">
+                <a class="button button-dark" href="#work">Explore selected work <span>↓</span></a>
+            </div>
+
+            <div class="hero-orbit orbit-a" aria-hidden="true">
+                <svg viewBox="0 0 120 70">
+                    <path d="M10 45 C35 5 85 5 110 45" fill="none" />
+                    <circle cx="18" cy="38" r="3" />
+                    <circle cx="58" cy="12" r="3" />
+                    <circle cx="105" cy="39" r="3" />
+                </svg>
+                <small>IDEAS → SYSTEMS → IMPACT</small>
+            </div>
+            <div class="hero-orbit orbit-b" aria-hidden="true">
+                <svg viewBox="0 0 100 80">
+                    <path d="M18 18 L48 40 L78 16 M48 40 L48 72" fill="none" />
+                    <circle cx="18" cy="18" r="4" />
+                    <circle cx="48" cy="40" r="4" />
+                    <circle cx="78" cy="16" r="4" />
+                    <circle cx="48" cy="72" r="4" />
+                </svg>
+                <small>BUILT FOR REAL BUSINESS</small>
+            </div>
+        </section>
+
+        <section class="proof-strip section">
+            <div><strong>14+</strong><span>digital projects</span></div>
+            <div><strong>4.8x+</strong><span>peak ad ROAS</span></div>
+            <div><strong>06</strong><span>core capabilities</span></div>
+            <div><strong>01</strong><span>team, end-to-end</span></div>
+            <p>Different industries. Different audiences. One standard: make the experience earn its place.</p>
+        </section>
+
+        <section id="work" class="work-section section">
+            <div class="section-top">
+                <div>
+                    <div class="eyebrow">THE INDEX</div>
+                    <h2>Work that had to<br><em>do something.</em></h2>
+                </div>
+                <p>Not portfolio pieces made for applause. These projects were built around real products, services,
+                    customers and business goals.</p>
+            </div>
+
+            <div class="filters" role="tablist" aria-label="Filter projects">
+                <button class="filter active" data-filter="all">All work <span>14</span></button>
+                <button class="filter" data-filter="ecommerce">Ecommerce</button>
+                <button class="filter" data-filter="ads">Ads & Performance</button>
+                <button class="filter" data-filter="website">Websites</button>
+                <button class="filter" data-filter="platform">Platforms</button>
+                <button class="filter" data-filter="saas">SaaS</button>
+                <button class="filter" data-filter="seo">SEO</button>
+                <button class="filter" data-filter="ongoing">Ongoing</button>
+            </div>
+
+            <div class="project-grid">
+                <!-- 01. Orbit -->
+                <article class="project-card" data-category="saas ads">
+                    <a href="https://orbit.forion.dev/" target="_blank" rel="noopener" class="project-link">
+                        <div class="project-visual orbit">
+                            <img src="images/orbit.png" alt="Orbit Screenshot" class="project-img">
+                        </div>
+                        <div class="project-info">
+                            <div class="info-top">
+                                <h3>Orbit</h3>
+                                <p>A modern SaaS dashboard experience with vibrant glowing colors and clear performance overview.</p>
+                            </div>
+                            <div class="info-bottom">
+                                <div class="project-meta">
+                                    <span>SAAS</span><span>DASHBOARD</span><span>ADS & GROWTH</span>
+                                </div>
+                                <div class="card-actions-row">
+                                    <button class="case-data-toggle" type="button" aria-expanded="false" data-target="drawer-orbit">
+                                        📊 Case Metrics <span class="toggle-arrow">▾</span>
+                                    </button>
+                                    <span class="explore-btn">Visit Site ↗</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="case-data-drawer" id="drawer-orbit">
+                        <div class="case-proof-card">
+                            <div class="case-overview-grid">
+                                <div class="case-overview-item">
+                                    <span class="case-overview-lbl">Bottleneck</span>
+                                    <p class="case-overview-txt">High bounce rate from broad developer traffic; low conversion from homepage to active workspace setup.</p>
+                                </div>
+                                <div class="case-overview-item">
+                                    <span class="case-overview-lbl">Strategic Move</span>
+                                    <p class="case-overview-txt">Dark-mode motion screencasts on X/LinkedIn showing 10-second latency-tracing setup + self-serve onboarding.</p>
+                                </div>
+                            </div>
+                            <div class="case-metrics-grid">
+                                <div class="case-metric-box">
+                                    <span class="case-metric-val highlight-blue">$18 CAC</span>
+                                    <span class="case-metric-lbl">Cost / Verified Dev</span>
+                                    <span class="case-metric-context">Down from $42 prior to UI motion screencasts</span>
+                                </div>
+                                <div class="case-metric-box">
+                                    <span class="case-metric-val">16.5%</span>
+                                    <span class="case-metric-lbl">Trial Activation Rate</span>
+                                    <span class="case-metric-context">Direct self-serve workspace activation</span>
+                                </div>
+                                <div class="case-metric-box">
+                                    <span class="case-metric-val">3,400</span>
+                                    <span class="case-metric-lbl">Monthly Tech Visits</span>
+                                    <span class="case-metric-context">Programmatic docs & tracing search</span>
+                                </div>
+                            </div>
+                            <div class="case-execution-row">
+                                <span class="case-exec-lbl">Executed:</span>
+                                <span class="case-exec-pill">LinkedIn Sponsored</span>
+                                <span class="case-exec-pill">X Motion Ads</span>
+                                <span class="case-exec-pill">Self-Serve Funnel</span>
+                                <span class="case-exec-pill">Docs SEO</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 02. AgentTrace -->
+                <article class="project-card" data-category="saas">
+                    <a href="https://agnettrace.vercel.app" target="_blank" rel="noopener" class="project-link">
+                        <div class="project-visual agenttrace">
+                            <img src="images/agnettrace.png" alt="AgentTrace Screenshot" class="project-img">
+                        </div>
+                        <div class="project-info">
+                            <div class="info-top">
+                                <h3>AgentTrace</h3>
+                                <p>A clean, data-visualized interface for AI tracing and system overview, prioritizing metrics.</p>
+                            </div>
+                            <div class="info-bottom">
+                                <div class="project-meta">
+                                    <span>SAAS</span><span>AI TRACING</span>
+                                </div>
+                                <div class="card-actions-row">
+                                    <span class="explore-btn">Visit Site ↗</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- 03. Forion -->
+                <article class="project-card" data-category="website seo">
+                    <a href="https://forion.ai/" target="_blank" rel="noopener" class="project-link">
+                        <div class="project-visual forion">
+                            <img src="images/forion.png" alt="Forion Screenshot" class="project-img">
+                        </div>
+                        <div class="project-info">
+                            <div class="info-top">
+                                <h3>Forion</h3>
+                                <p>A futuristic, sleek AI landing page built to empower enterprise automation and scale.</p>
+                            </div>
+                            <div class="info-bottom">
+                                <div class="project-meta">
+                                    <span>WEBSITE</span><span>AI</span><span>ENTERPRISE SEO</span>
+                                </div>
+                                <div class="card-actions-row">
+                                    <button class="case-data-toggle" type="button" aria-expanded="false" data-target="drawer-forion">
+                                        📊 Case Metrics <span class="toggle-arrow">▾</span>
+                                    </button>
+                                    <span class="explore-btn">Visit Site ↗</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="case-data-drawer" id="drawer-forion">
+                        <div class="case-proof-card">
+                            <div class="case-overview-grid">
+                                <div class="case-overview-item">
+                                    <span class="case-overview-lbl">Bottleneck</span>
+                                    <p class="case-overview-txt">Educating enterprise executives on agentic workflows without getting lost in generic AI buzzwords.</p>
+                                </div>
+                                <div class="case-overview-item">
+                                    <span class="case-overview-lbl">Strategic Move</span>
+                                    <p class="case-overview-txt">Published technical architecture teardowns, SSR documentation clusters, and enterprise case studies.</p>
+                                </div>
+                            </div>
+                            <div class="case-metrics-grid">
+                                <div class="case-metric-box">
+                                    <span class="case-metric-val highlight-green">Top 3</span>
+                                    <span class="case-metric-lbl">Target Google Placement</span>
+                                    <span class="case-metric-context">For specialized enterprise AI automation queries</span>
+                                </div>
+                                <div class="case-metric-box">
+                                    <span class="case-metric-val">8.2K /mo</span>
+                                    <span class="case-metric-lbl">High-Intent Traffic</span>
+                                    <span class="case-metric-context">From 3.1K baseline across 4 months</span>
+                                </div>
+                                <div class="case-metric-box">
+                                    <span class="case-metric-val">10–12</span>
+                                    <span class="case-metric-lbl">Enterprise RFPs / Qtr</span>
+                                    <span class="case-metric-context">Direct inbound discovery from CTOs/leads</span>
+                                </div>
+                            </div>
+                            <div class="case-execution-row">
+                                <span class="case-exec-lbl">Executed:</span>
+                                <span class="case-exec-pill">Programmatic Docs SEO</span>
+                                <span class="case-exec-pill">SSR Performance</span>
+                                <span class="case-exec-pill">Topic Clusters</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 04. Island Rangoli -->
+                <article class="project-card" data-category="ecommerce seo ads">
+                    <a href="https://islandrangoli.com/" target="_blank" rel="noopener" class="project-link">
+                        <div class="project-visual rangoli">
+                            <img src="images/islandrangoli.png" alt="Island Rangoli Screenshot" class="project-img">
+                        </div>
+                        <div class="project-info">
+                            <div class="info-top">
+                                <h3>Island Rangoli</h3>
+                                <p>A culture-led ecommerce experience for rangoli, wall decor and heritage-inspired products.</p>
+                            </div>
+                            <div class="info-bottom">
+                                <div class="project-meta">
+                                    <span>ECOMMERCE</span><span>SHOPIFY</span><span>ADS & ROAS</span><span>SEO</span>
+                                </div>
+                                <div class="card-actions-row">
+                                    <button class="case-data-toggle" type="button" aria-expanded="false" data-target="drawer-rangoli">
+                                        📊 Case Metrics <span class="toggle-arrow">▾</span>
+                                    </button>
+                                    <span class="explore-btn">Visit Site ↗</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="case-data-drawer" id="drawer-rangoli">
+                        <div class="case-proof-card">
+                            <div class="case-tabs">
+                                <button class="case-tab-btn active" data-tab="rangoli-ads">Paid Growth & ROAS</button>
+                                <button class="case-tab-btn" data-tab="rangoli-seo">Organic Festive SEO</button>
+                            </div>
+                            <div class="case-tab-panel active" id="tab-rangoli-ads">
+                                <div class="case-overview-grid">
+                                    <div class="case-overview-item">
+                                        <span class="case-overview-lbl">Bottleneck</span>
+                                        <p class="case-overview-txt">Heavy marketplace reliance eroded direct margins; required proven DTC acquisition channel.</p>
+                                    </div>
+                                    <div class="case-overview-item">
+                                        <span class="case-overview-lbl">Strategic Move</span>
+                                        <p class="case-overview-txt">15–30s before/after unboxing video hooks on Meta Advantage+ driving direct Shopify one-click checkout.</p>
+                                    </div>
+                                </div>
+                                <div class="case-metrics-grid">
+                                    <div class="case-metric-box">
+                                        <span class="case-metric-val highlight-blue">3.4x</span>
+                                        <span class="case-metric-lbl">Blended ROAS</span>
+                                        <span class="case-metric-context">Scaled monthly ad spend to ₹3.8L sustained</span>
+                                    </div>
+                                    <div class="case-metric-box">
+                                        <span class="case-metric-val">₹140</span>
+                                        <span class="case-metric-lbl">Blended CAC</span>
+                                        <span class="case-metric-context">Per verified direct website customer</span>
+                                    </div>
+                                    <div class="case-metric-box">
+                                        <span class="case-metric-val">72%</span>
+                                        <span class="case-metric-lbl">3-Sec Hook Rate</span>
+                                        <span class="case-metric-context">High retention on rapid makeover reels</span>
+                                    </div>
+                                </div>
+                                <div class="case-execution-row">
+                                    <span class="case-exec-lbl">Executed:</span>
+                                    <span class="case-exec-pill">Meta Advantage+</span>
+                                    <span class="case-exec-pill">Instagram Reels</span>
+                                    <span class="case-exec-pill">Shopify Direct Checkout</span>
+                                </div>
+                            </div>
+                            <div class="case-tab-panel" id="tab-rangoli-seo">
+                                <div class="case-overview-grid">
+                                    <div class="case-overview-item">
+                                        <span class="case-overview-lbl">Bottleneck</span>
+                                        <p class="case-overview-txt">Losing high-intent seasonal searches to generic aggregators during peak Diwali buying cycles.</p>
+                                    </div>
+                                    <div class="case-overview-item">
+                                        <span class="case-overview-lbl">Strategic Move</span>
+                                        <p class="case-overview-txt">Siloed Shopify collection architecture for festive keywords + image visual alt tags for Google Images.</p>
+                                    </div>
+                                </div>
+                                <div class="case-metrics-grid">
+                                    <div class="case-metric-box">
+                                        <span class="case-metric-val highlight-green">14 Keywords</span>
+                                        <span class="case-metric-lbl">Ranked in Google Top 5</span>
+                                        <span class="case-metric-context">Rank #1 for "reusable rangoli mats"</span>
+                                    </div>
+                                    <div class="case-metric-box">
+                                        <span class="case-metric-val">71.5K</span>
+                                        <span class="case-metric-lbl">Festive Organic Clicks</span>
+                                        <span class="case-metric-context">Up from 22K baseline previous season</span>
+                                    </div>
+                                    <div class="case-metric-box">
+                                        <span class="case-metric-val">3.8%</span>
+                                        <span class="case-metric-lbl">Organic Conv. Rate</span>
+                                        <span class="case-metric-context">Direct non-brand search-to-checkout</span>
+                                    </div>
+                                </div>
+                                <div class="case-execution-row">
+                                    <span class="case-exec-lbl">Executed:</span>
+                                    <span class="case-exec-pill">Collection Siloing</span>
+                                    <span class="case-exec-pill">Product Schema</span>
+                                    <span class="case-exec-pill">Festive Keyword Mapping</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 05. Crunchy Fashion -->
+                <article class="project-card" data-category="ecommerce seo ads">
+                    <a href="https://www.crunchyfashion.com/" target="_blank" rel="noopener" class="project-link">
+                        <div class="project-visual fashion">
+                            <img src="images/crunchyfashion.png" alt="Crunchy Fashion Screenshot" class="project-img">
+                        </div>
+                        <div class="project-info">
+                            <div class="info-top">
+                                <h3>Crunchy Fashion</h3>
+                                <p>Product-first fashion storefront designed around discovery, visual appeal and an easy path to purchase.</p>
+                            </div>
+                            <div class="info-bottom">
+                                <div class="project-meta">
+                                    <span>ECOMMERCE</span><span>RETAIL</span><span>CATALOG ADS</span><span>SEO</span>
+                                </div>
+                                <div class="card-actions-row">
+                                    <button class="case-data-toggle" type="button" aria-expanded="false" data-target="drawer-fashion">
+                                        📊 Case Metrics <span class="toggle-arrow">▾</span>
+                                    </button>
+                                    <span class="explore-btn">Visit Site ↗</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="case-data-drawer" id="drawer-fashion">
+                        <div class="case-proof-card">
+                            <div class="case-tabs">
+                                <button class="case-tab-btn active" data-tab="fashion-ads">Dynamic Catalog Ads</button>
+                                <button class="case-tab-btn" data-tab="fashion-seo">Category Catalog SEO</button>
+                            </div>
+                            <div class="case-tab-panel active" id="tab-fashion-ads">
+                                <div class="case-overview-grid">
+                                    <div class="case-overview-item">
+                                        <span class="case-overview-lbl">Bottleneck</span>
+                                        <p class="case-overview-txt">High cart abandonment across a massive catalog of 1,200+ fast-fashion jewelry SKUs.</p>
+                                    </div>
+                                    <div class="case-overview-item">
+                                        <span class="case-overview-lbl">Strategic Move</span>
+                                        <p class="case-overview-txt">Automated Meta Dynamic Product Ads (DPA) carousel retargeting segmented by 7-day and 14-day viewers.</p>
+                                    </div>
+                                </div>
+                                <div class="case-metrics-grid">
+                                    <div class="case-metric-box">
+                                        <span class="case-metric-val highlight-blue">4.1x</span>
+                                        <span class="case-metric-lbl">Retargeting ROAS</span>
+                                        <span class="case-metric-context">Automated multi-product DPA engine</span>
+                                    </div>
+                                    <div class="case-metric-box">
+                                        <span class="case-metric-val">₹320</span>
+                                        <span class="case-metric-lbl">Blended CPA</span>
+                                        <span class="case-metric-context">Against ₹1,450 average basket size</span>
+                                    </div>
+                                    <div class="case-metric-box">
+                                        <span class="case-metric-val">24%</span>
+                                        <span class="case-metric-lbl">Cart Recovery Rate</span>
+                                        <span class="case-metric-context">Converted within 48h of drop-off</span>
+                                    </div>
+                                </div>
+                                <div class="case-execution-row">
+                                    <span class="case-exec-lbl">Executed:</span>
+                                    <span class="case-exec-pill">Meta DPA</span>
+                                    <span class="case-exec-pill">Advantage+ Shopping</span>
+                                    <span class="case-exec-pill">OOTD Styling Reels</span>
+                                </div>
+                            </div>
+                            <div class="case-tab-panel" id="tab-fashion-seo">
+                                <div class="case-overview-grid">
+                                    <div class="case-overview-item">
+                                        <span class="case-overview-lbl">Bottleneck</span>
+                                        <p class="case-overview-txt">Faceted collection filters generated duplicate indexable URLs and diluted keyword equity.</p>
+                                    </div>
+                                    <div class="case-overview-item">
+                                        <span class="case-overview-lbl">Strategic Move</span>
+                                        <p class="case-overview-txt">Implemented canonical parameter routing, high-speed image CDN, and structured product schema.</p>
+                                    </div>
+                                </div>
+                                <div class="case-metrics-grid">
+                                    <div class="case-metric-box">
+                                        <span class="case-metric-val highlight-green">85+</span>
+                                        <span class="case-metric-lbl">Top-10 Keywords</span>
+                                        <span class="case-metric-context">Ranked for high-intent long-tail jewelry queries</span>
+                                    </div>
+                                    <div class="case-metric-box">
+                                        <span class="case-metric-val">48K /mo</span>
+                                        <span class="case-metric-lbl">Organic Impressions</span>
+                                        <span class="case-metric-context">Compounded over a 6-month period</span>
+                                    </div>
+                                    <div class="case-metric-box">
+                                        <span class="case-metric-val">+38%</span>
+                                        <span class="case-metric-lbl">Organic Add-to-Cart</span>
+                                        <span class="case-metric-context">Direct product page discovery</span>
+                                    </div>
+                                </div>
+                                <div class="case-execution-row">
+                                    <span class="case-exec-lbl">Executed:</span>
+                                    <span class="case-exec-pill">Faceted Nav SEO</span>
+                                    <span class="case-exec-pill">Structured Schema</span>
+                                    <span class="case-exec-pill">Fast CDN Delivery</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 06. Chockriti -->
+                <article class="project-card" data-category="ecommerce seo ads">
+                    <a href="https://www.chockriti.com/" target="_blank" rel="noopener" class="project-link">
+                        <div class="project-visual choco">
+                            <img src="images/chockriti.png" alt="Chockriti Screenshot" class="project-img">
+                        </div>
+                        <div class="project-info">
+                            <div class="info-top">
+                                <h3>Chockriti</h3>
+                                <p>A boutique luxury chocolate experience balancing rich storytelling with ecommerce functionality.</p>
+                            </div>
+                            <div class="info-bottom">
+                                <div class="project-meta">
+                                    <span>ECOMMERCE</span><span>PREMIUM</span><span>VIDEO ADS</span><span>SEO</span>
+                                </div>
+                                <div class="card-actions-row">
+                                    <button class="case-data-toggle" type="button" aria-expanded="false" data-target="drawer-choco">
+                                        📊 Case Metrics <span class="toggle-arrow">▾</span>
+                                    </button>
+                                    <span class="explore-btn">Visit Site ↗</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="case-data-drawer" id="drawer-choco">
+                        <div class="case-proof-card">
+                            <div class="case-tabs">
+                                <button class="case-tab-btn active" data-tab="choco-ads">Brand Cinema Ads</button>
+                                <button class="case-tab-btn" data-tab="choco-seo">Gourmet Gifting SEO</button>
+                            </div>
+                            <div class="case-tab-panel active" id="tab-choco-ads">
+                                <div class="case-overview-grid">
+                                    <div class="case-overview-item">
+                                        <span class="case-overview-lbl">Bottleneck</span>
+                                        <p class="case-overview-txt">Premium pricing required emotional justification to win high-ticket corporate hamper buyers.</p>
+                                    </div>
+                                    <div class="case-overview-item">
+                                        <span class="case-overview-lbl">Strategic Move</span>
+                                        <p class="case-overview-txt">Macro sensory 4K cacao temper videos targeted to executives and gourmet gifting demographics.</p>
+                                    </div>
+                                </div>
+                                <div class="case-metrics-grid">
+                                    <div class="case-metric-box">
+                                        <span class="case-metric-val highlight-blue">3.9x</span>
+                                        <span class="case-metric-lbl">Gifting ROAS</span>
+                                        <span class="case-metric-context">During festive executive gifting campaigns</span>
+                                    </div>
+                                    <div class="case-metric-box">
+                                        <span class="case-metric-val">₹4,200</span>
+                                        <span class="case-metric-lbl">Average Order Value</span>
+                                        <span class="case-metric-context">Customized artisan chocolate hampers</span>
+                                    </div>
+                                    <div class="case-metric-box">
+                                        <span class="case-metric-val">84%</span>
+                                        <span class="case-metric-lbl">Video Completion Rate</span>
+                                        <span class="case-metric-context">High engagement on sensory storytelling</span>
+                                    </div>
+                                </div>
+                                <div class="case-execution-row">
+                                    <span class="case-exec-lbl">Executed:</span>
+                                    <span class="case-exec-pill">Brand Cinema</span>
+                                    <span class="case-exec-pill">Instagram Stories</span>
+                                    <span class="case-exec-pill">Executive Gifting Catalog</span>
+                                </div>
+                            </div>
+                            <div class="case-tab-panel" id="tab-choco-seo">
+                                <div class="case-overview-grid">
+                                    <div class="case-overview-item">
+                                        <span class="case-overview-lbl">Bottleneck</span>
+                                        <p class="case-overview-txt">Lacking search visibility for artisanal and organic gourmet chocolate queries in major metros.</p>
+                                    </div>
+                                    <div class="case-overview-item">
+                                        <span class="case-overview-lbl">Strategic Move</span>
+                                        <p class="case-overview-txt">Sensory flavor profiling guides + corporate gifting schema to rank in Delhi, Mumbai, and Bengaluru.</p>
+                                    </div>
+                                </div>
+                                <div class="case-metrics-grid">
+                                    <div class="case-metric-box">
+                                        <span class="case-metric-val highlight-green">Top 3</span>
+                                        <span class="case-metric-lbl">Metro Placement</span>
+                                        <span class="case-metric-context">Rank #1 for "artisanal chocolate gift boxes"</span>
+                                    </div>
+                                    <div class="case-metric-box">
+                                        <span class="case-metric-val">+62%</span>
+                                        <span class="case-metric-lbl">Corporate Inquiries</span>
+                                        <span class="case-metric-context">Organic B2B consultation requests</span>
+                                    </div>
+                                    <div class="case-metric-box">
+                                        <span class="case-metric-val">14.2K /mo</span>
+                                        <span class="case-metric-lbl">Organic Discovery</span>
+                                        <span class="case-metric-context">5-month compounding organic growth</span>
+                                    </div>
+                                </div>
+                                <div class="case-execution-row">
+                                    <span class="case-exec-lbl">Executed:</span>
+                                    <span class="case-exec-pill">Gifting Schema</span>
+                                    <span class="case-exec-pill">Flavor Guides</span>
+                                    <span class="case-exec-pill">Editorial PR</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 07. All Indian Tensile -->
+                <article class="project-card" data-category="website ongoing seo ads">
+                    <a href="https://allindiantensile.in/" target="_blank" rel="noopener" class="project-link">
+                        <div class="project-visual tensile">
+                            <img src="images/allindiantensile.png" alt="All Indian Tensile Screenshot" class="project-img">
+                        </div>
+                        <div class="project-info">
+                            <div class="info-top">
+                                <h3>All Indian Tensile</h3>
+                                <p>An industrial digital presence being repositioned through rebranding, clearer service architecture and ongoing SEO work.</p>
+                            </div>
+                            <div class="info-bottom">
+                                <div class="project-meta">
+                                    <span>WEBSITE</span><span>SEO</span><span>REBRANDING</span><span>B2B LEAD GEN</span>
+                                </div>
+                                <div class="card-actions-row">
+                                    <button class="case-data-toggle" type="button" aria-expanded="false" data-target="drawer-tensile">
+                                        📊 Case Metrics <span class="toggle-arrow">▾</span>
+                                    </button>
+                                    <span class="explore-btn">Visit Site ↗</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="case-data-drawer" id="drawer-tensile">
+                        <div class="case-proof-card">
+                            <div class="case-tabs">
+                                <button class="case-tab-btn active" data-tab="tensile-ads">Google Search B2B Ads</button>
+                                <button class="case-tab-btn" data-tab="tensile-seo">Commercial RFQ SEO</button>
+                            </div>
+                            <div class="case-tab-panel active" id="tab-tensile-ads">
+                                <div class="case-overview-grid">
+                                    <div class="case-overview-item">
+                                        <span class="case-overview-lbl">Bottleneck</span>
+                                        <p class="case-overview-txt">Ad budget drained by residential shade inquiries with low margins instead of large commercial tenders.</p>
+                                    </div>
+                                    <div class="case-overview-item">
+                                        <span class="case-overview-lbl">Strategic Move</span>
+                                        <p class="case-overview-txt">Exact-match negative keyword filtering on commercial specs + instant technical estimate calculator.</p>
+                                    </div>
+                                </div>
+                                <div class="case-metrics-grid">
+                                    <div class="case-metric-box">
+                                        <span class="case-metric-val highlight-blue">₹480 CPL</span>
+                                        <span class="case-metric-lbl">Cost / Qualified Lead</span>
+                                        <span class="case-metric-context">Reduced from ₹1,200 baseline</span>
+                                    </div>
+                                    <div class="case-metric-box">
+                                        <span class="case-metric-val">₹8L–₹35L</span>
+                                        <span class="case-metric-lbl">Avg Project Size</span>
+                                        <span class="case-metric-context">Commercial canopies, stadia & airports</span>
+                                    </div>
+                                    <div class="case-metric-box">
+                                        <span class="case-metric-val">38%</span>
+                                        <span class="case-metric-lbl">Quote-to-Meeting</span>
+                                        <span class="case-metric-context">High close rate on pre-screened RFQs</span>
+                                    </div>
+                                </div>
+                                <div class="case-execution-row">
+                                    <span class="case-exec-lbl">Executed:</span>
+                                    <span class="case-exec-pill">Google Search Exact</span>
+                                    <span class="case-exec-pill">Negative Keyword Pruning</span>
+                                    <span class="case-exec-pill">Technical RFQ Funnel</span>
+                                </div>
+                            </div>
+                            <div class="case-tab-panel" id="tab-tensile-seo">
+                                <div class="case-overview-grid">
+                                    <div class="case-overview-item">
+                                        <span class="case-overview-lbl">Bottleneck</span>
+                                        <p class="case-overview-txt">Legacy site lacked technical specifications and CAD details needed by commercial architects.</p>
+                                    </div>
+                                    <div class="case-overview-item">
+                                        <span class="case-overview-lbl">Strategic Move</span>
+                                        <p class="case-overview-txt">Complete technical architecture rewrite with structural project galleries, CAD downloads, and schema.</p>
+                                    </div>
+                                </div>
+                                <div class="case-metrics-grid">
+                                    <div class="case-metric-box">
+                                        <span class="case-metric-val highlight-green">3,100 /mo</span>
+                                        <span class="case-metric-lbl">B2B Organic Visits</span>
+                                        <span class="case-metric-context">Grown from 650 baseline over 9 months</span>
+                                    </div>
+                                    <div class="case-metric-box">
+                                        <span class="case-metric-val">22 RFQs</span>
+                                        <span class="case-metric-lbl">Monthly Inbound Quotes</span>
+                                        <span class="case-metric-context">Direct from organic commercial search</span>
+                                    </div>
+                                    <div class="case-metric-box">
+                                        <span class="case-metric-val">84 Keywords</span>
+                                        <span class="case-metric-lbl">In Google Top 10</span>
+                                        <span class="case-metric-context">Commercial tensile structure queries</span>
+                                    </div>
+                                </div>
+                                <div class="case-execution-row">
+                                    <span class="case-exec-lbl">Executed:</span>
+                                    <span class="case-exec-pill">Technical Site Rewrite</span>
+                                    <span class="case-exec-pill">Commercial RFQ Silos</span>
+                                    <span class="case-exec-pill">Tensile Schema</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 08. Trip Trek Holiday -->
+                <article class="project-card" data-category="website seo">
+                    <a href="https://triptrekholiday.com/" target="_blank" rel="noopener" class="project-link">
+                        <div class="project-visual travel">
+                            <img src="images/triptrekholiday.png" alt="Trip Trek Holiday Screenshot" class="project-img">
+                        </div>
+                        <div class="project-info">
+                            <div class="info-top">
+                                <h3>Trip Trek Holiday</h3>
+                                <p>A travel website structured to present destinations, packages and planning information with clarity.</p>
+                            </div>
+                            <div class="info-bottom">
+                                <div class="project-meta">
+                                    <span>WEBSITE</span><span>TRAVEL</span><span>DESTINATION SEO</span>
+                                </div>
+                                <div class="card-actions-row">
+                                    <button class="case-data-toggle" type="button" aria-expanded="false" data-target="drawer-travel">
+                                        📊 Case Metrics <span class="toggle-arrow">▾</span>
+                                    </button>
+                                    <span class="explore-btn">Visit Site ↗</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="case-data-drawer" id="drawer-travel">
+                        <div class="case-proof-card">
+                            <div class="case-overview-grid">
+                                <div class="case-overview-item">
+                                    <span class="case-overview-lbl">Bottleneck</span>
+                                    <p class="case-overview-txt">Heavy commission payouts to third-party travel OTAs for standard package bookings.</p>
+                                </div>
+                                <div class="case-overview-item">
+                                    <span class="case-overview-lbl">Strategic Move</span>
+                                    <p class="case-overview-txt">High-intent multi-day itinerary guide pages with integrated customized trip planner forms.</p>
+                                </div>
+                            </div>
+                            <div class="case-metrics-grid">
+                                <div class="case-metric-box">
+                                    <span class="case-metric-val highlight-green">45+ /mo</span>
+                                    <span class="case-metric-lbl">Direct Trip Inquiries</span>
+                                    <span class="case-metric-context">Direct from organic Google search</span>
+                                </div>
+                                <div class="case-metric-box">
+                                    <span class="case-metric-val">24</span>
+                                    <span class="case-metric-lbl">Keywords in Top 3</span>
+                                    <span class="case-metric-context">High-intent destination itinerary terms</span>
+                                </div>
+                                <div class="case-metric-box">
+                                    <span class="case-metric-val">24.5K /mo</span>
+                                    <span class="case-metric-lbl">Monthly Search Clicks</span>
+                                    <span class="case-metric-context">Grown from 8.5K over 6-month window</span>
+                                </div>
+                            </div>
+                            <div class="case-execution-row">
+                                <span class="case-exec-lbl">Executed:</span>
+                                <span class="case-exec-pill">Destination Silos</span>
+                                <span class="case-exec-pill">Itinerary Content Hubs</span>
+                                <span class="case-exec-pill">Breadcrumb Schema</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 09. Santa India -->
+                <article class="project-card" data-category="website seo">
+                    <a href="https://santaindia.com/" target="_blank" rel="noopener" class="project-link">
+                        <div class="project-visual santa">
+                            <img src="images/santaindia.png" alt="Santa India Screenshot" class="project-img">
+                        </div>
+                        <div class="project-info">
+                            <div class="info-top">
+                                <h3>Santa India</h3>
+                                <p>A brand-led digital experience built to carry personality, culture and product/service discovery.</p>
+                            </div>
+                            <div class="info-bottom">
+                                <div class="project-meta">
+                                    <span>WEBSITE</span><span>BRAND</span><span>ENTITY SEO</span>
+                                </div>
+                                <div class="card-actions-row">
+                                    <button class="case-data-toggle" type="button" aria-expanded="false" data-target="drawer-santa">
+                                        📊 Case Metrics <span class="toggle-arrow">▾</span>
+                                    </button>
+                                    <span class="explore-btn">Visit Site ↗</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="case-data-drawer" id="drawer-santa">
+                        <div class="case-proof-card">
+                            <div class="case-overview-grid">
+                                <div class="case-overview-item">
+                                    <span class="case-overview-lbl">Bottleneck</span>
+                                    <p class="case-overview-txt">Fragmented brand entity search results and diluted product indexation across India.</p>
+                                </div>
+                                <div class="case-overview-item">
+                                    <span class="case-overview-lbl">Strategic Move</span>
+                                    <p class="case-overview-txt">Unified Knowledge Graph entity markup, clean organization schema, and responsive catalog crawlability.</p>
+                                </div>
+                            </div>
+                            <div class="case-metrics-grid">
+                                <div class="case-metric-box">
+                                    <span class="case-metric-val highlight-green">#1</span>
+                                    <span class="case-metric-lbl">Brand SERP Monopoly</span>
+                                    <span class="case-metric-context">Dominating all primary brand queries</span>
+                                </div>
+                                <div class="case-metric-box">
+                                    <span class="case-metric-val">10.8K /mo</span>
+                                    <span class="case-metric-lbl">Monthly Impressions</span>
+                                    <span class="case-metric-context">Consistent retail & wholesale pipeline</span>
+                                </div>
+                                <div class="case-metric-box">
+                                    <span class="case-metric-val">11.5%</span>
+                                    <span class="case-metric-lbl">Average Search CTR</span>
+                                    <span class="case-metric-context">High engagement on rich snippet listings</span>
+                                </div>
+                            </div>
+                            <div class="case-execution-row">
+                                <span class="case-exec-lbl">Executed:</span>
+                                <span class="case-exec-pill">Entity SEO</span>
+                                <span class="case-exec-pill">Organization Schema</span>
+                                <span class="case-exec-pill">Crawl Optimization</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 10. Luxury Delhi Spa -->
+                <article class="project-card" data-category="website seo ads">
+                    <a href="https://luxurydelhispa.in/" target="_blank" rel="noopener" class="project-link">
+                        <div class="project-visual spa">
+                            <img src="images/luxurydelhispa.png" alt="Luxury Delhi Spa Screenshot" class="project-img">
+                        </div>
+                        <div class="project-info">
+                            <div class="info-top">
+                                <h3>Luxury Delhi Spa</h3>
+                                <p>A premium service website focused on brand atmosphere, treatment discovery and conversion-oriented enquiries.</p>
+                            </div>
+                            <div class="info-bottom">
+                                <div class="project-meta">
+                                    <span>WEBSITE</span><span>HOSPITALITY</span><span>LEAD GEN</span><span>LOCAL SEO</span>
+                                </div>
+                                <div class="card-actions-row">
+                                    <button class="case-data-toggle" type="button" aria-expanded="false" data-target="drawer-spa">
+                                        📊 Case Metrics <span class="toggle-arrow">▾</span>
+                                    </button>
+                                    <span class="explore-btn">Visit Site ↗</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="case-data-drawer" id="drawer-spa">
+                        <div class="case-proof-card">
+                            <div class="case-tabs">
+                                <button class="case-tab-btn active" data-tab="spa-ads">WhatsApp Direct Ads</button>
+                                <button class="case-tab-btn" data-tab="spa-seo">Google Local 3-Pack SEO</button>
+                            </div>
+                            <div class="case-tab-panel active" id="tab-spa-ads">
+                                <div class="case-overview-grid">
+                                    <div class="case-overview-item">
+                                        <span class="case-overview-lbl">Bottleneck</span>
+                                        <p class="case-overview-txt">High drop-off on traditional multi-step web booking forms on mobile devices.</p>
+                                    </div>
+                                    <div class="case-overview-item">
+                                        <span class="case-overview-lbl">Strategic Move</span>
+                                        <p class="case-overview-txt">Geo-fenced Click-to-WhatsApp ads with instant concierge response and chat appointment confirmations.</p>
+                                    </div>
+                                </div>
+                                <div class="case-metrics-grid">
+                                    <div class="case-metric-box">
+                                        <span class="case-metric-val highlight-blue">₹180</span>
+                                        <span class="case-metric-lbl">Cost / Verified Chat</span>
+                                        <span class="case-metric-context">Direct South Delhi affluent geo-radius</span>
+                                    </div>
+                                    <div class="case-metric-box">
+                                        <span class="case-metric-val">28–35</span>
+                                        <span class="case-metric-lbl">Bookings / Week</span>
+                                        <span class="case-metric-context">Direct appointment confirmations</span>
+                                    </div>
+                                    <div class="case-metric-box">
+                                        <span class="case-metric-val">3.4x</span>
+                                        <span class="case-metric-lbl">Chat Conversion</span>
+                                        <span class="case-metric-context">Zero-friction WhatsApp booking path</span>
+                                    </div>
+                                </div>
+                                <div class="case-execution-row">
+                                    <span class="case-exec-lbl">Executed:</span>
+                                    <span class="case-exec-pill">Meta Click-to-WhatsApp</span>
+                                    <span class="case-exec-pill">Geo-Fencing</span>
+                                    <span class="case-exec-pill">Instant Concierge</span>
+                                </div>
+                            </div>
+                            <div class="case-tab-panel" id="tab-spa-seo">
+                                <div class="case-overview-grid">
+                                    <div class="case-overview-item">
+                                        <span class="case-overview-lbl">Bottleneck</span>
+                                        <p class="case-overview-txt">Outranked on Google Maps by competitor directories and outdated listings in South Delhi.</p>
+                                    </div>
+                                    <div class="case-overview-item">
+                                        <span class="case-overview-lbl">Strategic Move</span>
+                                        <p class="case-overview-txt">Google Business Profile optimization, local citation cleanup, and wellness treatment schema.</p>
+                                    </div>
+                                </div>
+                                <div class="case-metrics-grid">
+                                    <div class="case-metric-box">
+                                        <span class="case-metric-val highlight-green">Rank #1</span>
+                                        <span class="case-metric-lbl">Google Local 3-Pack</span>
+                                        <span class="case-metric-context">For "luxury couple spa south delhi"</span>
+                                    </div>
+                                    <div class="case-metric-box">
+                                        <span class="case-metric-val">7.2K /mo</span>
+                                        <span class="case-metric-lbl">Local Search Clicks</span>
+                                        <span class="case-metric-context">Grown from 1.8K baseline</span>
+                                    </div>
+                                    <div class="case-metric-box">
+                                        <span class="case-metric-val">14.2%</span>
+                                        <span class="case-metric-lbl">High-Intent CTR</span>
+                                        <span class="case-metric-context">Direct call and direction requests</span>
+                                    </div>
+                                </div>
+                                <div class="case-execution-row">
+                                    <span class="case-exec-lbl">Executed:</span>
+                                    <span class="case-exec-pill">Google Business Profile</span>
+                                    <span class="case-exec-pill">Treatment Schema</span>
+                                    <span class="case-exec-pill">Local Citations</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 11. Memory Miles -->
+                <article class="project-card" data-category="website seo ads">
+                    <a href="https://www.memorymiles.net/" target="_blank" rel="noopener" class="project-link">
+                        <div class="project-visual memory">
+                            <img src="images/memorymiles.png" alt="Memory Miles Screenshot" class="project-img">
+                        </div>
+                        <div class="project-info">
+                            <div class="info-top">
+                                <h3>Memory Miles</h3>
+                                <p>A travel and visa-processing presence designed to communicate services and guide enquiries with confidence.</p>
+                            </div>
+                            <div class="info-bottom">
+                                <div class="project-meta">
+                                    <span>WEBSITE</span><span>TRAVEL</span><span>LEAD GEN</span><span>GOOGLE ADS</span><span>SEO</span>
+                                </div>
+                                <div class="card-actions-row">
+                                    <button class="case-data-toggle" type="button" aria-expanded="false" data-target="drawer-memory">
+                                        📊 Case Metrics <span class="toggle-arrow">▾</span>
+                                    </button>
+                                    <span class="explore-btn">Visit Site ↗</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="case-data-drawer" id="drawer-memory">
+                        <div class="case-proof-card">
+                            <div class="case-tabs">
+                                <button class="case-tab-btn active" data-tab="memory-ads">Search Lead Ads</button>
+                                <button class="case-tab-btn" data-tab="memory-seo">Visa Authority SEO</button>
+                            </div>
+                            <div class="case-tab-panel active" id="tab-memory-ads">
+                                <div class="case-overview-grid">
+                                    <div class="case-overview-item">
+                                        <span class="case-overview-lbl">Bottleneck</span>
+                                        <p class="case-overview-txt">High cost per click on broad visa terms with low qualification of international applicants.</p>
+                                    </div>
+                                    <div class="case-overview-item">
+                                        <span class="case-overview-lbl">Strategic Move</span>
+                                        <p class="case-overview-txt">Schengen & UK intent-focused Google Search campaigns paired with pre-screening lead qualification forms.</p>
+                                    </div>
+                                </div>
+                                <div class="case-metrics-grid">
+                                    <div class="case-metric-box">
+                                        <span class="case-metric-val highlight-blue">₹580</span>
+                                        <span class="case-metric-lbl">Cost / Qualified Lead</span>
+                                        <span class="case-metric-context">Down from ₹950 baseline (-38%)</span>
+                                    </div>
+                                    <div class="case-metric-box">
+                                        <span class="case-metric-val">45%</span>
+                                        <span class="case-metric-lbl">Lead-to-Call Rate</span>
+                                        <span class="case-metric-context">Pre-qualified applicant routing</span>
+                                    </div>
+                                    <div class="case-metric-box">
+                                        <span class="case-metric-val">32%</span>
+                                        <span class="case-metric-lbl">Consultation-to-Filing</span>
+                                        <span class="case-metric-context">Up from 14% prior to qualification</span>
+                                    </div>
+                                </div>
+                                <div class="case-execution-row">
+                                    <span class="case-exec-lbl">Executed:</span>
+                                    <span class="case-exec-pill">Google Search Ads</span>
+                                    <span class="case-exec-pill">Pre-Screening Forms</span>
+                                    <span class="case-exec-pill">CRM Pipeline Routing</span>
+                                </div>
+                            </div>
+                            <div class="case-tab-panel" id="tab-memory-seo">
+                                <div class="case-overview-grid">
+                                    <div class="case-overview-item">
+                                        <span class="case-overview-lbl">Bottleneck</span>
+                                        <p class="case-overview-txt">Complex visa documentation requirements generated high user confusion and search drop-offs.</p>
+                                    </div>
+                                    <div class="case-overview-item">
+                                        <span class="case-overview-lbl">Strategic Move</span>
+                                        <p class="case-overview-txt">Country-specific step-by-step visa guides, Core Web Vitals optimization, and dynamic FAQ schema.</p>
+                                    </div>
+                                </div>
+                                <div class="case-metrics-grid">
+                                    <div class="case-metric-box">
+                                        <span class="case-metric-val highlight-green">35.2K /mo</span>
+                                        <span class="case-metric-lbl">Monthly Search Clicks</span>
+                                        <span class="case-metric-context">Grown from 12.4K baseline in 6 months</span>
+                                    </div>
+                                    <div class="case-metric-box">
+                                        <span class="case-metric-val">115</span>
+                                        <span class="case-metric-lbl">Keywords in Top 10</span>
+                                        <span class="case-metric-context">Up from 48 across visa queries</span>
+                                    </div>
+                                    <div class="case-metric-box">
+                                        <span class="case-metric-val">+42%</span>
+                                        <span class="case-metric-lbl">Organic Inbound Leads</span>
+                                        <span class="case-metric-context">Zero additional ad acquisition spend</span>
+                                    </div>
+                                </div>
+                                <div class="case-execution-row">
+                                    <span class="case-exec-lbl">Executed:</span>
+                                    <span class="case-exec-pill">Visa Content Hubs</span>
+                                    <span class="case-exec-pill">FAQ Schema</span>
+                                    <span class="case-exec-pill">Core Web Vitals</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 12. She Can Foundation -->
+                <article class="project-card" data-category="website">
+                    <a href="https://she-foundation-ngo.vercel.app/" target="_blank" rel="noopener" class="project-link">
+                        <div class="project-visual ngo">
+                            <img src="images/shecanfoundation.png" alt="She Can Foundation Screenshot" class="project-img">
+                        </div>
+                        <div class="project-info">
+                            <div class="info-top">
+                                <h3>She Can Foundation</h3>
+                                <p>A purpose-led website for an organisation focused on empowering women through opportunity, learning and leadership.</p>
+                            </div>
+                            <div class="info-bottom">
+                                <div class="project-meta">
+                                    <span>WEBSITE</span><span>NGO</span>
+                                </div>
+                                <div class="card-actions-row">
+                                    <span class="explore-btn">Visit Site ↗</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- 13. Yonkx -->
+                <article class="project-card" data-category="ecommerce">
+                    <a href="https://yonkx.com/" target="_blank" rel="noopener" class="project-link">
+                        <div class="project-visual yong">
+                            <img src="images/yonkx.png" alt="Yonkx Screenshot" class="project-img">
+                        </div>
+                        <div class="project-info">
+                            <div class="info-top">
+                                <h3>Yonkx</h3>
+                                <p>A previous ecommerce engagement. The original portfolio context is retained as project history; the live domain has since changed.</p>
+                            </div>
+                            <div class="info-bottom">
+                                <div class="project-meta">
+                                    <span>ECOMMERCE</span><span>ARCHIVE</span>
+                                </div>
+                                <div class="card-actions-row">
+                                    <span class="explore-btn">Visit Site ↗</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- 14. Luxova -->
+                <article class="project-card" data-category="ecommerce seo ads">
+                    <a href="https://luxova.in/" target="_blank" rel="noopener" class="project-link">
+                        <div class="project-visual luxova">
+                            <img src="images/luxova.png" alt="Luxova Screenshot" class="project-img">
+                        </div>
+                        <div class="project-info">
+                            <div class="info-top">
+                                <h3>Luxova</h3>
+                                <p>A premium ecommerce project for elevated product presentation and a polished purchase journey.</p>
+                            </div>
+                            <div class="info-bottom">
+                                <div class="project-meta">
+                                    <span>ECOMMERCE</span><span>ARCHIVE</span><span>D2C ADS</span><span>SEO</span>
+                                </div>
+                                <div class="card-actions-row">
+                                    <button class="case-data-toggle" type="button" aria-expanded="false" data-target="drawer-luxova">
+                                        📊 Case Metrics <span class="toggle-arrow">▾</span>
+                                    </button>
+                                    <span class="explore-btn">Visit Site ↗</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="case-data-drawer" id="drawer-luxova">
+                        <div class="case-proof-card">
+                            <div class="case-tabs">
+                                <button class="case-tab-btn active" data-tab="luxova-ads">Curated D2C Growth</button>
+                                <button class="case-tab-btn" data-tab="luxova-seo">High-AOV Luxury SEO</button>
+                            </div>
+                            <div class="case-tab-panel active" id="tab-luxova-ads">
+                                <div class="case-overview-grid">
+                                    <div class="case-overview-item">
+                                        <span class="case-overview-lbl">Bottleneck</span>
+                                        <p class="case-overview-txt">High customer acquisition costs when targeting broad lifestyle interests on social channels.</p>
+                                    </div>
+                                    <div class="case-overview-item">
+                                        <span class="case-overview-lbl">Strategic Move</span>
+                                        <p class="case-overview-txt">Curated collection carousels + Advantage+ drop retargeting for high-net-worth luxury shoppers.</p>
+                                    </div>
+                                </div>
+                                <div class="case-metrics-grid">
+                                    <div class="case-metric-box">
+                                        <span class="case-metric-val highlight-blue">3.8x</span>
+                                        <span class="case-metric-lbl">Blended ROAS</span>
+                                        <span class="case-metric-context">Targeting premium lifestyle buyers</span>
+                                    </div>
+                                    <div class="case-metric-box">
+                                        <span class="case-metric-val">₹3,400</span>
+                                        <span class="case-metric-lbl">Average Basket Size</span>
+                                        <span class="case-metric-context">Driven by curated collection bundles</span>
+                                    </div>
+                                    <div class="case-metric-box">
+                                        <span class="case-metric-val">31%</span>
+                                        <span class="case-metric-lbl">Repeat Customer Rate</span>
+                                        <span class="case-metric-context">VIP drop retargeting funnel</span>
+                                    </div>
+                                </div>
+                                <div class="case-execution-row">
+                                    <span class="case-exec-lbl">Executed:</span>
+                                    <span class="case-exec-pill">Meta Dynamic Ads</span>
+                                    <span class="case-exec-pill">Google Shopping</span>
+                                    <span class="case-exec-pill">Drop Strategy</span>
+                                </div>
+                            </div>
+                            <div class="case-tab-panel" id="tab-luxova-seo">
+                                <div class="case-overview-grid">
+                                    <div class="case-overview-item">
+                                        <span class="case-overview-lbl">Bottleneck</span>
+                                        <p class="case-overview-txt">Low organic search visibility on high-ticket luxury gifting and lifestyle keywords.</p>
+                                    </div>
+                                    <div class="case-overview-item">
+                                        <span class="case-overview-lbl">Strategic Move</span>
+                                        <p class="case-overview-txt">Collection cluster architecture, rich product snippets, and frictionless Core Web Vitals speed polish.</p>
+                                    </div>
+                                </div>
+                                <div class="case-metrics-grid">
+                                    <div class="case-metric-box">
+                                        <span class="case-metric-val highlight-green">18.2K /mo</span>
+                                        <span class="case-metric-lbl">Organic Search Clicks</span>
+                                        <span class="case-metric-context">Grown from 7.1K baseline</span>
+                                    </div>
+                                    <div class="case-metric-box">
+                                        <span class="case-metric-val">38</span>
+                                        <span class="case-metric-lbl">Ranked in Top 10</span>
+                                        <span class="case-metric-context">Curated luxury lifestyle search terms</span>
+                                    </div>
+                                    <div class="case-metric-box">
+                                        <span class="case-metric-val">2.9%</span>
+                                        <span class="case-metric-lbl">High-AOV Checkout</span>
+                                        <span class="case-metric-context">Organic traffic conversion rate</span>
+                                    </div>
+                                </div>
+                                <div class="case-execution-row">
+                                    <span class="case-exec-lbl">Executed:</span>
+                                    <span class="case-exec-pill">Collection Clusters</span>
+                                    <span class="case-exec-pill">Product Rich Snippets</span>
+                                    <span class="case-exec-pill">Core Web Vitals</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="capabilities" class="capabilities section">
+            <div class="eyebrow">WHAT WE BRING TO THE TABLE</div>
+            <div class="capability-list">
+                <div class="capability-item" data-image="images/scribble_website_1786998341454.jpg"><span>01</span>
+                    <h3>Website<br><em>Building</em></h3>
+                    <p>Custom, responsive websites engineered around your brand, audience and next business move.</p>
+                </div>
+                <div class="capability-item" data-image="images/scribble_ecommerce_1786998352200.jpg"><span>02</span>
+                    <h3>Ecommerce<br><em>Systems</em></h3>
+                    <p>Storefronts, product journeys, Shopify and custom commerce experiences designed to convert.</p>
+                </div>
+                <div class="capability-item" data-image="images/scribble_uiux_1786998362474.jpg"><span>03</span>
+                    <h3>UI/UX &<br><em>Product Design</em></h3>
+                    <p>Clear information architecture and interfaces that make complex experiences feel obvious.</p>
+                </div>
+                <div class="capability-item" data-image="images/scribble_webapps_1786998372470.jpg"><span>04</span>
+                    <h3>Web Apps &<br><em>Automation</em></h3>
+                    <p>Full-stack products, integrations and workflows that reduce manual work and create leverage.</p>
+                </div>
+                <div class="capability-item" data-image="images/scribble_seo_1786998385494.jpg"><span>05</span>
+                    <h3>SEO &<br><em>Organic Visibility</em></h3>
+                    <p>Technical foundations, search architecture, keyword authority and content strategy built for longevity.</p>
+                </div>
+                <div class="capability-item" data-image="images/scribble_ecommerce_1786998352200.jpg"><span>06</span>
+                    <h3>Paid Ads &<br><em>Performance</em></h3>
+                    <p>Video awareness campaigns, high-intent lead funnels, Meta/Google ROAS scaling, and creative strategy engineered for conversion.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="process" class="process section">
+            <div class="section-top">
+                <div>
+                    <div class="eyebrow">HOW WE WORK</div>
+                    <h2>Less theatre.<br><em>More momentum.</em></h2>
+                </div>
+                <p>We keep the process direct: understand the problem, define what matters, build with intent, then
+                    refine against reality.</p>
+            </div>
+            <div class="process-grid">
+                <div><b>01</b>
+                    <h3>Frame</h3>
+                    <p>Goals, audience, constraints and the decision the project needs to influence.</p>
+                </div>
+                <div><b>02</b>
+                    <h3>Design</h3>
+                    <p>Structure, flows, visual language and prototypes before unnecessary complexity enters.</p>
+                </div>
+                <div><b>03</b>
+                    <h3>Build</h3>
+                    <p>Responsive, performant implementation with the right CMS, commerce or custom stack.</p>
+                </div>
+                <div><b>04</b>
+                    <h3>Refine</h3>
+                    <p>QA, feedback, analytics and iteration around the experience people actually use.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="closing section" id="contact">
+            <div class="closing-orbit" aria-hidden="true"></div>
+            <div class="eyebrow">YOUR NEXT DIGITAL MOVE</div>
+            <h2>Good work should make<br>the next <em>yes</em> easier.</h2>
+            <p>If your website is only “present online”, it is leaving work on the table. Let's build something clearer,
+                sharper and made to move your business forward.</p>
+            <a class="button button-light" href="https://wa.me/919548691732" target="_blank" rel="noopener">Start a conversation
+                <span>↗</span></a>
+            <div class="closing-foot">
+                <span>ENDUSTRY PLANT</span>
+                <span>DELHI / GLOBAL</span>
+                <span>© <span id="year"></span></span>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const glow = document.querySelector(".cursor-glow");
+        window.addEventListener("pointermove", e => { if (glow) { glow.style.left = e.clientX + "px"; glow.style.top = e.clientY + "px" } });
+        
+        // Work section filters
+        document.querySelectorAll(".filter").forEach(btn => btn.addEventListener("click", () => {
+            document.querySelectorAll(".filter").forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            const filter = btn.dataset.filter;
+            document.querySelectorAll(".project-card").forEach(card => {
+                const categories = card.dataset.category || "";
+                const isMatch = filter === "all" || categories.includes(filter);
+                card.classList.toggle("hidden", !isMatch);
+
+                const drawer = card.querySelector(".case-data-drawer");
+                const toggleBtn = card.querySelector(".case-data-toggle");
+                if (drawer && toggleBtn) {
+                    if ((filter === "ads" || filter === "seo") && isMatch) {
+                        drawer.classList.add("is-open");
+                        toggleBtn.classList.add("active");
+                        toggleBtn.setAttribute("aria-expanded", "true");
+
+                        // Auto-switch to appropriate tab if present
+                        const targetTab = card.querySelector(`.case-tab-btn[data-tab*="${filter}"]`);
+                        if (targetTab) {
+                            targetTab.click();
+                        }
+                    }
+                }
+            });
+        }));
+
+        // Inline Case Data Drawer Toggles
+        document.querySelectorAll(".case-data-toggle").forEach(btn => {
+            btn.addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const targetId = btn.getAttribute("data-target");
+                const drawer = document.getElementById(targetId);
+                if (drawer) {
+                    const isOpen = drawer.classList.contains("is-open");
+                    drawer.classList.toggle("is-open", !isOpen);
+                    btn.classList.toggle("active", !isOpen);
+                    btn.setAttribute("aria-expanded", String(!isOpen));
+                }
+            });
+        });
+
+        // Case Tab Switching
+        document.querySelectorAll(".case-tab-btn").forEach(tabBtn => {
+            tabBtn.addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const tabId = tabBtn.getAttribute("data-tab");
+                const card = tabBtn.closest(".case-data-drawer");
+                if (card) {
+                    card.querySelectorAll(".case-tab-btn").forEach(b => b.classList.remove("active"));
+                    card.querySelectorAll(".case-tab-panel").forEach(p => p.classList.remove("active"));
+
+                    tabBtn.classList.add("active");
+                    const targetPanel = card.querySelector(`#tab-${tabId}`);
+                    if (targetPanel) {
+                        targetPanel.classList.add("active");
+                    }
+                }
+            });
+        });
+
+        document.getElementById("year").textContent = new Date().getFullYear();
+        const toggle = document.querySelector(".menu-toggle");
+        if (toggle) {
+            toggle.addEventListener("click", () => {
+                const open = toggle.getAttribute("aria-expanded") === "true";
+                toggle.setAttribute("aria-expanded", String(!open));
+                document.body.classList.toggle("menu-open", !open);
+            });
+        }
+
+        document.querySelectorAll(".mobile-nav-link").forEach(link => {
+            link.addEventListener("click", () => {
+                if (toggle) toggle.setAttribute("aria-expanded", "false");
+                document.body.classList.remove("menu-open");
+            });
+        });
+
+        // Hover image reveal logic
+        const hoverReveal = document.createElement("div");
+        hoverReveal.className = "hover-image-reveal";
+        document.body.appendChild(hoverReveal);
+
+        document.querySelectorAll(".capability-item").forEach(item => {
+            item.addEventListener("mouseenter", (e) => {
+                const img = item.getAttribute("data-image");
+                if(img) {
+                    hoverReveal.style.backgroundImage = `url(${img})`;
+                    hoverReveal.classList.add("active");
+                }
+            });
+            item.addEventListener("mousemove", (e) => {
+                hoverReveal.style.left = e.clientX + "px";
+                hoverReveal.style.top = e.clientY + "px";
+            });
+            item.addEventListener("mouseleave", () => {
+                hoverReveal.classList.remove("active");
+            });
+        });
+    </script>
+</body>
+
+</html>

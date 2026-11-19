@@ -1,0 +1,208 @@
+[
+  {
+    "id": "proj-1",
+    "title": "Orbit",
+    "image": "/portfolio/orbit.png",
+    "link": "https://orbit.forion.dev/",
+    "desc": "",
+    "tags": [
+      "LinkedIn Sponsored",
+      "X Motion Ads",
+      "Self-Serve Funnel",
+      "Docs SEO"
+    ],
+    "metrics": [],
+    "filter": "saas ads"
+  },
+  {
+    "id": "proj-2",
+    "title": "AgentTrace",
+    "image": "/portfolio/agnettrace.png",
+    "link": "https://agnettrace.vercel.app",
+    "desc": "",
+    "tags": [],
+    "metrics": [],
+    "filter": "saas"
+  },
+  {
+    "id": "proj-3",
+    "title": "Forion",
+    "image": "/portfolio/forion.png",
+    "link": "https://forion.ai/",
+    "desc": "",
+    "tags": [
+      "Programmatic Docs SEO",
+      "SSR Performance",
+      "Topic Clusters"
+    ],
+    "metrics": [],
+    "filter": "website seo"
+  },
+  {
+    "id": "proj-4",
+    "title": "Island Rangoli",
+    "image": "/portfolio/islandrangoli.png",
+    "link": "https://islandrangoli.com/",
+    "desc": "",
+    "tags": [
+      "Meta Advantage+",
+      "Instagram Reels",
+      "Shopify Direct Checkout",
+      "Collection Siloing",
+      "Product Schema",
+      "Festive Keyword Mapping"
+    ],
+    "metrics": [],
+    "filter": "ecommerce seo ads"
+  },
+  {
+    "id": "proj-5",
+    "title": "Crunchy Fashion",
+    "image": "/portfolio/crunchyfashion.png",
+    "link": "https://www.crunchyfashion.com/",
+    "desc": "",
+    "tags": [
+      "Meta DPA",
+      "Advantage+ Shopping",
+      "OOTD Styling Reels",
+      "Faceted Nav SEO",
+      "Structured Schema",
+      "Fast CDN Delivery"
+    ],
+    "metrics": [],
+    "filter": "ecommerce seo ads"
+  },
+  {
+    "id": "proj-6",
+    "title": "Chockriti",
+    "image": "/portfolio/chockriti.png",
+    "link": "https://www.chockriti.com/",
+    "desc": "",
+    "tags": [
+      "Brand Cinema",
+      "Instagram Stories",
+      "Executive Gifting Catalog",
+      "Gifting Schema",
+      "Flavor Guides",
+      "Editorial PR"
+    ],
+    "metrics": [],
+    "filter": "ecommerce seo ads"
+  },
+  {
+    "id": "proj-7",
+    "title": "All Indian Tensile",
+    "image": "/portfolio/allindiantensile.png",
+    "link": "https://allindiantensile.in/",
+    "desc": "",
+    "tags": [
+      "Google Search Exact",
+      "Negative Keyword Pruning",
+      "Technical RFQ Funnel",
+      "Technical Site Rewrite",
+      "Commercial RFQ Silos",
+      "Tensile Schema"
+    ],
+    "metrics": [],
+    "filter": "website ongoing seo ads"
+  },
+  {
+    "id": "proj-8",
+    "title": "Trip Trek Holiday",
+    "image": "/portfolio/triptrekholiday.png",
+    "link": "https://triptrekholiday.com/",
+    "desc": "",
+    "tags": [
+      "Destination Silos",
+      "Itinerary Content Hubs",
+      "Breadcrumb Schema"
+    ],
+    "metrics": [],
+    "filter": "website seo"
+  },
+  {
+    "id": "proj-9",
+    "title": "Santa India",
+    "image": "/portfolio/santaindia.png",
+    "link": "https://santaindia.com/",
+    "desc": "",
+    "tags": [
+      "Entity SEO",
+      "Organization Schema",
+      "Crawl Optimization"
+    ],
+    "metrics": [],
+    "filter": "website seo"
+  },
+  {
+    "id": "proj-10",
+    "title": "Luxury Delhi Spa",
+    "image": "/portfolio/luxurydelhispa.png",
+    "link": "https://luxurydelhispa.in/",
+    "desc": "",
+    "tags": [
+      "Meta Click-to-WhatsApp",
+      "Geo-Fencing",
+      "Instant Concierge",
+      "Google Business Profile",
+      "Treatment Schema",
+      "Local Citations"
+    ],
+    "metrics": [],
+    "filter": "website seo ads"
+  },
+  {
+    "id": "proj-11",
+    "title": "Memory Miles",
+    "image": "/portfolio/memorymiles.png",
+    "link": "https://www.memorymiles.net/",
+    "desc": "",
+    "tags": [
+      "Google Search Ads",
+      "Pre-Screening Forms",
+      "CRM Pipeline Routing",
+      "Visa Content Hubs",
+      "FAQ Schema",
+      "Core Web Vitals"
+    ],
+    "metrics": [],
+    "filter": "website seo ads"
+  },
+  {
+    "id": "proj-12",
+    "title": "She Can Foundation",
+    "image": "/portfolio/shecanfoundation.png",
+    "link": "https://she-foundation-ngo.vercel.app/",
+    "desc": "",
+    "tags": [],
+    "metrics": [],
+    "filter": "website"
+  },
+  {
+    "id": "proj-13",
+    "title": "Yonkx",
+    "image": "/portfolio/yonkx.png",
+    "link": "https://yonkx.com/",
+    "desc": "",
+    "tags": [],
+    "metrics": [],
+    "filter": "ecommerce"
+  },
+  {
+    "id": "proj-14",
+    "title": "Luxova",
+    "image": "/portfolio/luxova.png",
+    "link": "https://luxova.in/",
+    "desc": "",
+    "tags": [
+      "Meta Dynamic Ads",
+      "Google Shopping",
+      "Drop Strategy",
+      "Collection Clusters",
+      "Product Rich Snippets",
+      "Core Web Vitals"
+    ],
+    "metrics": [],
+    "filter": "ecommerce seo ads"
+  }
+]
