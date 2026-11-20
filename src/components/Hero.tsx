@@ -123,16 +123,83 @@ const MARQUEE_ITEMS: MarqueeItem[] = [
   },
 ];
 
+const PROOF_CARDS = [
+  {
+    id: 'speed',
+    posClass: styles.cardTopLeft,
+    icon: '⚡',
+    badge: '0.68s LCP Speed',
+    title: 'Sub-Second Edge Loads',
+    sub: 'Next.js 16 · Turbopack · 100% Core Web Vitals',
+  },
+  {
+    id: 'conv',
+    posClass: styles.cardTopRight,
+    icon: '📈',
+    badge: '+240% Checkout Conv',
+    title: 'Aura Lifestyle D2C',
+    sub: 'Shopify Plus · Razorpay 1-Click UPI',
+  },
+  {
+    id: 'stack',
+    posClass: styles.cardMidLeft,
+    icon: '🛠️',
+    badge: '100% Bespoke Code',
+    title: 'Zero Template Bloat',
+    sub: 'React Native · Supabase · TypeScript',
+  },
+  {
+    id: 'leads',
+    posClass: styles.cardMidRight,
+    icon: '📍',
+    badge: '45+ Inquiries /mo',
+    title: 'Trip Trek Holiday',
+    sub: 'Destination Silos · WhatsApp Booking',
+  },
+  {
+    id: 'ip',
+    posClass: styles.cardBottomLeft,
+    icon: '🔒',
+    badge: '100% IP Handover',
+    title: 'Full Git Repo Transfer',
+    sub: 'Zero Vendor Lock-In · Clean Architecture',
+  },
+  {
+    id: 'sla',
+    posClass: styles.cardBottomRight,
+    icon: '🛡️',
+    badge: '30-Day Production SLA',
+    title: 'Bug Fixing Warranty',
+    sub: 'Included With Every Sprint Launch',
+  },
+];
+
 export default function Hero() {
   return (
     <>
       <div className={styles.heroOuter}>
         <section className={styles.heroCard} id="hero">
-          <div className={styles.heroGlow} />
+          {/* PERPLEXITY × CARBON ATMOSPHERIC RAYS & RADIAL SPEED STREAKS */}
+          <div className={styles.atmosphericRays} />
+          <div className={styles.speedStreaks} />
 
-          {/* MAIN HEADLINE */}
-          <div className={styles.heroBody}>
-            <div className={styles.eyebrow}>
+          {/* UMI-INSPIRED 2.5D FLOATING PROOF ARTIFACTS (DESKTOP ORBIT) */}
+          <div className={styles.orbitContainer} aria-hidden="true">
+            {PROOF_CARDS.map((card) => (
+              <div key={card.id} className={`${styles.floatingCard} ${card.posClass}`}>
+                <div className={styles.cardIconBox}>{card.icon}</div>
+                <div className={styles.cardDetails}>
+                  <span className={styles.cardBadge}>{card.badge}</span>
+                  <strong className={styles.cardTitle}>{card.title}</strong>
+                  <span className={styles.cardSub}>{card.sub}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* CENTER STAGE EDITORIAL MONOLITH */}
+          <div className={styles.heroContent}>
+            <div className={styles.eyebrowBadge}>
               <span className={styles.coralSquare} />
               <span>Senior Digital Product Studio · New Delhi</span>
             </div>
@@ -142,32 +209,34 @@ export default function Hero() {
               for India’s High-Growth<br />
               Digital Brands.
             </h1>
-          </div>
 
-          {/* BOTTOM BAR INSIDE HERO */}
-          <div className={styles.bottomRow}>
-            {/* PILLARS WITHOUT AI DESIGN SLOP */}
-            <div className={styles.pillarsLeft}>
-              <span className={styles.pillarItem}>+ Architecture</span>
-              <span className={styles.pillarItem}>+ UI/UX Craft</span>
-              <span className={styles.pillarItem}>+ Next.js Engineering</span>
-              <span className={styles.pillarItem}>+ Production Scale</span>
+            <p className={styles.subheadline}>
+              We architect, design, and code high-speed Next.js web applications,
+              Shopify Plus headless storefronts, and cross-platform mobile products.
+              Fixed milestone sprints with zero agency middlemen.
+            </p>
+
+            <div className={styles.btnGroup}>
+              <Link href="/work" className={styles.coralBtn}>
+                View Work (13) ↗
+              </Link>
+              <Link href="/contact" className={styles.whiteBtn}>
+                Book A Call ↗
+              </Link>
             </div>
 
-            <div className={styles.actionsRight}>
-              <p className={styles.servicesPitch}>
-                High-Speed Websites, Mobile Apps & eCommerce<br />
-                Built for Category Leaders & Startups
-              </p>
-
-              <div className={styles.btnGroup}>
-                <Link href="/#work" className={styles.coralBtn}>
-                  View Work (13) ↗
-                </Link>
-                <Link href="/contact" className={styles.whiteBtn}>
-                  Book A Call ↗
-                </Link>
-              </div>
+            {/* MOBILE PROOF RAIL (CLEAN HORIZONTAL CAROUSEL ON SMALL SCREENS) */}
+            <div className={styles.mobileProofRail}>
+              {PROOF_CARDS.map((card) => (
+                <div key={card.id} className={styles.mobileProofCard}>
+                  <div className={styles.cardIconBox}>{card.icon}</div>
+                  <div className={styles.cardDetails}>
+                    <span className={styles.cardBadge}>{card.badge}</span>
+                    <strong className={styles.cardTitle}>{card.title}</strong>
+                    <span className={styles.cardSub}>{card.sub}</span>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -184,8 +253,7 @@ export default function Hero() {
 
         <div className={styles.marqueeWrapper}>
           <div className={styles.marqueeTrack}>
-            {/* Render twice for continuous loop */}
-            {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((item, idx) => (
+            {MARQUEE_ITEMS.concat(MARQUEE_ITEMS).map((item, idx) => (
               <div key={idx} className={styles.logoItem}>
                 <span className={styles.logoIconWrap}>{item.icon}</span>
                 <span>{item.name}</span>
