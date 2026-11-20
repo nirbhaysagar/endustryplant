@@ -41,7 +41,6 @@ function ContactContent() {
   const [email, setEmail] = useState('');
   const [company, setCompany] = useState('');
   const [phone, setPhone] = useState('');
-  const [budget, setBudget] = useState('₹75K – ₹1.5L');
   const [details, setDetails] = useState('');
   const [selectedServices, setSelectedServices] = useState<string[]>(['website']);
   const [submitted, setSubmitted] = useState(false);
@@ -99,7 +98,6 @@ function ContactContent() {
             email,
             company: company || null,
             phone: phone || null,
-            budget,
             services: selectedServices,
             details: details || null,
           }),
@@ -301,22 +299,6 @@ function ContactContent() {
               </div>
 
               <div className={styles.fieldGroup}>
-                <label className={styles.fieldLabel}>Estimated Budget</label>
-                <div className={styles.selectorGrid}>
-                  {['₹45K – ₹1L', '₹1L – ₹2.5L', '₹2.5L – ₹5L', '₹5L+'].map((b) => (
-                    <button
-                      type="button"
-                      key={b}
-                      onClick={() => setBudget(b)}
-                      className={`${styles.btnSelect} ${budget === b ? styles.active : ''}`}
-                    >
-                      {b}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div className={styles.fieldGroup}>
                 <label className={styles.fieldLabel}>Project Details</label>
                 <textarea
                   rows={3}
@@ -345,7 +327,7 @@ function ContactContent() {
                 </p>
                 <a
                   href={`https://wa.me/917302164841?text=${encodeURIComponent(
-                    `Hi Nirbhay, I'd like to discuss a project with Endustry Plant.\nSelected Service: ${selectedServices.join(', ')}\nBudget: ${budget}`
+                    `Hi Nirbhay, I'd like to discuss a project with Endustry Plant.\nSelected Service: ${selectedServices.join(', ')}`
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
