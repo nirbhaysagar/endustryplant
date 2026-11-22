@@ -139,14 +139,14 @@ export default function Hero() {
             </div>
 
             <h1 className={styles.headline}>
-              Engineering Studio for<br />
-              India’s High-Growth Brands.
+              We build fast websites and apps<br />
+              that grow your business.
             </h1>
 
             <p className={styles.subheadline}>
-              We architect, design, and code high-speed Next.js web applications,
-              Shopify Plus headless storefronts, and cross-platform mobile products.
-              Fixed milestone sprints with direct founder communication.
+              We build and launch high-converting websites, web applications,
+              and mobile products. Delivered in 4-week sprints with clean code,
+              sub-second speed, and 100% ownership.
             </p>
 
             <div className={styles.btnGroup}>
@@ -158,22 +158,22 @@ export default function Hero() {
               </Link>
             </div>
 
-            {/* MINIMAL PROOF ROW (CLEAN, QUIET, NO IN-YOUR-FACE FLOATING NOISE) */}
+            {/* MINIMAL PROOF ROW (CLEAN, STRAIGHT, OUTPUT-CENTRIC) */}
             <div className={styles.proofPillRow}>
               <span className={styles.proofItem}>
-                <span>⚡</span> Sub-0.8s LCP Edge Speed
+                <span>⚡</span> Sub-0.8s Load Speed
               </span>
               <span className={styles.proofDot}>·</span>
               <span className={styles.proofItem}>
-                <span>🔒</span> 100% IP Code Handover
+                <span>🔒</span> 100% Code Ownership
               </span>
               <span className={styles.proofDot}>·</span>
               <span className={styles.proofItem}>
-                <span>🛡️</span> 30-Day SLA Bug Warranty
+                <span>🛡️</span> 30-Day Bug Warranty
               </span>
               <span className={styles.proofDot}>·</span>
               <span className={styles.proofItem}>
-                <span>⏱️</span> 4-Week Milestone Sprints
+                <span>⏱️</span> 4-Week Sprints
               </span>
             </div>
           </div>
