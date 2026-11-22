@@ -158,23 +158,24 @@ export default function Hero() {
               </Link>
             </div>
 
-            {/* MINIMAL PROOF ROW (CLEAN, STRAIGHT, OUTPUT-CENTRIC) */}
-            <div className={styles.proofPillRow}>
-              <span className={styles.proofItem}>
-                <span>⚡</span> Sub-0.8s Load Speed
-              </span>
-              <span className={styles.proofDot}>·</span>
-              <span className={styles.proofItem}>
-                <span>🔒</span> 100% Code Ownership
-              </span>
-              <span className={styles.proofDot}>·</span>
-              <span className={styles.proofItem}>
-                <span>🛡️</span> 30-Day Bug Warranty
-              </span>
-              <span className={styles.proofDot}>·</span>
-              <span className={styles.proofItem}>
-                <span>⏱️</span> 4-Week Sprints
-              </span>
+            {/* 4 STACKED PILLS OF UNEVEN LENGTH (OUTPUT-CENTRIC) */}
+            <div className={styles.pillStack}>
+              <div className={styles.stackedPill}>
+                <span className={styles.pillIcon}>⏱️</span>
+                <span className={styles.pillText}>Delivered in under 4 weeks</span>
+              </div>
+              <div className={styles.stackedPill}>
+                <span className={styles.pillIcon}>🛡️</span>
+                <span className={styles.pillText}>3 months of free maintenance after delivery</span>
+              </div>
+              <div className={styles.stackedPill}>
+                <span className={styles.pillIcon}>🔒</span>
+                <span className={styles.pillText}>100% project & code ownership</span>
+              </div>
+              <div className={styles.stackedPill}>
+                <span className={styles.pillIcon}>⚡</span>
+                <span className={styles.pillText}>Sub-second load speed guaranteed</span>
+              </div>
             </div>
           </div>
         </section>
