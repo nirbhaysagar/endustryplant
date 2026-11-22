@@ -30,7 +30,7 @@ const MARQUEE_ITEMS: MarqueeItem[] = [
         <path fill="#F25022" d="M1 1h10v10H1z"/>
         <path fill="#7FBA00" d="M13 1h10v10H13z"/>
         <path fill="#00A4EF" d="M1 13h10v10H1z"/>
-        <path fill="#FFB900" d="M13 13h10v10H13z"/>
+        <path fill="#FFB900" d="M13 13h10v10H1z"/>
       </svg>
     ),
   },
@@ -123,97 +123,30 @@ const MARQUEE_ITEMS: MarqueeItem[] = [
   },
 ];
 
-const PROOF_CARDS = [
-  {
-    id: 'speed',
-    posClass: styles.cardTopLeft,
-    icon: '⚡',
-    badge: '0.68s LCP Speed',
-    title: 'Sub-Second Edge Loads',
-    sub: 'Next.js 16 · Turbopack · 100% Core Web Vitals',
-  },
-  {
-    id: 'conv',
-    posClass: styles.cardTopRight,
-    icon: '📈',
-    badge: '+240% Checkout Conv',
-    title: 'Aura Lifestyle D2C',
-    sub: 'Shopify Plus · Razorpay 1-Click UPI',
-  },
-  {
-    id: 'stack',
-    posClass: styles.cardMidLeft,
-    icon: '🛠️',
-    badge: '100% Bespoke Code',
-    title: 'Zero Template Bloat',
-    sub: 'React Native · Supabase · TypeScript',
-  },
-  {
-    id: 'leads',
-    posClass: styles.cardMidRight,
-    icon: '📍',
-    badge: '45+ Inquiries /mo',
-    title: 'Trip Trek Holiday',
-    sub: 'Destination Silos · WhatsApp Booking',
-  },
-  {
-    id: 'ip',
-    posClass: styles.cardBottomLeft,
-    icon: '🔒',
-    badge: '100% IP Handover',
-    title: 'Full Git Repo Transfer',
-    sub: 'Zero Vendor Lock-In · Clean Architecture',
-  },
-  {
-    id: 'sla',
-    posClass: styles.cardBottomRight,
-    icon: '🛡️',
-    badge: '30-Day Production SLA',
-    title: 'Bug Fixing Warranty',
-    sub: 'Included With Every Sprint Launch',
-  },
-];
-
 export default function Hero() {
   return (
     <>
       <div className={styles.heroOuter}>
         <section className={styles.heroCard} id="hero">
-          {/* PERPLEXITY × CARBON ATMOSPHERIC RAYS & RADIAL SPEED STREAKS */}
-          <div className={styles.atmosphericRays} />
-          <div className={styles.speedStreaks} />
+          {/* SUBTLE AMBIENT RADIAL DEPTH */}
+          <div className={styles.ambientGlow} />
 
-          {/* UMI-INSPIRED 2.5D FLOATING PROOF ARTIFACTS (DESKTOP ORBIT) */}
-          <div className={styles.orbitContainer} aria-hidden="true">
-            {PROOF_CARDS.map((card) => (
-              <div key={card.id} className={`${styles.floatingCard} ${card.posClass}`}>
-                <div className={styles.cardIconBox}>{card.icon}</div>
-                <div className={styles.cardDetails}>
-                  <span className={styles.cardBadge}>{card.badge}</span>
-                  <strong className={styles.cardTitle}>{card.title}</strong>
-                  <span className={styles.cardSub}>{card.sub}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* CENTER STAGE EDITORIAL MONOLITH */}
+          {/* CENTER STAGE MINIMAL MONOLITH */}
           <div className={styles.heroContent}>
             <div className={styles.eyebrowBadge}>
               <span className={styles.coralSquare} />
-              <span>Senior Digital Product Studio · New Delhi</span>
+              <span>Digital Product Studio · New Delhi</span>
             </div>
 
             <h1 className={styles.headline}>
-              Engineering Studio<br />
-              for India’s High-Growth<br />
-              Digital Brands.
+              Engineering Studio for<br />
+              India’s High-Growth Brands.
             </h1>
 
             <p className={styles.subheadline}>
               We architect, design, and code high-speed Next.js web applications,
               Shopify Plus headless storefronts, and cross-platform mobile products.
-              Fixed milestone sprints with zero agency middlemen.
+              Fixed milestone sprints with direct founder communication.
             </p>
 
             <div className={styles.btnGroup}>
@@ -225,18 +158,23 @@ export default function Hero() {
               </Link>
             </div>
 
-            {/* MOBILE PROOF RAIL (CLEAN HORIZONTAL CAROUSEL ON SMALL SCREENS) */}
-            <div className={styles.mobileProofRail}>
-              {PROOF_CARDS.map((card) => (
-                <div key={card.id} className={styles.mobileProofCard}>
-                  <div className={styles.cardIconBox}>{card.icon}</div>
-                  <div className={styles.cardDetails}>
-                    <span className={styles.cardBadge}>{card.badge}</span>
-                    <strong className={styles.cardTitle}>{card.title}</strong>
-                    <span className={styles.cardSub}>{card.sub}</span>
-                  </div>
-                </div>
-              ))}
+            {/* MINIMAL PROOF ROW (CLEAN, QUIET, NO IN-YOUR-FACE FLOATING NOISE) */}
+            <div className={styles.proofPillRow}>
+              <span className={styles.proofItem}>
+                <span>⚡</span> Sub-0.8s LCP Edge Speed
+              </span>
+              <span className={styles.proofDot}>·</span>
+              <span className={styles.proofItem}>
+                <span>🔒</span> 100% IP Code Handover
+              </span>
+              <span className={styles.proofDot}>·</span>
+              <span className={styles.proofItem}>
+                <span>🛡️</span> 30-Day SLA Bug Warranty
+              </span>
+              <span className={styles.proofDot}>·</span>
+              <span className={styles.proofItem}>
+                <span>⏱️</span> 4-Week Milestone Sprints
+              </span>
             </div>
           </div>
         </section>

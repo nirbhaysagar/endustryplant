@@ -92,14 +92,14 @@
   vertical-align: super;
 }
 
-/* Home hero transparent override */
+/* Home hero nav adaptive styling */
 .heroNav .logoLink,
 .heroNav .logoTitle {
-  color: #FFFFFF;
+  color: var(--text-primary);
 }
 
 .heroNav .logoSup {
-  color: #94A3B8;
+  color: var(--text-muted);
 }
 
 .centerLinks {
@@ -125,10 +125,27 @@
 }
 
 .heroNav .navLink {
-  color: #CBD5E1;
+  color: var(--text-secondary);
 }
 
 .heroNav .navLink:hover {
+  color: var(--text-primary);
+}
+
+:global([data-theme='dark']) .heroNav .logoLink,
+:global([data-theme='dark']) .heroNav .logoTitle {
+  color: #FFFFFF;
+}
+
+:global([data-theme='dark']) .heroNav .logoSup {
+  color: #94A3B8;
+}
+
+:global([data-theme='dark']) .heroNav .navLink {
+  color: #CBD5E1;
+}
+
+:global([data-theme='dark']) .heroNav .navLink:hover {
   color: #FFFFFF;
 }
 
